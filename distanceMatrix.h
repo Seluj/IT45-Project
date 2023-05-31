@@ -1,7 +1,3 @@
-//
-// Created by jules on 31/05/2023.
-//
-
 #ifndef IT45_PROJECT_DISTANCEMATRIX_H
 #define IT45_PROJECT_DISTANCEMATRIX_H
 
