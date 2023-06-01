@@ -2,13 +2,13 @@
 // Created by jules on 01/06/2023.
 //
 
-#ifndef IT45_PROJECT_CENTER_H
-#define IT45_PROJECT_CENTER_H
+#ifndef IT45_PROJECT_CENTER_HPP
+#define IT45_PROJECT_CENTER_HPP
 
 #include <iostream>
 #include <vector>
-#include "employee.h"
-#include "mission.h"
+#include "employee.hpp"
+#include "mission.hpp"
 
 class center {
 private:
@@ -39,4 +39,4 @@ public:
 };
 
 
-#endif //IT45_PROJECT_CENTER_H
+#endif //IT45_PROJECT_CENTER_HPP

@@ -1,5 +1,5 @@
-#ifndef IT45_PROJECT_DISTANCECSV_H
-#define IT45_PROJECT_DISTANCECSV_H
+#ifndef IT45_PROJECT_DISTANCECSV_HPP
+#define IT45_PROJECT_DISTANCECSV_HPP
 
 #include <iostream>
 #include <vector>
@@ -70,4 +70,4 @@ class distanceCSV {
 };
 
 
-#endif //IT45_PROJECT_DISTANCECSV_H
+#endif //IT45_PROJECT_DISTANCECSV_HPP

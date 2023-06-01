@@ -5,7 +5,7 @@
 #ifndef IT45_PROJECT_DATACOLLECTION_HPP
 #define IT45_PROJECT_DATACOLLECTION_HPP
 
-#include "accessCSV/distanceCSV.h"
+#include "accessCSV/distanceCSV.hpp"
 #include "accessCSV/centersCSV.hpp"
 #include "accessCSV/missionsCSV.hpp"
 #include "accessCSV/employeesCSV.hpp"

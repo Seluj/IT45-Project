@@ -1,7 +1,7 @@
 #include <iostream>
 #include "dataCollection.hpp"
-#include "data.h"
-#include "dataAnalysis.h"
+#include "data.hpp"
+#include "dataAnalysis.hpp"
 
 int main() {
 

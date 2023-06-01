@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "../csv.hpp"
-#include "../classes/center.h"
+#include "../classes/center.hpp"
 
 class centersCSV {
 private:

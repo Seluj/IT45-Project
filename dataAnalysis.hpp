@@ -2,12 +2,12 @@
 // Created by jules on 01/06/2023.
 //
 
-#ifndef IT45_PROJECT_DATAANALYSIS_H
-#define IT45_PROJECT_DATAANALYSIS_H
+#ifndef IT45_PROJECT_DATAANALYSIS_HPP
+#define IT45_PROJECT_DATAANALYSIS_HPP
 
 #include "dataCollection.hpp"
-#include "data.h"
-#include "classes/center.h"
+#include "data.hpp"
+#include "classes/center.hpp"
 
 class dataAnalysis {
 public:
@@ -17,4 +17,4 @@ public:
 };
 
 
-#endif //IT45_PROJECT_DATAANALYSIS_H
+#endif //IT45_PROJECT_DATAANALYSIS_HPP

@@ -2,8 +2,8 @@
 // Created by jules on 01/06/2023.
 //
 
-#ifndef IT45_PROJECT_MISSION_H
-#define IT45_PROJECT_MISSION_H
+#ifndef IT45_PROJECT_MISSION_HPP
+#define IT45_PROJECT_MISSION_HPP
 
 #include <iostream>
 
@@ -30,4 +30,4 @@ public:
 };
 
 
-#endif //IT45_PROJECT_MISSION_H
+#endif //IT45_PROJECT_MISSION_HPP

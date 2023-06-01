@@ -2,7 +2,7 @@
 // Created by jules on 01/06/2023.
 //
 
-#include "dataAnalysis.h"
+#include "dataAnalysis.hpp"
 
 dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
   data1->centers = d->getCenters()->getCenters();

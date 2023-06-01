@@ -2,12 +2,12 @@
 // Created by jules on 01/06/2023.
 //
 
-#ifndef IT45_PROJECT_DATA_H
-#define IT45_PROJECT_DATA_H
+#ifndef IT45_PROJECT_DATA_HPP
+#define IT45_PROJECT_DATA_HPP
 
 #include <iostream>
 #include <vector>
-#include "classes/center.h"
+#include "classes/center.hpp"
 
 class data {
 
@@ -25,4 +25,4 @@ class data {
 };
 
 
-#endif //IT45_PROJECT_DATA_H
+#endif //IT45_PROJECT_DATA_HPP

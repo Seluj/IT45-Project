@@ -2,8 +2,8 @@
 // Created by jules on 01/06/2023.
 //
 
-#ifndef IT45_PROJECT_EMPLOYEE_H
-#define IT45_PROJECT_EMPLOYEE_H
+#ifndef IT45_PROJECT_EMPLOYEE_HPP
+#define IT45_PROJECT_EMPLOYEE_HPP
 
 #include <iostream>
 #include <vector>
@@ -29,4 +29,4 @@ private:
 };
 
 
-#endif //IT45_PROJECT_EMPLOYEE_H
+#endif //IT45_PROJECT_EMPLOYEE_HPP

@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "../csv.hpp"
-#include "../classes/employee.h"
+#include "../classes/employee.hpp"
 
 class employeesCSV {
   private:
