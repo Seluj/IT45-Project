@@ -1,6 +1,12 @@
-#include "distanceCSV.h"
+/**
+ * @file distanceCSV.cpp
+ * @brief Implementation of the distanceCSV class
+ * @date 01/06/2023
+ */
 
 #include "distanceCSV.hpp"
+
+/* --------------------------------- Constructor --------------------------------- */
 
 distanceCSV::distanceCSV(const std::string &path) {
   int i = 0; // Iterator for the rows
@@ -24,17 +30,11 @@ distanceCSV::distanceCSV(const std::string &path) {
   this->nbColumns = this->matrix[0].size();  // Set the number of columns
 }
 
+/* --------------------------------- Destructor --------------------------------- */
+
 distanceCSV::~distanceCSV() = default;
 
-void distanceCSV::printMatrix() {
-  for (int i = 0; i < this->nbRows; i++) {
-    std::cout << i << " : ";
-    for (int j = 0; j < this->nbColumns; j++) {
-      std::cout << this->matrix[i][j] << " ";
-    }
-    std::cout << std::endl;
-  }
-}
+/* --------------------------------- accessors --------------------------------- */
 
 std::vector<std::vector<float>> distanceCSV::getMatrix() {
   return this->matrix;
@@ -47,6 +47,20 @@ int distanceCSV::getNbRows() {
 int distanceCSV::getNbColumns() {
   return this->nbColumns;
 }
+
+/* --------------------------------- Print the matrix --------------------------------- */
+
+void distanceCSV::printMatrix() {
+  for (int i = 0; i < this->nbRows; i++) {
+    std::cout << i << " : ";
+    for (int j = 0; j < this->nbColumns; j++) {
+      std::cout << this->matrix[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
+}
+
+/* --------------------------------- Modify the matrix --------------------------------- */
 
 void distanceCSV::modifyElement(int i, int j, float value) {
   this->matrix[i][j] = value;

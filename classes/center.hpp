@@ -1,6 +1,11 @@
-//
-// Created by jules on 01/06/2023.
-//
+/**
+ * @file center.hpp
+ * @brief Header file for class center
+ * @date 01/06/2021
+ *
+ * Header file containing the definition of the class center
+ * This class is used to store the data of a center
+ */
 
 #ifndef IT45_PROJECT_CENTER_HPP
 #define IT45_PROJECT_CENTER_HPP
@@ -10,6 +15,10 @@
 #include "employee.hpp"
 #include "mission.hpp"
 
+/**
+ * @class center
+ * @brief Class representing a center
+ */
 class center {
 private:
   int id;

@@ -1,17 +1,21 @@
-//
-// Created by jules on 01/06/23.
-//
+/**
+ * @file missionsCSV.cpp
+ * @brief Implementation of the missionsCSV class
+ * @date 01/06/2023
+ */
 
 #include "missionsCSV.hpp"
 
+/* --------------------------------- Constructor --------------------------------- */
+
 missionsCSV::missionsCSV(const std::string &path) {
-  int i = 0; // Iterator for the rows
-  int j; // Iterator for the columns
-  int id; // Id of the mission
-  int day; // Day of the mission
-  int startingPeriod; // Starting period of the mission
-  int endingPeriod; // Ending period of the mission
-  std::string skill; // Skill of the mission
+  int i = 0;              // Iterator for the rows
+  int j;                  // Iterator for the columns
+  int id;                 // Id of the mission
+  int day;                // Day of the mission
+  int startingPeriod;     // Starting period of the mission
+  int endingPeriod;       // Ending period of the mission
+  std::string skill;      // Skill of the mission
   std::string speciality; // Speciality of the mission
 
   // Set the format of the CSV file
@@ -26,17 +30,17 @@ missionsCSV::missionsCSV(const std::string &path) {
     j = 0;
     for (csv::CSVField& field: row) { // Input iterator for the fields
       if (j == 0) {
-        id = field.get<int>(); // Add a new field, push back the value of the field and convert it to int
+        id = field.get<int>(); // Convert the field to int and store it in id
       } else if (j == 1) {
-        day = field.get<int>(); // Add a new field, push back the value of the field and convert it to int
+        day = field.get<int>(); // Convert the field to int and store it in day
       } else if (j == 2) {
-        startingPeriod = field.get<int>(); // Add a new field, push back the value of the field and convert it to int
+        startingPeriod = field.get<int>(); // Convert the field to int and store it in startingPeriod
       } else if (j == 3) {
-        endingPeriod = field.get<int>(); // Add a new field, push back the value of the field and convert it to int
+        endingPeriod = field.get<int>(); // Convert the field to int and store it in endingPeriod
       } else if (j == 4) {
-        skill = field.get<std::string>(); // Add a new field, push back the value of the field and convert it to string
+        skill = field.get<std::string>(); // Convert the field to string and store it in skill
       } else {
-        speciality = field.get<std::string>(); // Add a new field, push back the value of the field and convert it to string
+        speciality = field.get<std::string>(); // Convert the field to string and store it in speciality
       }
       j++;
     }
@@ -46,13 +50,11 @@ missionsCSV::missionsCSV(const std::string &path) {
   this->nbMissions = i; // Set the number of missions
 }
 
+/* --------------------------------- Destructor --------------------------------- */
+
 missionsCSV::~missionsCSV() = default;
 
-void missionsCSV::printMissions() {
-  for (int i = 0; i < this->nbMissions; i++) {
-    this->missions[i]->printMission();
-  }
-}
+/* --------------------------------- accessors --------------------------------- */
 
 std::vector<mission *> missionsCSV::getMissions() {
   return this->missions;
@@ -60,4 +62,12 @@ std::vector<mission *> missionsCSV::getMissions() {
 
 int missionsCSV::getNbMissions() {
   return this->nbMissions;
+}
+
+/* --------------------------------- print the missions --------------------------------- */
+
+void missionsCSV::printMissions() {
+  for (int i = 0; i < this->nbMissions; i++) {
+    this->missions[i]->printMission();
+  }
 }

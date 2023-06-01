@@ -1,12 +1,20 @@
-//
-// Created by jules on 01/06/2023.
-//
+/**
+ * @file mission.hpp
+ * @brief Header file for class mission
+ * @date 01/06/2021
+ *
+ * Header file containing the definition of the class mission
+ */
 
 #ifndef IT45_PROJECT_MISSION_HPP
 #define IT45_PROJECT_MISSION_HPP
 
 #include <iostream>
 
+/**
+ * @class mission
+ * @brief Class representing a mission
+ */
 class mission {
 private:
   int id;
