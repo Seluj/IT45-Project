@@ -39,8 +39,3 @@ std::string employee::getSpeciality() {
 void employee::printEmployee() {
   std::cout << this->getId() << " " << this->getIdCenter() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;
 }
-
-employee::employee(std::vector<employee *> vector1) {
-
-}
-

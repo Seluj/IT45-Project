@@ -33,8 +33,6 @@ private:
     std::string getSkill();
     std::string getSpeciality();
     void printEmployee();
-
-  employee(std::vector<employee *> vector1);
 };
 
 

@@ -7,23 +7,16 @@
 dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
   data1->centers = d->getCenters()->getCenters();
   data1->nbCenters = d->getCenters()->getNbCenters();
-  std::cout << std::endl << "Center Done" << std::endl;
-
 
   data1->missions = d->getMissions()->getMissions();
   data1->nbMissions = d->getMissions()->getNbMissions();
-  std::cout << std::endl << "Mission Done" << std::endl;
 
   data1->matrix = d->getDistance()->getMatrix();
   data1->nbRows = d->getDistance()->getNbRows();
   data1->nbColumns = d->getDistance()->getNbColumns();
-  std::cout << std::endl << "Matrix Done" << std::endl;
 
   std::vector<employee *> employees = d->getEmployees()->getEmployees();
   int nbEmployees = d->getEmployees()->getNbEmployees();
-  std::cout << "nbEmployee :" << nbEmployees << std::endl;
-  std::cout << std::endl << "Employee copying done" << std::endl;
-
 
   for (int i = 0; i < nbEmployees; i++) {
     if (employees[i]->getSkill() == "LSF") {
@@ -32,9 +25,6 @@ dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
       data1->centers[employees[i]->getIdCenter() - 1]->addEmployeeLCP(employees[i]);
     }
   }
-
-  std::cout << std::endl << "Employee Done" << std::endl;
-
 }
 
 void dataAnalysis::dataAnalysisPrint(data *data1) {
@@ -57,5 +47,4 @@ void dataAnalysis::dataAnalysisPrint(data *data1) {
     }
     std::cout << std::endl;
   }
-
 }
