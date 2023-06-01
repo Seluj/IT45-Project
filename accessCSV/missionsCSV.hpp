@@ -8,33 +8,20 @@
 #include <iostream>
 #include <vector>
 #include "../csv.hpp"
+#include "../classes/mission.h"
 
 class missionsCSV {
-  private:
-    std::vector<int> id;
-    std::vector<int> day;
-    std::vector<int> startingPeriod;
-    std::vector<int> endingPeriod;
-    std::vector<std::string> skill;
-    std::vector<std::string> speciality;
-    int nbMissions;
+private:
+  std::vector<mission *> missions;
+  int nbMissions;
 
-  public:
-    missionsCSV(const std::string& path);
-    ~missionsCSV();
-    std::vector<int> getId();
-    std::vector<int> getDay();
-    std::vector<int> getStartingPeriod();
-    std::vector<int> getEndingPeriod();
-    std::vector<std::string> getSkill();
-    std::vector<std::string> getSpeciality();
-    void printId();
-    void printDay();
-    void printStartingPeriod();
-    void printEndingPeriod();
-    void printSkill();
-    void printSpeciality();
-    void printMissions();
+public:
+  missionsCSV(const std::string& path);
+  ~missionsCSV();
+  void printMissions();
+
+  std::vector<mission *> getMissions();
+  int getNbMissions();
 };
 
 

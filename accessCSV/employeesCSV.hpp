@@ -8,26 +8,20 @@
 #include <iostream>
 #include <vector>
 #include "../csv.hpp"
+#include "../classes/employee.h"
 
 class employeesCSV {
   private:
-    std::vector<int> id;
-    std::vector<int> idCenter;
-    std::vector<std::string> skill;
-    std::vector<std::string> speciality;
+    std::vector<employee *> employees;
     int nbEmployees;
 
   public:
     employeesCSV(const std::string& path);
     ~employeesCSV();
-    std::vector<int> getId();
-    std::vector<int> getIdCenter();
-    std::vector<std::string> getSkill();
-    std::vector<std::string> getSpeciality();
-    void printId();
-    void printIdCenter();
-    void printSkill();
-    void printSpeciality();
+
+    std::vector<employee *> getEmployees();
+    int getNbEmployees();
+
     void printEmployees();
 };
 

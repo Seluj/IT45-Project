@@ -11,20 +11,21 @@
 #include "accessCSV/employeesCSV.hpp"
 
 class dataCollection {
-  private:
-    distanceCSV* distance;
-    centersCSV* centers;
-    missionsCSV* missions;
-    employeesCSV* employees;
+private:
+  distanceCSV* distance;
+  centersCSV* centers;
+  missionsCSV* missions;
+  employeesCSV* employees;
 
-  public:
-    dataCollection(const std::string& path);
-    ~dataCollection();
-    distanceCSV* getDistance();
-    centersCSV* getCenters();
-    missionsCSV* getMissions();
-    employeesCSV* getEmployees();
-    void printDataCollection();
+public:
+  dataCollection(const std::string& path);
+  ~dataCollection();
+  distanceCSV* getDistance();
+  centersCSV* getCenters();
+  missionsCSV* getMissions();
+  employeesCSV* getEmployees();
+
+  void printDataCollection();
 };
 
 

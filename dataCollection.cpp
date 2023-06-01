@@ -34,6 +34,7 @@ employeesCSV *dataCollection::getEmployees() {
   return this->employees;
 }
 
+
 void dataCollection::printDataCollection() {
   this->distance->printMatrix();
   this->centers->printCenters();

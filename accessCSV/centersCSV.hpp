@@ -8,20 +8,19 @@
 #include <iostream>
 #include <vector>
 #include "../csv.hpp"
+#include "../classes/center.h"
 
 class centersCSV {
-  private:
-    std::vector<int> id;
-    std::vector<std::string> name;
-    int nbCenters;
-  public:
-    centersCSV(const std::string& path);
-    ~centersCSV();
-    std::vector<int> getId();
-    std::vector<std::string> getName();
-    void printId();
-    void printName();
-    void printCenters();
+private:
+  std::vector<center *> centers;
+  int nbCenters;
+
+public:
+  centersCSV(const std::string& path);
+  ~centersCSV();
+  std::vector<center *> getCenters();
+  int getNbCenters();
+  void printCenters();
 };
 
 
