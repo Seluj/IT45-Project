@@ -1,8 +1,8 @@
-#include "distanceMatrix.h"
+#include "distanceCSV.h"
 
 #include <utility>
 
-distanceMatrix::distanceMatrix(const std::string &path) {
+distanceCSV::distanceCSV(const std::string &path) {
   int i = 0; // Iterator for the rows
 
   // Set the format of the CSV file
@@ -24,9 +24,9 @@ distanceMatrix::distanceMatrix(const std::string &path) {
   this->nbColumns = this->matrix[0].size();  // Set the number of columns
 }
 
-distanceMatrix::~distanceMatrix() = default;
+distanceCSV::~distanceCSV() = default;
 
-void distanceMatrix::printMatrix() {
+void distanceCSV::printMatrix() {
   for (int i = 0; i < this->nbRows; i++) {
     std::cout << i << " : ";
     for (int j = 0; j < this->nbColumns; j++) {
@@ -36,39 +36,39 @@ void distanceMatrix::printMatrix() {
   }
 }
 
-std::vector<std::vector<float>> distanceMatrix::getMatrix() {
+std::vector<std::vector<float>> distanceCSV::getMatrix() {
   return this->matrix;
 }
 
-int distanceMatrix::getNbRows() {
+int distanceCSV::getNbRows() {
   return this->nbRows;
 }
 
-int distanceMatrix::getNbColumns() {
+int distanceCSV::getNbColumns() {
   return this->nbColumns;
 }
 
-void distanceMatrix::modifyElement(int i, int j, float value) {
+void distanceCSV::modifyElement(int i, int j, float value) {
   this->matrix[i][j] = value;
 }
 
-void distanceMatrix::modifyRow(int i, float value) {
+void distanceCSV::modifyRow(int i, float value) {
   for (int j = 0; j < this->nbColumns; j++) {
     this->matrix[i][j] = value;
   }
 }
 
-void distanceMatrix::modifyRow(int i, std::vector<float> row) {
+void distanceCSV::modifyRow(int i, std::vector<float> row) {
   this->matrix[i] = std::move(row);
 }
 
-void distanceMatrix::mofifyColumn(int j, float value) {
+void distanceCSV::mofifyColumn(int j, float value) {
   for (int i = 0; i < this->nbRows; i++) {
     this->matrix[i][j] = value;
   }
 }
 
-void distanceMatrix::mofifyColumn(int j, std::vector<float> column) {
+void distanceCSV::mofifyColumn(int j, std::vector<float> column) {
   for (int i = 0; i < this->nbRows; i++) {
     this->matrix[i][j] = column[i];
   }

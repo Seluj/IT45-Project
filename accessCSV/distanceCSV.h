@@ -1,11 +1,11 @@
-#ifndef IT45_PROJECT_DISTANCEMATRIX_H
-#define IT45_PROJECT_DISTANCEMATRIX_H
+#ifndef IT45_PROJECT_DISTANCECSV_H
+#define IT45_PROJECT_DISTANCECSV_H
 
 #include <iostream>
 #include <vector>
-#include "csv.hpp"
+#include "../csv.hpp"
 
-class distanceMatrix {
+class distanceCSV {
   private:
     std::vector<std::vector<float>> matrix; // 2D vector of floats to store the matrix
     int nbRows;                             // Number of rows of the matrix
@@ -14,11 +14,11 @@ class distanceMatrix {
 
     /* --------------------------------- Constructor --------------------------------- */
 
-    distanceMatrix(const std::string& path);
+    distanceCSV(const std::string& path);
 
     /* --------------------------------- Destructor --------------------------------- */
 
-    ~distanceMatrix();
+    ~distanceCSV();
 
     /* --------------------------------- Accessors --------------------------------- */
 
@@ -70,4 +70,4 @@ class distanceMatrix {
 };
 
 
-#endif //IT45_PROJECT_DISTANCEMATRIX_H
+#endif //IT45_PROJECT_DISTANCECSV_H
