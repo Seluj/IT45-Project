@@ -8,6 +8,8 @@
 
 #include "dataCollection.hpp"
 
+/* ------------------------------ Constructors ----------------------------- */
+
 dataCollection::dataCollection(const std::string &path) {
   this->distance = new distanceCSV(path);
   this->centers = new centersCSV(path);
@@ -15,12 +17,16 @@ dataCollection::dataCollection(const std::string &path) {
   this->employees = new employeesCSV(path);
 }
 
+/* ------------------------------- Destructor ------------------------------ */
+
 dataCollection::~dataCollection() {
   delete this->distance;
   delete this->centers;
   delete this->missions;
   delete this->employees;
 }
+
+/* -------------------------------- Getters -------------------------------- */
 
 distanceCSV *dataCollection::getDistance() {
   return this->distance;
@@ -38,6 +44,7 @@ employeesCSV *dataCollection::getEmployees() {
   return this->employees;
 }
 
+/* -------------------------------- Print Method -------------------------------- */
 
 void dataCollection::printDataCollection() {
   this->distance->printMatrix();

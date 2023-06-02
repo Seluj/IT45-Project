@@ -28,12 +28,22 @@ private:
 
 public:
 
+  /* ------------------------------ Constructors ----------------------------- */
+
   dataCollection(const std::string& path);
+
+  /* ------------------------------- Destructor ------------------------------ */
+
   ~dataCollection();
+
+  /* -------------------------------- Getters -------------------------------- */
+
   distanceCSV* getDistance();
   centersCSV* getCenters();
   missionsCSV* getMissions();
   employeesCSV* getEmployees();
+
+  /* -------------------------------- Print Method -------------------------------- */
 
   void printDataCollection();
 };
