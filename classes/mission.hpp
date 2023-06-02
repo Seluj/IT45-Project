@@ -1,7 +1,7 @@
 /**
  * @file mission.hpp
  * @brief Header file for class mission
- * @date 01/06/2021
+ * @date 01/06/2023
  *
  * Header file containing the definition of the class mission
  */
@@ -54,7 +54,7 @@ public:
   std::string getSkill();
   std::string getSpeciality();
 
-  /* --------------------------------- Print --------------------------------- */
+  /* --------------------------------- Print Method --------------------------------- */
 
   void printMission();
 };

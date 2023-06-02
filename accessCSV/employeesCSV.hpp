@@ -40,7 +40,7 @@ public:
   std::vector<employee *> getEmployees();
   int getNbEmployees();
 
-  /* --------------------------------- Print the employees --------------------------------- */
+  /* --------------------------------- Print Method --------------------------------- */
 
   void printEmployees();
 };

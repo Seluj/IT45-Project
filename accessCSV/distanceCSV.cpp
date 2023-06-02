@@ -48,7 +48,7 @@ int distanceCSV::getNbColumns() {
   return this->nbColumns;
 }
 
-/* --------------------------------- Print the matrix --------------------------------- */
+/* --------------------------------- Print Method --------------------------------- */
 
 void distanceCSV::printMatrix() {
   for (int i = 0; i < this->nbRows; i++) {

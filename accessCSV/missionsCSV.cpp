@@ -64,7 +64,7 @@ int missionsCSV::getNbMissions() {
   return this->nbMissions;
 }
 
-/* --------------------------------- print the missions --------------------------------- */
+/* --------------------------------- Print Method --------------------------------- */
 
 void missionsCSV::printMissions() {
   for (int i = 0; i < this->nbMissions; i++) {

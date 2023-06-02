@@ -10,6 +10,8 @@
 
 #include <utility>
 
+/* --------------------------------- Constructor --------------------------------- */
+
 center::center() {
   id = 0;
   name = "";
@@ -22,7 +24,7 @@ center::center() {
 
 center::center(int id, std::string name) {
   this->id = id;
-  this->name = std::move(name);
+  this->name = std::move(name); // Move the string instead of copying it (more efficient)
   capacity = 0;
   nbEmployeesLSF = 0;
   nbEmployeesLCP = 0;
@@ -30,10 +32,17 @@ center::center(int id, std::string name) {
   nbMissionsLCP = 0;
 }
 
+/* --------------------------------- Destructor --------------------------------- */
+
 center::~center() = default;
 
+/* --------------------------------- accessors --------------------------------- */
+
+
+/* --------------------------------- Print Method --------------------------------- */
+
 void center::printCenter() {
-  std::cout << "Center " << this->id << " " << this->name << std::endl;
+  std::cout << "Center : " << this->id << " " << this->name << std::endl;
   std::cout << "Capacity: " << this->capacity << std::endl;
   std::cout << "Employees LSF: " << this->nbEmployeesLSF << std::endl;
   std::cout << "Employees LCP: " << this->nbEmployeesLCP << std::endl;
@@ -42,22 +51,24 @@ void center::printCenter() {
   std::cout << std::endl;
 }
 
+/* --------------------------------- add employee/mission --------------------------------- */
+
 void center::addEmployeeLSF(employee *employee) {
-  this->employeesLSF.push_back(employee);
-  this->nbEmployeesLSF++;
+  this->employeesLSF.push_back(employee); // add the employee to the vector
+  this->nbEmployeesLSF++;                 // increment the number of employees
 }
 
 void center::addEmployeeLCP(employee *employee) {
-  this->employeesLCP.push_back(employee);
-  this->nbEmployeesLCP++;
+  this->employeesLCP.push_back(employee); // add the employee to the vector
+  this->nbEmployeesLCP++;                 // increment the number of employees
 }
 
 void center::addMissionLSF(mission *mission) {
-  this->missionsLSF.push_back(mission);
-  this->nbMissionsLSF++;
+  this->missionsLSF.push_back(mission); // add the mission to the vector
+  this->nbMissionsLSF++;                // increment the number of missions
 }
 
 void center::addMissionLCP(mission *mission) {
-  this->missionsLCP.push_back(mission);
-  this->nbMissionsLCP++;
+  this->missionsLCP.push_back(mission); // add the mission to the vector
+  this->nbMissionsLCP++;                // increment the number of missions
 }

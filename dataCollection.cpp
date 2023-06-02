@@ -1,6 +1,10 @@
-//
-// Created by jules on 01/06/23.
-//
+/**
+ * @file dataCollection.cpp
+ * @brief Source file for dataCollection.hpp
+ * @date 01/06/2023
+ *
+ * Source file containing the dataCollection class
+ */
 
 #include "dataCollection.hpp"
 

@@ -1,7 +1,7 @@
 /**
  * @file employee.hpp
  * @brief Header file for class employee
- * @date 01/06/2021
+ * @date 01/06/2023
  *
  * Header file containing the definition of the class employee
  * This class is used to store the data of an employee
@@ -50,7 +50,7 @@ public:
   std::string getSkill();
   std::string getSpeciality();
 
-  /* --------------------------------- Print --------------------------------- */
+  /* --------------------------------- Print Method --------------------------------- */
 
   void printEmployee();
 };

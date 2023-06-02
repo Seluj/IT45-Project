@@ -1,20 +1,29 @@
-//
-// Created by jules on 01/06/2023.
-//
+/**
+ * @file dataAnalysis.cpp
+ * @brief Source file for class dataAnalysis
+ * @date 01/06/2023
+ *
+ * Source file containing the definitions of the methods of the dataAnalysis class
+ */
 
 #include "dataAnalysis.hpp"
 
+
 dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
+  // Copy the data about the centers
   data1->centers = d->getCenters()->getCenters();
   data1->nbCenters = d->getCenters()->getNbCenters();
 
+  // Copy the data about the missions
   data1->missions = d->getMissions()->getMissions();
   data1->nbMissions = d->getMissions()->getNbMissions();
 
+  // Copy the data about the matrix
   data1->matrix = d->getDistance()->getMatrix();
   data1->nbRows = d->getDistance()->getNbRows();
   data1->nbColumns = d->getDistance()->getNbColumns();
 
+  // Add the employees to the centers according to their skills
   std::vector<employee *> employees = d->getEmployees()->getEmployees();
   int nbEmployees = d->getEmployees()->getNbEmployees();
 
@@ -28,6 +37,9 @@ dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
 }
 
 void dataAnalysis::dataAnalysisPrint(data *data1) {
+
+  std::cout << std::endl << "------------------------- Data after analyse -------------------------" << std::endl;
+
   std::cout << "------------------------- Center -------------------------" << std::endl;
   std::cout << "nbCenters: " << data1->nbCenters << std::endl;
   for (int i = 0; i < data1->nbCenters; i++) {

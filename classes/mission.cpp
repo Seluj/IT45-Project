@@ -1,8 +1,16 @@
-//
-// Created by jules on 01/06/2023.
-//
+/**
+ * @file mission.cpp
+ * @brief Source file for class mission
+ * @date 02/06/2023
+ *
+ * All the methods of the class mission are here
+ */
 
 #include "mission.hpp"
+
+#include <utility>
+
+/* --------------------------------- Constructor --------------------------------- */
 
 mission::mission() {
   this->id = 0;
@@ -18,11 +26,17 @@ mission::mission(int id, int day, int startingPeriod, int endingPeriod, std::str
   this->day = day;
   this->startingPeriod = startingPeriod;
   this->endingPeriod = endingPeriod;
-  this->skill = skill;
-  this->speciality = speciality;
+
+  // Move the string instead of copying it (more efficient)
+  this->skill = std::move(skill);
+  this->speciality = std::move(speciality);
 }
 
+/* --------------------------------- Destructor --------------------------------- */
+
 mission::~mission() = default;
+
+/* --------------------------------- accessors --------------------------------- */
 
 int mission::getId() {
   return this->id;
@@ -47,6 +61,8 @@ std::string mission::getSkill() {
 std::string mission::getSpeciality() {
   return this->speciality;
 }
+
+/* --------------------------------- Print Method --------------------------------- */
 
 void mission::printMission() {
   std::cout << this->getId() << " " << this->getDay() << " " << this->getStartingPeriod() << " " << this->getEndingPeriod() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;

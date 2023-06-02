@@ -1,8 +1,16 @@
-//
-// Created by jules on 01/06/2023.
-//
+/**
+ * @file employee.cpp
+ * @brief Source file for class employee
+ * @date 02/06/2023
+ *
+ * All the methods of the class employee are here
+ */
 
 #include "employee.hpp"
+
+#include <utility>
+
+/* --------------------------------- Constructor --------------------------------- */
 
 employee::employee() {
   this->id = 0;
@@ -14,11 +22,17 @@ employee::employee() {
 employee::employee(int id, int idCenter, std::string skill, std::string speciality) {
   this->id = id;
   this->idCenter = idCenter;
-  this->skill = skill;
-  this->speciality = speciality;
+
+  // Move the string instead of copying it (more efficient)
+  this->skill = std::move(skill);
+  this->speciality = std::move(speciality);
 }
 
+/* --------------------------------- Destructor --------------------------------- */
+
 employee::~employee() = default;
+
+/* --------------------------------- accessors --------------------------------- */
 
 int employee::getId() {
   return this->id;
@@ -35,6 +49,8 @@ std::string employee::getSkill() {
 std::string employee::getSpeciality() {
   return this->speciality;
 }
+
+/* --------------------------------- Print Method --------------------------------- */
 
 void employee::printEmployee() {
   std::cout << this->getId() << " " << this->getIdCenter() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;

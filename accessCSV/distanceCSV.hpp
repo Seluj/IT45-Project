@@ -42,7 +42,7 @@ public:
   int getNbRows();
   int getNbColumns();
 
-  /* --------------------------------- Print the matrix --------------------------------- */
+  /* --------------------------------- Print Method --------------------------------- */
 
   void printMatrix();
 

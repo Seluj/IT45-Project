@@ -52,7 +52,7 @@ int centersCSV::getNbCenters() {
   return this->nbCenters;
 }
 
-/* --------------------------------- Print the centers --------------------------------- */
+/* --------------------------------- Print Method --------------------------------- */
 
 void centersCSV::printCenters() {
   for (int i = 0; i < this->nbCenters; i++) {

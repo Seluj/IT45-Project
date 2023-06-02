@@ -40,7 +40,7 @@ public:
   std::vector<center *> getCenters();
   int getNbCenters();
 
-  /* --------------------------------- Print the centers --------------------------------- */
+  /* --------------------------------- Print Method --------------------------------- */
 
   void printCenters();
 };

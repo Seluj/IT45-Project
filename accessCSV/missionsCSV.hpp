@@ -40,7 +40,7 @@ public:
   std::vector<mission *> getMissions();
   int getNbMissions();
 
-  /* --------------------------------- Print the missions --------------------------------- */
+  /* --------------------------------- Print Method --------------------------------- */
 
   void printMissions();
 };

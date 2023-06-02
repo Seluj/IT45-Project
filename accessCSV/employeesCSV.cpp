@@ -58,7 +58,7 @@ int employeesCSV::getNbEmployees() {
   return this->nbEmployees;
 }
 
-/* --------------------------------- Print the employees --------------------------------- */
+/* --------------------------------- Print Method --------------------------------- */
 
 void employeesCSV::printEmployees() {
   for (int i = 0; i < this->nbEmployees; i++) {
