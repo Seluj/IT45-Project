@@ -19,9 +19,7 @@ dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
   data1->nbMissions = d->getMissions()->getNbMissions();
 
   // Copy the data about the matrix
-  data1->matrix = d->getDistance()->getMatrix();
-  data1->nbRows = d->getDistance()->getNbRows();
-  data1->nbColumns = d->getDistance()->getNbColumns();
+  data1->distancesMatrix = d->getDistance()->getDistancesMatrix();
 
   // Add the employees to the centers according to their skills
   std::vector<employee *> employees = d->getEmployees()->getEmployees();
@@ -51,14 +49,7 @@ void dataAnalysis::dataAnalysisPrint(data *data1) {
     data1->missions[i]->printMission();
   }
   std::cout << std::endl << "------------------------- Matrix -------------------------" << std::endl;
-  std::cout << "nbRows: " << data1->nbRows << std::endl;
-  std::cout << "nbColumns: " << data1->nbColumns << std::endl;
-  for (int i = 0; i < data1->nbRows; i++) {
-    for (int j = 0; j < data1->nbColumns; j++) {
-      std::cout << data1->matrix[i][j] << " ";
-    }
-    std::cout << std::endl;
-  }
+  data1->distancesMatrix->printMatrix();
   std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
 
 }

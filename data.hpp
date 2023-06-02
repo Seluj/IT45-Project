@@ -13,6 +13,9 @@
 #include <iostream>
 #include <vector>
 #include "classes/center.hpp"
+#include "classes/mission.hpp"
+#include "classes/employee.hpp"
+#include "classes/distances.h"
 
 /**
  * @class data
@@ -37,9 +40,7 @@ private:
   /*
    * Data about the matrix of distances
    */
-  std::vector<std::vector<float>> matrix; // 2D vector of floats to store the matrix
-  int nbRows;                             // Number of rows of the matrix
-  int nbColumns;                          // Number of columns of the matrix
+  distances* distancesMatrix;       // Pointer to the distances class
 
   friend class dataAnalysis;
 };
