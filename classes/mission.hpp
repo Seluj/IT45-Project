@@ -14,26 +14,48 @@
 /**
  * @class mission
  * @brief Class representing a mission
+ *
+ * This class is used to store the data of a mission
+ * A mission is characterized by:
+ * - an id
+ * - a day
+ * - a starting period
+ * - an ending period
+ * - a skill
+ * - a speciality
  */
 class mission {
+
 private:
-  int id;
-  int day;
-  int startingPeriod;
-  int endingPeriod;
-  std::string skill;
-  std::string speciality;
+  int id;                 // id of the mission
+  int day;                // day of the mission
+  int startingPeriod;     // starting period of the mission
+  int endingPeriod;       // ending period of the mission
+  std::string skill;      // skill of the mission
+  std::string speciality; // speciality of the mission
 
 public:
+
+  /* --------------------------------- Constructors --------------------------------- */
+
   mission();
   mission(int id, int day, int startingPeriod, int endingPeriod, std::string skill, std::string speciality);
+
+  /* --------------------------------- Destructor --------------------------------- */
+
   ~mission();
+
+  /* --------------------------------- Getters --------------------------------- */
+
   int getId();
   int getDay();
   int getStartingPeriod();
   int getEndingPeriod();
   std::string getSkill();
   std::string getSpeciality();
+
+  /* --------------------------------- Print --------------------------------- */
+
   void printMission();
 };
 

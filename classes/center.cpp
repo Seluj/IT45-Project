@@ -1,6 +1,10 @@
-//
-// Created by jules on 01/06/2023.
-//
+/**
+ * @file center.cpp
+ * @brief Source file for class center
+ * @date 02/06/2023
+ *
+ * All the methods of the class center are here
+ */
 
 #include "center.hpp"
 

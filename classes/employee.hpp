@@ -16,23 +16,43 @@
 /**
  * @class employee
  * @brief Class representing an employee
+ *
+ * This class is used to store the data of an employee
+ * An employee is characterized by:
+ * - an id
+ * - an id of a center (the center where he works)
+ * - a skill
+ * - a speciality
  */
 class employee {
-private:
-  int id;
-  int idCenter;
-  std::string skill;
-  std::string speciality;
 
-  public:
-    employee();
-    employee(int id, int idCenter, std::string skill, std::string speciality);
-    ~employee();
-    int getId();
-    int getIdCenter();
-    std::string getSkill();
-    std::string getSpeciality();
-    void printEmployee();
+private:
+  int id;                 // id of the employee
+  int idCenter;           // id of the center where he works
+  std::string skill;      // skill of the employee
+  std::string speciality; // speciality of the employee
+
+public:
+
+  /* --------------------------------- Constructors --------------------------------- */
+
+  employee();
+  employee(int id, int idCenter, std::string skill, std::string speciality);
+
+  /* --------------------------------- Destructor --------------------------------- */
+
+  ~employee();
+
+  /* --------------------------------- Getters --------------------------------- */
+
+  int getId();
+  int getIdCenter();
+  std::string getSkill();
+  std::string getSpeciality();
+
+  /* --------------------------------- Print --------------------------------- */
+
+  void printEmployee();
 };
 
 
