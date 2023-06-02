@@ -38,7 +38,7 @@ dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
 
 void dataAnalysis::dataAnalysisPrint(data *data1) {
 
-  std::cout << std::endl << "------------------------- Data after analyse -------------------------" << std::endl;
+  std::cout << std::endl << "------------------------- Data after analyse -------------------------" << std::endl << std::endl;
 
   std::cout << "------------------------- Center -------------------------" << std::endl;
   std::cout << "nbCenters: " << data1->nbCenters << std::endl;
@@ -59,4 +59,6 @@ void dataAnalysis::dataAnalysisPrint(data *data1) {
     }
     std::cout << std::endl;
   }
+  std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
+
 }

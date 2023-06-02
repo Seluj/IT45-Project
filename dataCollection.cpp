@@ -47,8 +47,14 @@ employeesCSV *dataCollection::getEmployees() {
 /* -------------------------------- Print Method -------------------------------- */
 
 void dataCollection::printDataCollection() {
+  std::cout << std::endl << "------------------------- Data Collection -------------------------" << std::endl;
+  std::cout << "Distance Matrix:" << std::endl;
   this->distance->printMatrix();
+  std::cout << "Centers:" << std::endl;
   this->centers->printCenters();
+  std::cout << "Missions:" << std::endl;
   this->missions->printMissions();
+  std::cout << "Employees:" << std::endl;
   this->employees->printEmployees();
+  std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
 }
