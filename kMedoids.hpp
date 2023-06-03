@@ -1,5 +1,5 @@
 /**
- * @file kMedoids.h
+ * @file kMedoids.hpp
  * @brief Header file for class kMedoids
  * @date 02/06/2023
  *
@@ -11,20 +11,22 @@
 
 #include "data.hpp"
 #include "classes/center.hpp"
+#include <vector>
 
 /**
  * @class kMedoids
  * @brief Class used to apply the k-medoids algorithm
  */
 class kMedoids {
+private:
+  std::vector<int> medoids; // Vector of the medoids
+  std::vector<std::vector<int>> assignments; // Matrix of the assignments
+
 public:
   /* --------------------------------- Constructor --------------------------------- */
 
-  /**
-   * @brief Constructor of the kMedoids class
-   * @param data1 Data object to use
-   */
-  kMedoids(data* data1);
+  kMedoids();
+  kMedoids(std::vector<int> medoids, std::vector<std::vector<int>> assignments);
 
   /* --------------------------------- Destructor --------------------------------- */
   
@@ -38,12 +40,10 @@ public:
 
   /**
    * @brief Function that assigns each mission to a center
+   * @param data1 Data object to use
   */
-  void medoidsAssign();
+  void medoidsAssign(data* data1);
 
-  //Est ce que l'on update les medoids et on fait plusieurs itérations où est ce que l'on fait une seule itération ?
-  //Ou sinon juste à chaque affectation d'une mission on update les medoids ?
-  //Sinon retour sur l'utilisation de k-means (qui coute moins chère en compilation) et juste on calcul la position de chaque points
   void medoidsUpdate();
     
   void calculateCost();
