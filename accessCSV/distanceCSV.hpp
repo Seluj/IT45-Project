@@ -13,7 +13,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../classes/distances.h"
+#include "../classes/distances.hpp"
 #include "../csv.hpp"
 
 /**

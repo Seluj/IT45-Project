@@ -15,7 +15,7 @@
 #include "classes/center.hpp"
 #include "classes/mission.hpp"
 #include "classes/employee.hpp"
-#include "classes/distances.h"
+#include "classes/distances.hpp"
 
 /**
  * @class data
@@ -44,6 +44,7 @@ private:
 
   friend class dataAnalysis;
   friend class kMedoids;
+
 };
 
 
