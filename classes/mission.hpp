@@ -28,6 +28,7 @@ class mission {
 
 private:
   int id;                 // id of the mission
+  int assigned;           // 0 if not assigned, 1 if assigned to a Center, 2 if assigned to an Employee
   int day;                // day of the mission
   int startingPeriod;     // starting period of the mission
   int endingPeriod;       // ending period of the mission

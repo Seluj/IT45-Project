@@ -14,6 +14,7 @@
 
 mission::mission() {
   this->id = 0;
+  this->assigned = 0;
   this->day = 0;
   this->startingPeriod = 0;
   this->endingPeriod = 0;
@@ -23,6 +24,7 @@ mission::mission() {
 
 mission::mission(int id, int day, int startingPeriod, int endingPeriod, std::string skill, std::string speciality) {
   this->id = id;
+  this->assigned = 0;
   this->day = day;
   this->startingPeriod = startingPeriod;
   this->endingPeriod = endingPeriod;
