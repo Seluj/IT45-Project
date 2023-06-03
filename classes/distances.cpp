@@ -2,14 +2,17 @@
 // Created by jules on 02/06/2023.
 //
 
-#include "distances.h"
+#include "distances.hpp"
 
+/* --------------------------------- Constructor --------------------------------- */
 
 distances::distances(std::vector<std::vector<float>> matrix, int nbRows, int nbColumns) {
   this->matrix = std::move(matrix);
   this->nbRows = nbRows;
   this->nbColumns = nbColumns;
 }
+
+/* --------------------------------- Getters --------------------------------- */
 
 float distances::getDistance(int row, int column) {
   return matrix[row][column];
@@ -19,6 +22,8 @@ float distances::getDistance(int row, int column) {
 std::vector<std::vector<float>> distances::getMatrix() {
   return this->matrix;
 }
+
+/* --------------------------------- Print the matrix --------------------------------- */
 
 void distances::printMatrix() {
   for (int i = 0; i < this->nbRows; i++) {
