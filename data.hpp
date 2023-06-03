@@ -43,7 +43,7 @@ private:
   distances* distancesMatrix;       // Pointer to the distances class
 
   friend class dataAnalysis;
-  friend class kMeans;
+  friend class kMedoids;
 };
 
 
