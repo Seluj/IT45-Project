@@ -35,7 +35,7 @@ class center {
 private:
   int id;                               // id of the center
   std::string name;                     // name of the center
-  int capacity;                         // capacity of the center
+  std::vector<std::vector<int>> capacity;           // capacity of the center
 
   std::vector<employee*> employeesLSF;  // list of employees LSF
   int nbEmployeesLSF;                   // number of employees LSF
