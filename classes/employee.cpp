@@ -17,11 +17,13 @@ employee::employee() {
   this->idCenter = 0;
   this->skill = "";
   this->speciality = "";
+  this->missions = {};
 }
 
 employee::employee(int id, int idCenter, std::string skill, std::string speciality) {
   this->id = id;
   this->idCenter = idCenter;
+  this->missions = {};
 
   // Move the string instead of copying it (more efficient)
   this->skill = std::move(skill);

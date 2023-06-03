@@ -31,6 +31,7 @@ private:
   int idCenter;           // id of the center where he works
   std::string skill;      // skill of the employee
   std::string speciality; // speciality of the employee
+  std::vector<int> missions; // missions of the employee
 
 public:
 
