@@ -12,6 +12,9 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+#include <set>
+#include <utility>
 #include "employee.hpp"
 #include "mission.hpp"
 
@@ -35,16 +38,15 @@ class center {
 private:
   int id;                               // id of the center
   std::string name;                     // name of the center
-  std::vector<std::vector<int>> capacity;           // capacity of the center
 
-  std::vector<employee*> employeesLSF;  // list of employees LSF
-  int nbEmployeesLSF;                   // number of employees LSF
-  std::vector<employee*> employeesLCP;  // list of employees LCP
-  int nbEmployeesLCP;                   // number of employees LCP
-  std::vector<mission*> missionsLSF;    // list of missions LSF
-  int nbMissionsLSF;                    // number of missions LSF
-  std::vector<mission*> missionsLCP;    // list of missions LCP
-  int nbMissionsLCP;                    // number of missions LCP
+  std::unordered_map<std::string, std::unordered_map<int, int>> capacity; // capacity of the center by skill and time
+  std::vector<int> startingPeriodForPrinting;    // time starting mission for printing
+
+  std::unordered_map<std::string, std::vector<employee *>> employees; // list of employees by skill
+  std::unordered_map<std::string, int> nbEmployees;                   // number of employees by skill
+
+  std::unordered_map<std::string, std::vector<mission *>> missions;   // list of missions by skill
+  std::unordered_map<std::string, int> nbMissions;                    // number of missions by skill
 
 public:
 
@@ -67,28 +69,28 @@ public:
   /* --------------------------------- Add Employee/Mission --------------------------------- */
 
   /**
-   * Add an employee to the list of employees LSF
+   * Add an employee to the right list of employees
    * @param employee The employee to add
    */
-  void addEmployeeLSF(employee* employee);
+  void addEmployee(employee* employee);
 
   /**
-   * Add an employee to the list of employees LCP
-   * @param employee The employee to add
-   */
-  void addEmployeeLCP(employee* employee);
-
-  /**
-   * Add a mission to the list of missions LSF
+   * Add a mission to the right list of missions
    * @param mission The mission to add
    */
-  void addMissionLSF(mission* mission);
+  void addMission(mission* mission);
+
 
   /**
-   * Add a mission to the list of missions LCP
-   * @param mission The mission to add
+   * Calculate the capacity of the center
+   * @param mission The list of missions
    */
-  void addMissionLCP(mission* mission);
+  void computeCapacity(std::vector<mission *> mission);
+
+  /***
+   * Order the starting period for printing
+   */
+  void orderStartingPeriodForPrinting();
 };
 
 

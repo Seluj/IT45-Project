@@ -26,11 +26,11 @@ dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
   int nbEmployees = d->getEmployees()->getNbEmployees();
 
   for (int i = 0; i < nbEmployees; i++) {
-    if (employees[i]->getSkill() == "LSF") {
-      data1->centers[employees[i]->getIdCenter() - 1]->addEmployeeLSF(employees[i]);
-    } else if (employees[i]->getSkill() == "LPC") {
-      data1->centers[employees[i]->getIdCenter() - 1]->addEmployeeLCP(employees[i]);
-    }
+    data1->centers[employees[i]->getIdCenter() - 1]->addEmployee(employees[i]);
+  }
+
+  for (int i = 0; i < data1->nbCenters; ++i) {
+    data1->centers[i]->computeCapacity(data1->missions);
   }
 }
 
