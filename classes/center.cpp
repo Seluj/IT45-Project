@@ -65,11 +65,8 @@ void center::printCenter() {
 /* --------------------------------- add employee/mission --------------------------------- */
 
 void center::addEmployee(employee *employee) {
-  std::cout << "Add employee " << employee->getSkill() << " " << employee->getId();
-  std::cout << " to center " << this->id << std::endl;
   this->employees[employee->getSkill()].push_back(employee);
-  //this->nbEmployees[employee->getSkill()] = this->nbEmployees[employee->getSkill()];
-  //std::cout << "Size of the list of employees : " << this->nbEmployees[employee->getSkill()]  << std::endl;
+  this->nbEmployees[employee->getSkill()]++;
 }
 
 
