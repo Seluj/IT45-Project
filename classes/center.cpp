@@ -34,31 +34,40 @@ center::~center() = default;
 /* --------------------------------- Print Method --------------------------------- */
 
 void center::printCenter() {
-  std::cout << "Center : " << this->id << " " << this->name << std::endl;
-  for (int i = 0; i < 2; i++) {
-    if (i == 0) {
-      std::cout << "Capacity LSF: ";
-    } else {
-      std::cout << "Capacity LCP: ";
-    }
+  bool info = false;
+
+  std::cout << "Center : " << this->id << " " << this->name << std::endl << std::endl;
+
+  for (auto & i : this->capacity) {
+    std::cout << "Capacity " << i.first << " : " << std::endl;
     for (int j : startingPeriodForPrinting) {
-      if (i == 0) {
-        std::cout << this->capacity["LSF"][j] << " ";
-      } else {
-        std::cout << this->capacity["LPC"][j] << " ";
-      }
-    }
-    std::cout << std::endl << "\t";
-    for (int j : startingPeriodForPrinting) {
-      std::cout << j << " ";
+      std::cout << j << "\t";
     }
     std::cout << std::endl;
+    for (int j : startingPeriodForPrinting) {
+      std::cout << this->capacity[i.first][j] << "\t";
+    }
+
+    std::cout << std::endl;
+
+    info = true;
   }
-  std::cout << "Employees LSF: " << this->nbEmployees["LSF"] << std::endl;
-  std::cout << "Employees LCP: " << this->nbEmployees["LCP"] << std::endl;
-  std::cout << "Lenght of the list of employees : " << this->nbEmployees.size() << std::endl;
-  std::cout << "Missions LSF: " << this->nbMissions["LSF"] << std::endl;
-  std::cout << "Missions LCP: " << this->nbMissions["LCP"] << std::endl;
+
+  for (auto & i : this->nbEmployees) {
+    std::cout << "Employees " << i.first << " : " << i.second << std::endl;
+
+    info = true;
+  }
+  for (auto & i : this->nbMissions) {
+    std::cout << "Missions " << i.first << " : " << i.second << std::endl;
+
+    info = true;
+  }
+
+  if (!info) {
+    std::cout << "No information" << std::endl;
+  }
+
   std::cout << std::endl;
 }
 
