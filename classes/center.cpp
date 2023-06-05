@@ -28,8 +28,11 @@ center::center(int id, std::string name) {
 
 center::~center() = default;
 
-/* --------------------------------- accessors --------------------------------- */
+/* --------------------------------- Getters --------------------------------- */
 
+int center::getCapacity(std::string skill, int time) {
+  return this->capacity[skill][time];
+}
 
 /* --------------------------------- Print Method --------------------------------- */
 
