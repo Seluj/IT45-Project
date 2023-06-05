@@ -20,8 +20,12 @@
 class kMedoids {
 private:
   std::vector<int> medoids; // Vector of the medoids
-  std::vector<std::vector<int>> assignments; // Matrix of the assignments
-
+  /**
+   * Matrix of the assignments
+   * the rows indicate the medoids and in the columns we insert the assignment's position in the distance matrix
+    */
+  std::vector<std::vector<int>> assignments; 
+  
 public:
   /* --------------------------------- Constructor --------------------------------- */
 
@@ -47,6 +51,8 @@ public:
   void medoidsUpdate();
     
   void calculateCost();
+
+  void printMedoids();
 
   };
 

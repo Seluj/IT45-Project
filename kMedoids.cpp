@@ -34,32 +34,34 @@
   void kMedoids::medoidsAssign(data* data1){
     float distance = std::numeric_limits<float>::max();
     int row = 0; //Keeps track of the distance row
-    int tempAssign = 0; //Position of the medoid the assignment has been assigned to
+    int tempAssign = 0; //Position of the medoid the assignment has been assigned to [it's position in the distance matrix]
 
     //For the first i positions [i < nbCenters] we make sure that the medoid the assignment is compared to is not a center [We can't assign a center to a center]
     for (int i = 0; i < data1->nbCenters; i++) {
         for (int j = 0; j < data1->nbCenters; j++) {
-            //We check that the row is not the one belonging to a medoid
-            if (row == this->medoids[j]) {
-                row++;
-            }
-            //We check that the medoid isn't a center
-            if (this->medoids[j] > data1->nbCenters) {
-                //Check the capacity of the center !!!!
-                
-
-                if (data1->distancesMatrix->getDistance(row, this->medoids[j]) < distance) { //We compare the distance between the assignment and the medoid with the smallest distant previously found
-                    distance = data1->distancesMatrix->getDistance(row, medoids[j]); //New smallest distance
-                    //Assign the mission or center to the medoid
-
-
-
+            //We verify that we haven't already assigned a center to this medoid
+            if (this->assignments[j].empty() == true){
+                //We check that the row is not the one belonging to a medoid
+                if (row == this->medoids[j]) {
+                    row++;
+                }
+                //We check that the medoid isn't a center to avoid assigning a center to a center
+                if (this->medoids[j] > data1->nbCenters) {
+                    //We make sure the center has the capacity for this mission
+                    if (data1->centers[i]->getCapacity(data1->missions[this->medoids[j] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[j] - data1->nbCenters]->getStartingPeriod()) > 0){
+                        if (data1->distancesMatrix->getDistance(row, this->medoids[j]) < distance) { //We compare the distance between the assignment and the medoid with the smallest distant previously found
+                            distance = data1->distancesMatrix->getDistance(row, medoids[j]); //New smallest distance
+                            tempAssign = j; //Keep track of the new best medoid
+                        }
+                    }
                 }
             }
-
             row++; //We increment the row
         }
-        
+        //We assign the assignment to the medoid
+        this->assignments[tempAssign].insert(this->assignments[tempAssign].end(),i);
+        //We update the capacity of the center
+        data1->centers[i]->updateCapacity(data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getStartingPeriod());
     }
     
     //Now we move on to assinging the missions to the medoids
@@ -94,4 +96,17 @@
     
   void kMedoids::calculateCost(){
 
+  }
+
+  void kMedoids::printMedoids(){
+    printf("Assignments for each Medoid : \n");
+    for (int i = 0; i < this->medoids.size(); i++){ //We iterate over the medoids
+        printf("Medoid : %d ", this->medoids[i]);
+        for (int j = 0; j < this->assignments[i].size() ; j++) //We iterate over the assignments 
+        {
+            printf("%d ", this->assignments[i][j]);
+        }
+        printf("\n");
+    }
+    std::cout << std::endl;
   }
