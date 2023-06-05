@@ -19,18 +19,20 @@
  */
 class kMedoids {
 private:
+  float cost; // Cost of the solution
+  float oldCost; // Cost of the previous solution
   std::vector<int> medoids; // Vector of the medoids
   /**
    * Matrix of the assignments
    * the rows indicate the medoids and in the columns we insert the assignment's position in the distance matrix
     */
   std::vector<std::vector<int>> assignments; 
-  
+
 public:
   /* --------------------------------- Constructor --------------------------------- */
 
   kMedoids();
-  kMedoids(std::vector<int> medoids, std::vector<std::vector<int>> assignments);
+  kMedoids(float cost, float oldCost, std::vector<int> medoids, std::vector<std::vector<int>> assignments);
 
   /* --------------------------------- Destructor --------------------------------- */
   
@@ -50,7 +52,7 @@ public:
 
   void medoidsUpdate();
     
-  void calculateCost();
+  float calculateCost(); //Have to add parameters
 
   void printMedoids();
 
