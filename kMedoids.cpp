@@ -46,7 +46,7 @@
             //We check that the medoid isn't a center
             if (this->medoids[j] > data1->nbCenters) {
                 //Check the capacity of the center !!!!
-
+                
 
                 if (data1->distancesMatrix->getDistance(row, this->medoids[j]) < distance) { //We compare the distance between the assignment and the medoid with the smallest distant previously found
                     distance = data1->distancesMatrix->getDistance(row, medoids[j]); //New smallest distance
@@ -56,7 +56,7 @@
 
                 }
             }
-            
+
             row++; //We increment the row
         }
         
