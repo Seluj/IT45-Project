@@ -59,8 +59,13 @@ public:
 
   ~center();
 
+  /* --------------------------------- Setters --------------------------------- */
+
+  void updateCapacity(std::string skill, int time);
+
   /* --------------------------------- Getters --------------------------------- */
-int getCapacity(std::string skill, int time);
+
+  int getCapacity(std::string skill, int time);
 
   /* --------------------------------- Print Method --------------------------------- */
 

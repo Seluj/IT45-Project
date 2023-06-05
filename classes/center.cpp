@@ -24,6 +24,12 @@ center::center(int id, std::string name) {
   startingPeriodForPrinting.clear();
 }
 
+  /* --------------------------------- Setters --------------------------------- */
+
+  void center::updateCapacity(std::string skill, int time){
+    this->capacity[skill][time] = this->capacity[skill][time] - 1;
+  }
+
 /* --------------------------------- Destructor --------------------------------- */
 
 center::~center() = default;
