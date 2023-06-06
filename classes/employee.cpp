@@ -52,6 +52,24 @@ std::string employee::getSpeciality() {
   return this->speciality;
 }
 
+std::vector<int> employee::getMissions() {
+  return this->missions;
+}
+
+
+
+void employee::addMission(int idMission) {
+  this->missions.push_back(idMission);
+}
+
+void employee::removeMission(int idMission) {
+  for (int i = 0; i < this->missions.size(); i++) {
+    if (this->missions[i] == idMission) {
+      this->missions.erase(this->missions.begin() + i);
+    }
+  }
+}
+
 /* --------------------------------- Print Method --------------------------------- */
 
 void employee::printEmployee() {

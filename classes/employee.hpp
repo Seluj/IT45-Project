@@ -50,6 +50,19 @@ public:
   int getIdCenter();
   std::string getSkill();
   std::string getSpeciality();
+  std::vector<int> getMissions();
+
+  /**
+   * Add a mission to the employee
+   * @param idMission
+   */
+  void addMission(int idMission);
+
+  /**
+   * Remove a mission from the employee
+   * @param idMission
+   */
+  void removeMission(int idMission);
 
   /* --------------------------------- Print Method --------------------------------- */
 

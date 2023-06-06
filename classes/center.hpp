@@ -40,7 +40,7 @@ private:
   std::string name;                     // name of the center
 
   std::unordered_map<std::string, std::unordered_map<int, int>> capacity; // capacity of the center by skill and time
-  std::vector<int> startingPeriodForPrinting;    // time starting mission for printing
+  std::vector<int> startingPeriodForPrinting;                             // time starting mission for printing
 
   std::unordered_map<std::string, std::vector<employee *>> employees; // list of employees by skill
   std::unordered_map<std::string, int> nbEmployees;                   // number of employees by skill
@@ -65,7 +65,7 @@ public:
 
   /* --------------------------------- Getters --------------------------------- */
 
-  int getCapacity(std::string skill, int time);
+  int getCapacity(const std::string& skill, int time);
 
   /* --------------------------------- Print Method --------------------------------- */
 
@@ -84,7 +84,6 @@ public:
    * @param mission The mission to add
    */
   void addMission(mission* mission);
-
 
   /**
    * Calculate the capacity of the center

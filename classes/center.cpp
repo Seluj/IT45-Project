@@ -36,7 +36,7 @@ center::~center() = default;
 
 /* --------------------------------- Getters --------------------------------- */
 
-int center::getCapacity(std::string skill, int time) {
+int center::getCapacity(const std::string& skill,const int time) {
   return this->capacity[skill][time];
 }
 
