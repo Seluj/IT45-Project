@@ -45,15 +45,29 @@ public:
   void kMedoidsAlgo(data* data1);
 
   /**
-   * @brief Function that assigns each mission to a center
+   * @brief Function that assigns each assignment to the closest medoid
    * @param data1 Data object to use
   */
   void medoidsAssign(data* data1);
 
-  void medoidsUpdate();
-    
-  float calculateCost(); //Have to add parameters
+  /**
+   * @brief Function that updates the medoids, by comparing costs in the cluster
+   * @param data1 Data object to use
+  */
+  void medoidsUpdate(data* data1);
+  
+  /**
+   * @brief Function that calculates the cost of the solution
+   * @param medoid the medoid to use
+   * @param assignments the assignments of said medoid
+   * @param data1 Data object to use
+   * @return The cost of the solution
+  */
+  float calculateCost(int medoid, std::vector<int> assignments, data* data1); //Have to add parameters
 
+  /**
+   * @brief Function that prints the medoids and their assignments
+  */
   void printMedoids();
 
   };
