@@ -2,6 +2,7 @@
 #include "dataCollection.hpp"
 #include "data.hpp"
 #include "dataAnalysis.hpp"
+#include "kMedoids.hpp"
 
 int main(int argc, char *argv[]) {
 
@@ -27,6 +28,7 @@ int main(int argc, char *argv[]) {
   auto *data1 = new data();
   auto *dataAnalysis1 = new dataAnalysis(dataColl, data1);
   dataAnalysis1->dataAnalysisPrint(data1);
+  kMedoids *kMedoids1 = new kMedoids(data1);
 
   return 0;
 }
