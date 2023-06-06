@@ -32,7 +32,7 @@ public:
   /* --------------------------------- Constructor --------------------------------- */
 
   kMedoids();
-  kMedoids(float cost, float oldCost, std::vector<int> medoids, std::vector<std::vector<int>> assignments);
+  kMedoids(data* data1);
 
   /* --------------------------------- Destructor --------------------------------- */
   

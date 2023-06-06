@@ -14,11 +14,16 @@
         this->assignments = std::vector<std::vector<int>>();
     }
     
-    kMedoids::kMedoids(float cost, float oldCost,std::vector<int> medoids, std::vector<std::vector<int>> assignments) {
-        this->cost = cost;
-        this->oldCost = oldCost;
-        this->medoids = std::move(medoids);
-        this->assignments = std::move(assignments);
+    kMedoids::kMedoids(data* data1) {
+        this->cost = 0;
+        this->oldCost = std::numeric_limits<float>::max();
+        this->assignments = std::vector<std::vector<int>>();
+        this->medoids = std::vector<int>();
+        for (int i = 0; i < data1->nbCenters; i++)
+        {
+            this->medoids.insert(this->medoids.begin(), i);
+        }
+        
     }
 
 /* ----------------------------------- KMedoid ----------------------------------- */
@@ -38,7 +43,7 @@
         this->cost = 0;
         for (int j = 0; j < data1->nbCenters; j++) //We cumulate the cost of each of our medoids
         {
-            this->cost = this->calculateCost(this->medoids[j], this->assignments[j], data1);
+            this->cost += this->calculateCost(this->medoids[j], this->assignments[j], data1);
         }
 
         printMedoids();
