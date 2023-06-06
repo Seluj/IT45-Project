@@ -141,16 +141,33 @@
      * Meaning for each assignment we calculate the cost we would have if it was the medoid
      * We then compare the cost of the current medoid with the cost of the new medoid, and choose the smallest one as our new medoid
      **/
-    float cost = NULL;
-    float oldCost = std::numeric_limits<float>::max();
-    for (int i = 0; i < data1->nbCenters; i++)
+    float cost = std::numeric_limits<float>::max();
+    float oldCost = 0;
+    int tempMedoid = NULL; //Position of the medoid we're testing, pos in distance matrix
+    int bestMedoid = NULL; //Position of the best medoid, pos in distance matrix
+    std::vector<int> bestAssignments; //Assignments of the best medoid
+    std::vector<int> tempAssignments; //Assignments of the medoid we're testing
+
+    for (int i = 0; i < data1->nbCenters; i++) //Iterate over the medoids
     {
-        for (int j = 0; j < this->assignments[i].size(); j++)
+        oldCost = calculateCost(this->medoids[i], this->assignments[i], data1); //We set the cost of the current medoid
+
+        for (int j = 0; j < this->assignments[i].size(); j++) //Iterates over the assignments of the medoid
         {
-            
-            /* code */
+            tempMedoid = this->assignments[i][j]; //We get the medoid we're testing
+            tempAssignments = this->assignments[i]; //We copy the assignments of the old medoid
+            tempAssignments[j] = this->medoids[i]; //We change the assignment that contained the position of the medoid being tested, to the position of the old medoid
+            cost = calculateCost(tempMedoid, tempAssignments, data1); //We calculate the cost of the medoid we're testing
+            if (cost < oldCost) //If this medoid is better than the old one
+            {
+                bestMedoid = tempMedoid; //We set the best medoid to the one we're testing
+                bestAssignments = tempAssignments; //We set the best assignments to the ones of the medoid we're testing
+                oldCost = cost; //We set the old cost to the cost of the medoid we're testing
+            }
         }
-        
+        //We change the medoids and assignments with our new (or old) best values
+        this->medoids[i] = bestMedoid;
+        this->assignments[i] = bestAssignments;
     }
     
   }
