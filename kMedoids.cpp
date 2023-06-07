@@ -52,18 +52,18 @@ void kMedoids::kMedoidsAlgo(data* data1) {
 
 void kMedoids::medoidsAssign(data* data1) {
   float distance;
-  int row = NULL; //Keeps track of the distance row
-  int tempAssign = NULL; //Position of the medoid the assignment has been assigned to [it's position in the distance matrix]
-  int centerPos = NULL; //Position of the center, used to test if the center has the capacity for the mission [only used when assigning missions to medoids]
+  int row = 0; //Keeps track of the distance row
+  int tempAssign = 0; //Position of the medoid the assignment has been assigned to [it's position in the distance matrix]
+  int centerPos = 0; //Position of the center, used to test if the center has the capacity for the mission [only used when assigning missions to medoids]
 
   //For the first i positions [i < nbCenters] we make sure that the medoid the assignment is compared to is not a center [We can't assign a center to a center]
   for (int i = 0; i < data1->nbCenters; i++) {
     distance = std::numeric_limits<float>::max(); //We reset the distance
-    tempAssign = NULL;
+    tempAssign = 0;
     for (int j = 0; j < data1->nbCenters; j++) {
 
       //We verify that we haven't already assigned a center to this medoid
-      if (this->assignments[j].empty() == true) {
+      if (this->assignments[j].empty()) {
 
         //We check that the row is not the one belonging to a medoid
         if (row == this->medoids[j]) {
@@ -91,12 +91,13 @@ void kMedoids::medoidsAssign(data* data1) {
     data1->centers[i]->updateCapacity(data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getStartingPeriod());
     row++; //We increment the row
   }
-    
+
+  row = data1->nbCenters-1;
   //Now we move on to assinging the missions to the medoids
   for (int i = data1->nbCenters-1; i < data1->nbMissions; i++) { //We iterate over the assignments, we know these ones are missions
     distance = std::numeric_limits<float>::max(); //We reset the distance
-    tempAssign = NULL;
-    centerPos = NULL;
+    tempAssign = 0;
+    centerPos = 0;
 
     for (int j = 0; j < data1->nbCenters; j++) { //We iterate over the medoids
 
@@ -144,8 +145,8 @@ void kMedoids::medoidsUpdate(data* data1){
    */
   float cost = std::numeric_limits<float>::max();
   float oldCost = 0;
-  int tempMedoid = NULL; //Position of the medoid we're testing, pos in distance matrix
-  int bestMedoid = NULL; //Position of the best medoid, pos in distance matrix
+  int tempMedoid = 0; //Position of the medoid we're testing, pos in distance matrix
+  int bestMedoid = 0; //Position of the best medoid, pos in distance matrix
   std::vector<int> bestAssignments; //Assignments of the best medoid
   std::vector<int> tempAssignments; //Assignments of the medoid we're testing
 
