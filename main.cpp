@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
 
-  std::string path = "./instances/30Missions-2centres/";;
+  std::string path = "../instances/30Missions-2centres/";;
 
   if (argc == 1) {
     printf("Take default path : ./instance/30Missions-2centres/\n");

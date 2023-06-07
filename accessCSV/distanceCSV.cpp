@@ -17,7 +17,7 @@ distanceCSV::distanceCSV(const std::string &path) {
   format.delimiter(',').no_header();
 
   // Read the CSV file
-  csv::CSVReader reader(path + "/distances.csv", format);
+  csv::CSVReader reader(path + "/Distances.csv", format);
 
   // Store the matrix in a 2D vector
   for (csv::CSVRow& row: reader) { // Input iterator for the rows
