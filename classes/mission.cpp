@@ -64,6 +64,18 @@ std::string mission::getSpeciality() {
   return this->speciality;
 }
 
+int mission::getAssigned(std::string type) {
+  if (type == "int") {
+    return this->assigned;
+  } else {
+    if (this->assigned == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
+
 /* --------------------------------- Print Method --------------------------------- */
 
 void mission::printMission() {
