@@ -49,6 +49,7 @@ public:
   /* --------------------------------- Getters --------------------------------- */
 
   int getId();
+  int getAssigned(std::string type = "bool");
   int getDay();
   int getStartingPeriod();
   int getEndingPeriod();
