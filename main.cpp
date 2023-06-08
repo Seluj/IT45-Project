@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
   auto *dataAnalysis1 = new dataAnalysis(dataColl, data1);
   dataAnalysis1->dataAnalysisPrint(data1);
   kMedoids *kMedoids1 = new kMedoids(data1);
+  kMedoids1->kMedoidsAlgo(data1);
 
   return 0;
 }
