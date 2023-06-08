@@ -13,6 +13,7 @@
 #include "classes/center.hpp"
 #include <vector>
 #include <limits>
+#include <algorithm>
 
 /**
  * @class kMedoids
@@ -69,7 +70,7 @@ public:
   /**
    * @brief Function that prints the medoids and their assignments
    */
-  void printMedoids();
+  void printMedoids(data* data1);
 
 };
 
