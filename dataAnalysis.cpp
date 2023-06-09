@@ -39,18 +39,6 @@ void dataAnalysis::dataAnalysisPrint(data *data1) {
 
   std::cout << std::endl << "------------------------- Data after analysis -------------------------" << std::endl << std::endl;
 
-  std::cout << "------------------------- Center -------------------------" << std::endl;
-  std::cout << "nbCenters: " << data1->nbCenters << std::endl;
-  for (int i = 0; i < data1->nbCenters; i++) {
-    data1->centers[i]->printCenter();
-  }
-  std::cout << std::endl << "------------------------- Mission -------------------------" << std::endl;
-  std::cout << "nbMissions: " << data1->nbMissions << std::endl;
-  for (int i = 0; i < data1->nbMissions; i++) {
-    data1->missions[i]->printMission();
-  }
-  std::cout << std::endl << "------------------------- Matrix -------------------------" << std::endl;
-  data1->distancesMatrix->printMatrix();
-  std::cout << std::endl << "--------------------------------------------------------------------" << std::endl;
+  data1->printData();
 
 }
