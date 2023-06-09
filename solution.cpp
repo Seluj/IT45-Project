@@ -48,3 +48,72 @@ void solution::printSolution(data *data) {
     }
   }
 }
+
+solution *solution::compareSolutions(solution *newSolution, data *data) {
+  if (this->compareNBAffectations(newSolution, data) == 0) {
+    return newSolution;
+  } else if (this->compareNBAffectations(newSolution, data) == 1) {
+    if (this->compareDistance(newSolution, data) == 0) {
+      return newSolution;
+    } else if (this->compareDistance(newSolution, data) == 1) {
+      if (this->compareNBSpecialists(newSolution, data) == 0) {
+        return newSolution;
+      }
+    }
+  }
+  return this;
+}
+
+int solution::compareNBAffectations(solution *newSolution, data *data) {
+  int nbAffectationsThis = 0;
+  int nbAffectationsNew = 0;
+
+  for (int i = 0; i < data->nbEmployees; i++) {
+    for (int j = 0; j < data->nbMissions; j++) {
+      if (data->employees[i]->getSkill() == data->missions[j]->getSkill()) {
+        if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getId()])
+          nbAffectationsThis++;
+        if (newSolution->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getId()])
+          nbAffectationsNew++;
+      }
+    }
+  }
+
+  if (nbAffectationsThis < nbAffectationsNew)
+    return 0;
+  else if (nbAffectationsThis == nbAffectationsNew)
+    return 1;
+  else
+    return 2;
+}
+
+int solution::compareDistance(solution *newSolution, data *data) {
+
+}
+
+int solution::compareNBSpecialists(solution *newSolution, data *data) {
+  int nbSpecialistsThis = 0;
+  int nbSpecialistsNew = 0;
+
+  for (int i = 0; i < data->nbEmployees; i++) {
+    for (int j = 0; j < data->nbMissions; j++) {
+      if (data->employees[i]->getSkill() == data->missions[j]->getSkill()) {
+        if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getId()]) {
+          if (data->employees[i]->getSpeciality() == data->missions[j]->getSpeciality())
+            nbSpecialistsThis++;
+        }
+        if (newSolution->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getId()]) {
+          if (data->employees[i]->getSpeciality() == data->missions[j]->getSpeciality())
+            nbSpecialistsNew++;
+        }
+      }
+    }
+  }
+
+  if (nbSpecialistsThis < nbSpecialistsNew)
+    return 0;
+  else if (nbSpecialistsThis == nbSpecialistsNew)
+    return 1;
+  else
+    return 2;
+}

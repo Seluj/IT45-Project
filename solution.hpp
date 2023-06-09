@@ -21,11 +21,20 @@ private:
   std::unordered_map<std::string, std::map<int, std::map<int, bool>>> affectations;
 
 
-  int z; // objective function value
+  float z; // objective function value
 public:
   solution();
   solution(data *data);
   ~solution();
+
+
+  solution *compareSolutions(solution *newSolution, data *data);
+
+  int compareNBAffectations(solution *newSolution, data *data);
+
+  int compareDistance(solution *newSolution, data *data);
+
+  int compareNBSpecialists(solution *newSolution, data *data);
 
   void printSolution(data *data);
 };
