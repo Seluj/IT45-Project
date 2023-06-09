@@ -3,6 +3,7 @@
 #include "data.hpp"
 #include "dataAnalysis.hpp"
 #include "kMedoids.hpp"
+#include "solution.hpp"
 
 int main(int argc, char *argv[]) {
 
