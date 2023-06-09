@@ -9,28 +9,29 @@
 #include "dataAnalysis.hpp"
 
 
-dataAnalysis::dataAnalysis(dataCollection *d, data *data1) {
+dataAnalysis::dataAnalysis(dataCollection *dataInput, data *dataOutput) {
   // Copy the data about the centers
-  data1->centers = d->getCenters()->getCenters();
-  data1->nbCenters = d->getCenters()->getNbCenters();
+  dataOutput->centers = dataInput->getCenters()->getCenters();
+  dataOutput->nbCenters = dataInput->getCenters()->getNbCenters();
 
   // Copy the data about the missions
-  data1->missions = d->getMissions()->getMissions();
-  data1->nbMissions = d->getMissions()->getNbMissions();
+  dataOutput->missions = dataInput->getMissions()->getMissions();
+  dataOutput->nbMissions = dataInput->getMissions()->getNbMissions();
+
+  // Copy the data about the employees
+  dataOutput->employees = dataInput->getEmployees()->getEmployees();
+  dataOutput->nbEmployees = dataInput->getEmployees()->getNbEmployees();
 
   // Copy the data about the matrix
-  data1->distancesMatrix = d->getDistance()->getDistancesMatrix();
+  dataOutput->distancesMatrix = dataInput->getDistance()->getDistancesMatrix();
 
   // Add the employees to the centers according to their skills
-  std::vector<employee *> employees = d->getEmployees()->getEmployees();
-  int nbEmployees = d->getEmployees()->getNbEmployees();
-
-  for (int i = 0; i < nbEmployees; i++) {
-    data1->centers[employees[i]->getIdCenter() - 1]->addEmployee(employees[i]);
+  for (int i = 0; i < dataOutput->nbEmployees; i++) {
+    dataOutput->centers[dataOutput->employees[i]->getIdCenter() - 1]->addEmployee(dataOutput->employees[i]);
   }
 
-  for (int i = 0; i < data1->nbCenters; ++i) {
-    data1->centers[i]->computeCapacity(data1->missions);
+  for (int i = 0; i < dataOutput->nbCenters; ++i) {
+    dataOutput->centers[i]->computeCapacity(dataOutput->missions);
   }
 }
 
