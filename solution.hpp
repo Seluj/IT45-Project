@@ -18,10 +18,8 @@ private:
   /*
    * Affectations is a combination of two tables linked by an unordered_map
    */
-  std::unordered_map<std::string, std::map<int, std::map<int, int>>> affectations;
+  std::unordered_map<std::string, std::map<int, std::map<int, bool>>> affectations;
 
-  std::unordered_map<std::string, std::vector<int>> correspondanceMission;
-  std::unordered_map<std::string, std::vector<int>> correspondanceEmployee;
 
   int z; // objective function value
 public:
@@ -29,7 +27,7 @@ public:
   solution(data *data);
   ~solution();
 
-  void printSolution();
+  void printSolution(data *data);
 };
 
 
