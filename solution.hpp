@@ -18,6 +18,7 @@
 #include <vector>
 #include <string>
 #include "data.hpp"
+#include "kMedoids.hpp"
 
 
 class solution {
@@ -32,6 +33,14 @@ private:
 public:
   solution();
   solution(data *data);
+
+  /**
+   * Initialises a solution by using the smallest cost method
+   * @param kMedoids1 Contains the missions affected to each center
+   * @param data1 Information about our problem
+   * @return the initial solution
+   */
+  solution initialSolution(kMedoids *kMedoids1, data *data1);
   ~solution();
 
 
@@ -44,6 +53,7 @@ public:
   int compareNBSpecialists(solution *newSolution, data *data);
 
   void printSolution(data *data);
+
 };
 
 

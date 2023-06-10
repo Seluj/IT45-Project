@@ -26,7 +26,12 @@ solution::solution() {
 
 }
 
+solution solution::initialSolution(kMedoids *kMedoids1, data *data1){
+
+}
+
 solution::~solution() = default;
+
 
 void solution::printSolution(data *data) {
   std::cout << std::endl << "------------------------- Solution : ------------------------- " << std::endl;
