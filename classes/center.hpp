@@ -65,11 +65,15 @@ public:
 
   void updateCapacity(std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> newCapacity);
 
+  void updateMissions(std::unordered_map<std::string, std::vector<mission *>> newMissions);
+
   /* --------------------------------- Getters --------------------------------- */
 
   int getCapacity(const std::string& skill, int day, int time);
 
   std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> getCapacity();
+
+  int getNbEmployees(const std::string& skill);
 
   /* --------------------------------- Print Method --------------------------------- */
 
