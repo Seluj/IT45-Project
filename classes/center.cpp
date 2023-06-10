@@ -8,6 +8,8 @@
 
 #include "center.hpp"
 
+#include <utility>
+
 /* --------------------------------- Constructor --------------------------------- */
 
 center::center() {
@@ -26,12 +28,12 @@ center::center(int id, std::string name) {
 
 /* --------------------------------- Setters --------------------------------- */
 
-void center::updateCapacity(std::string skill, int time){
-  this->capacity[skill][time] = this->capacity[skill][time] - 1;
+void center::updateCapacity(std::string skill, int day, int time){
+  this->capacity[skill][day][time] = this->capacity[skill][day][time] - 1;
 }
 
-void center::updateCapacity(std::unordered_map<std::string, std::unordered_map<int, int>> newCapacity){
-    this->capacity = newCapacity;
+void center::updateCapacity(std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> newCapacity){
+    this->capacity = std::move(newCapacity);
 }
 
 /* --------------------------------- Destructor --------------------------------- */
@@ -40,11 +42,11 @@ center::~center() = default;
 
 /* --------------------------------- Getters --------------------------------- */
 
-int center::getCapacity(const std::string& skill,const int time) {
-  return this->capacity[skill][time];
+int center::getCapacity(const std::string& skill, int day, const int time) {
+  return this->capacity[skill][day][time];
 }
 
-std::unordered_map<std::string, std::unordered_map<int, int>> center::getCapacity() {
+std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> center::getCapacity() {
     return this->capacity;
 }
 
@@ -61,8 +63,12 @@ void center::printCenter() {
       std::cout << j << "\t";
     }
     std::cout << std::endl;
-    for (int j : startingPeriodForPrinting) {
-      std::cout << this->capacity[i.first][j] << "\t";
+    for (int k = 0; k < 5; k++) {
+      std::cout << "Day " << k << "\t";
+      for (int j : startingPeriodForPrinting) {
+        std::cout << this->capacity[i.first][k][j] << "\t";
+      }
+      std::cout << std::endl;
     }
 
     std::cout << std::endl;
@@ -99,7 +105,7 @@ void center::addEmployee(employee *employee) {
 void center::addMission(mission *mission) {
   this->missions[mission->getSkill()].push_back(mission);
   this->nbMissions[mission->getSkill()]++;
-  this->capacity[mission->getSkill()][mission->getStartingPeriod()]--;
+  this->capacity[mission->getSkill()][mission->getDay() - 1][mission->getStartingPeriod()]--;
 }
 
 
@@ -111,7 +117,7 @@ void center::computeCapacity(std::vector<mission *> mission) {
     this->orderStartingPeriodForPrinting();
   }
   for (auto & m : mission) {
-    this->capacity[m->getSkill()][m->getStartingPeriod()] = this->nbEmployees[m->getSkill()];
+    this->capacity[m->getSkill()][m->getDay() - 1][m->getStartingPeriod()] = this->nbEmployees[m->getSkill()];
   }
 }
 
