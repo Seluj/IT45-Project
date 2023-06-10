@@ -6,16 +6,16 @@
 
 int main(int argc, char *argv[]) {
 
-  std::string path = "../instances/30Missions-2centres/";;
+  std::string path = "../instances/66Missions-2centres/";;
 
   if (argc == 1) {
-    printf("Take default path : ./instance/30Missions-2centres/\n");
+    printf("Take default path : ./instance/66Missions-2centres/\n");
   } else if (argc == 2){
     printf("Take path : %s\n", argv[1]);
     path = argv[1];
   } else {
     printf("To many arguments\n");
-    printf("Take default path : ./instance/30Missions-2centres/\n");
+    printf("Take default path : ./instance/66Missions-2centres/\n");
   }
 
   printf("Press enter to continue");
