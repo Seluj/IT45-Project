@@ -23,7 +23,7 @@
  */
 class data {
 
-private:
+public:
   /*
    * Data about the centers
    * A center stores his id, his coordinates, his capacity and his employees
@@ -38,13 +38,17 @@ private:
   int nbMissions;                   // Number of missions
 
   /*
+   * Data about the employees
+   */
+  std::vector<employee *> employees; // Vector of pointers to employee objects
+  int nbEmployees;                  // Number of employees
+
+  /*
    * Data about the matrix of distances
    */
   distances* distancesMatrix;       // Pointer to the distances class
 
-  friend class dataAnalysis;
-  friend class kMedoids;
-
+  void printData();                 // Function to print the data
 };
 
 

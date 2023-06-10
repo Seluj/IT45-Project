@@ -25,7 +25,7 @@ OBJS = center.$(OBJ) \
 	missionsCSV.$(OBJ)
 
 OBJECTS = $(patsubst %,$(ODIR)/%,$(OBJS))
-VPATH = ./classes:./accessCSV:./CMakeFiles/3.26.4/CompilerIdC:./CMakeFiles/3.26.4/CompilerIdCXX
+VPATH = ./classes:./accessCSV
 
 .cpp.$(OBJ):
 	@test -d $(ODIR) || mkdir -p $(ODIR)
