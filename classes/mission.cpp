@@ -30,8 +30,8 @@ mission::mission(int id, int day, int startingPeriod, int endingPeriod, std::str
   this->endingPeriod = endingPeriod;
 
   // Move the string instead of copying it (more efficient)
-  this->skill = std::move(skill);
-  this->speciality = std::move(speciality);
+  this->skill = skill;
+  this->speciality = speciality;
 }
 
 /* --------------------------------- Destructor --------------------------------- */
