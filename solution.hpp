@@ -51,6 +51,7 @@ public:
 
   void printSolution(data *data);
 
+  int countAffectations(data *data, int i, int k);
 };
 
 
