@@ -39,7 +39,7 @@ private:
   int id;                               // id of the center
   std::string name;                     // name of the center
 
-  std::unordered_map<std::string, std::unordered_map<int, int>> capacity; // capacity of the center by skill and time
+  std::unordered_map<std::string, std::unordered_map<int, std::unordered_map<int, int>>> capacity; // capacity of the center by skill and time
   std::vector<int> startingPeriodForPrinting;                             // time starting mission for printing
 
   std::unordered_map<std::string, std::vector<employee *>> employees; // list of employees by skill
