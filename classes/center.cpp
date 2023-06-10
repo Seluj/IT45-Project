@@ -37,24 +37,9 @@ void center::updateCapacity(std::unordered_map<std::string, std::vector<std::uno
 }
 
 void center::updateMissions(std::unordered_map<std::string, std::vector<mission *>> newMissions){
-    std::cout << std::endl <<  "Updating missions for center " << this->id <<std::endl;
-
     this->missions = std::move(newMissions);
     this->nbMissions["LSF"] = this->missions["LSF"].size();
     this->nbMissions["LPC"] = this->missions["LPC"].size();
-
-    //USED TO TEST IF IT WORKS
-    std::cout << "Missions LSF : " << this->nbMissions["LSF"] << std::endl;
-    for (int i = 0; i < this->nbMissions["LSF"]; i++)
-    {
-      std::cout << "Mission " << i << " : " << this->missions["LSF"][i]->getId() << std::endl;
-    }
-        std::cout << "Missions LPC : " << this->nbMissions["LPC"] << std::endl;
-    for (int i = 0; i < this->nbMissions["LPC"]; i++)
-    {
-      std::cout << "Mission " << i << " : " << this->missions["LPC"][i]->getId() << std::endl;
-    }
-    
 }
 
 /* --------------------------------- Destructor --------------------------------- */

@@ -75,6 +75,17 @@ void kMedoids::kMedoidsAlgo(data* data1) {
      this->medoids[j] = temp;
     }
   }
+
+  //Now that we have our final solution, we can definitely assign the missions to the centers
+  std::unordered_map<std::string, std::vector<mission *>> newMissions;
+  for (int j = 0; j < data1->nbCenters; j++) { //Iterate over the medoids
+    newMissions["LSF"].clear();
+    newMissions["LPC"].clear();
+    for (int i = 0; i < this->assignments[j].size(); i++) { //Iterate over the assignments
+      newMissions[data1->missions[this->assignments[j][i]-data1->nbCenters]->getSkill()].push_back(data1->missions[this->assignments[j][i]-data1->nbCenters]);
+    }
+    data1->centers[this->medoids[j]]->updateMissions(newMissions);
+  } 
 }
 
 void kMedoids::medoidsAssign(data* data1) {
@@ -233,6 +244,7 @@ void kMedoids::printMedoids(data* data1){
     for (int j = 0; j < this->assignments[i].size() ; j++) {//We iterate over the assignments
       if (!center) { //If the medoid isn't a center, we know the first assignment is the center and not a mission
           j++;
+          center = true;
       }
       std::cout << "mission n\370" << this->assignments[i][j]-data1->nbCenters+1 << " // ";
     }
