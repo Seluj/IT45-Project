@@ -133,12 +133,6 @@ build CMakeFiles/IT45_Project.dir/solution.cpp.obj: CXX_COMPILER__IT45_Project_D
   OBJECT_DIR = CMakeFiles\IT45_Project.dir
   OBJECT_FILE_DIR = CMakeFiles\IT45_Project.dir
 
-build CMakeFiles/IT45_Project.dir/TSP.cpp.obj: CXX_COMPILER__IT45_Project_Debug E$:/Temp_Dossier_Travail/UTBM/IT45/IT45-Project/TSP.cpp || cmake_object_order_depends_target_IT45_Project
-  DEP_FILE = CMakeFiles\IT45_Project.dir\TSP.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\IT45_Project.dir
-  OBJECT_FILE_DIR = CMakeFiles\IT45_Project.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target IT45_Project
@@ -147,7 +141,7 @@ build CMakeFiles/IT45_Project.dir/TSP.cpp.obj: CXX_COMPILER__IT45_Project_Debug 
 #############################################
 # Link the executable IT45_Project.exe
 
-build IT45_Project.exe: CXX_EXECUTABLE_LINKER__IT45_Project_Debug CMakeFiles/IT45_Project.dir/main.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/distanceCSV.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/centersCSV.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/missionsCSV.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/employeesCSV.cpp.obj CMakeFiles/IT45_Project.dir/dataCollection.cpp.obj CMakeFiles/IT45_Project.dir/classes/employee.cpp.obj CMakeFiles/IT45_Project.dir/classes/mission.cpp.obj CMakeFiles/IT45_Project.dir/classes/center.cpp.obj CMakeFiles/IT45_Project.dir/dataAnalysis.cpp.obj CMakeFiles/IT45_Project.dir/data.cpp.obj CMakeFiles/IT45_Project.dir/classes/distances.cpp.obj CMakeFiles/IT45_Project.dir/kMedoids.cpp.obj CMakeFiles/IT45_Project.dir/solution.cpp.obj CMakeFiles/IT45_Project.dir/TSP.cpp.obj
+build IT45_Project.exe: CXX_EXECUTABLE_LINKER__IT45_Project_Debug CMakeFiles/IT45_Project.dir/main.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/distanceCSV.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/centersCSV.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/missionsCSV.cpp.obj CMakeFiles/IT45_Project.dir/accessCSV/employeesCSV.cpp.obj CMakeFiles/IT45_Project.dir/dataCollection.cpp.obj CMakeFiles/IT45_Project.dir/classes/employee.cpp.obj CMakeFiles/IT45_Project.dir/classes/mission.cpp.obj CMakeFiles/IT45_Project.dir/classes/center.cpp.obj CMakeFiles/IT45_Project.dir/dataAnalysis.cpp.obj CMakeFiles/IT45_Project.dir/data.cpp.obj CMakeFiles/IT45_Project.dir/classes/distances.cpp.obj CMakeFiles/IT45_Project.dir/kMedoids.cpp.obj CMakeFiles/IT45_Project.dir/solution.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\IT45_Project.dir

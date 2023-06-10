@@ -7,7 +7,7 @@
 /* --------------------------------- Constructor --------------------------------- */
 
 distances::distances(std::vector<std::vector<float>> matrix, int nbRows, int nbColumns) {
-  this->matrix = std::move(matrix);
+  this->matrix = matrix;
   this->nbRows = nbRows;
   this->nbColumns = nbColumns;
 }
@@ -47,7 +47,7 @@ void distances::modifyRow(int i, float value) {
 }
 
 void distances::modifyRow(int i, std::vector<float> row) {
-  this->matrix[i] = std::move(row);
+  this->matrix[i] = row;
 }
 
 void distances::mofifyColumn(int j, float value) {
