@@ -32,7 +32,7 @@ kMedoids::kMedoids(data* data1) {
 void kMedoids::kMedoidsAlgo(data* data1) {
   int temp;
   int i = 0; //Keeps track of the number of iterations
-  std::vector<std::unordered_map<std::string, std::unordered_map<int, int>>> capacityCopy(data1->nbCenters);
+  std::vector<std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>>> capacityCopy(data1->nbCenters);
   //We have to copy the old capacities because we will be changing them during our assignments
   for (int j = 0; j < data1->nbCenters; ++j) {
       capacityCopy[j] = data1->centers[j]->getCapacity();
@@ -98,7 +98,7 @@ void kMedoids::medoidsAssign(data* data1) {
         //We check that the medoid isn't a center to avoid assigning a center to a center
         if (this->medoids[j] > data1->nbCenters) {
            //We make sure the center has the capacity for this mission
-          if (data1->centers[row]->getCapacity(data1->missions[this->medoids[j] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[j] - data1->nbCenters]->getStartingPeriod()) > 0) {
+          if (data1->centers[row]->getCapacity(data1->missions[this->medoids[j] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[j] - data1->nbCenters]->getDay()-1,data1->missions[this->medoids[j] - data1->nbCenters]->getStartingPeriod()) > 0) {
               if (data1->distancesMatrix->getDistance(row, this->medoids[j]) < distance) { //We compare the distance between the assignment and the medoid with the smallest distant previously found
               distance = data1->distancesMatrix->getDistance(row, medoids[j]); //New smallest distance
               tempAssign = j; //Keep track of the new best medoid
@@ -113,7 +113,7 @@ void kMedoids::medoidsAssign(data* data1) {
         //We assign the assignment to the medoid
         this->assignments[tempAssign].insert(this->assignments[tempAssign].end(),row);
         //We update the capacity of the center
-        data1->centers[row]->updateCapacity(data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getStartingPeriod());
+        data1->centers[row]->updateCapacity(data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getDay()-1,data1->missions[this->medoids[tempAssign] - data1->nbCenters]->getStartingPeriod());
         row++;
     }
     assigned = false; //reset assigned bool
@@ -146,7 +146,7 @@ void kMedoids::medoidsAssign(data* data1) {
       }
 
       //Check that the medoid [Or the center assigned to this medoid] has enough capacity to take on the mission
-      if (data1->centers[centerPos]->getCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getStartingPeriod()) > 0) {
+      if (data1->centers[centerPos]->getCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getDay()-1,data1->missions[row - data1->nbCenters]->getStartingPeriod()) > 0) {
           //std::cout << "Distance between the medoid and the mission : " << data1->distancesMatrix->getDistance(row, this->medoids[j]) << std::endl;
           if (data1->distancesMatrix->getDistance(row, this->medoids[j]) < distance) { //We compare the distance between the mission and the medoid with the smallest distant previously found
           distance = data1->distancesMatrix->getDistance(row, medoids[j]);
@@ -161,7 +161,7 @@ void kMedoids::medoidsAssign(data* data1) {
         //We assign the assignment to the medoid
         this->assignments[tempAssign].insert(this->assignments[tempAssign].end(),row);
         //Change the capacity of the center
-        data1->centers[tempCenterpos]->updateCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getStartingPeriod());
+        data1->centers[tempCenterpos]->updateCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getDay()-1,data1->missions[row - data1->nbCenters]->getStartingPeriod());
         //std::cout << "New capacity : " << data1->centers[tempCenterpos]->getCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getStartingPeriod());
     }
     assigned = false;

@@ -67,6 +67,7 @@ public:
    */
   float calculateCost(int medoid, std::vector<int> assignments, data* data1); //Have to add parameters
 
+
   /**
    * @brief Function that prints the medoids and their assignments
    */
