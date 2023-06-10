@@ -63,9 +63,13 @@ public:
 
   void updateCapacity(std::string skill, int time);
 
+  void updateCapacity(std::unordered_map<std::string, std::unordered_map<int, int>> newCapacity);
+
   /* --------------------------------- Getters --------------------------------- */
 
   int getCapacity(const std::string& skill, int time);
+
+  std::unordered_map<std::string, std::unordered_map<int, int>> getCapacity();
 
   /* --------------------------------- Print Method --------------------------------- */
 

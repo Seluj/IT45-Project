@@ -24,11 +24,15 @@ center::center(int id, std::string name) {
   startingPeriodForPrinting.clear();
 }
 
-  /* --------------------------------- Setters --------------------------------- */
+/* --------------------------------- Setters --------------------------------- */
 
-  void center::updateCapacity(std::string skill, int time){
-    this->capacity[skill][time] = this->capacity[skill][time] - 1;
-  }
+void center::updateCapacity(std::string skill, int time){
+  this->capacity[skill][time] = this->capacity[skill][time] - 1;
+}
+
+void center::updateCapacity(std::unordered_map<std::string, std::unordered_map<int, int>> newCapacity){
+    this->capacity = newCapacity;
+}
 
 /* --------------------------------- Destructor --------------------------------- */
 
@@ -38,6 +42,10 @@ center::~center() = default;
 
 int center::getCapacity(const std::string& skill,const int time) {
   return this->capacity[skill][time];
+}
+
+std::unordered_map<std::string, std::unordered_map<int, int>> center::getCapacity() {
+    return this->capacity;
 }
 
 /* --------------------------------- Print Method --------------------------------- */
