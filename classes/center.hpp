@@ -27,10 +27,8 @@
  * - an id
  * - a name
  * - a capacity
- * - a list of employees LSF
- * - a list of employees LCP
- * - a list of missions LSF
- * - a list of missions LCP
+ * - a list of employees
+ * - a list of missions
  * - And the number of employees and missions in each list
  */
 class center {

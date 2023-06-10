@@ -21,7 +21,7 @@ center::center() {
 
 center::center(int id, std::string name) {
   this->id = id;
-  this->name = std::move(name); // Move the string instead of copying it (more efficient)
+  this->name = name;
   capacity.clear();
   startingPeriodForPrinting.clear();
 }
@@ -33,7 +33,7 @@ void center::updateCapacity(std::string skill, int day, int time){
 }
 
 void center::updateCapacity(std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> newCapacity){
-    this->capacity = std::move(newCapacity);
+    this->capacity = newCapacity;
 }
 
 void center::updateMissions(std::unordered_map<std::string, std::vector<mission *>> newMissions){
@@ -142,6 +142,8 @@ void center::computeCapacity(std::vector<mission *> mission) {
     this->orderStartingPeriodForPrinting();
   }
   for (auto & m : mission) {
+    if (this->capacity[m->getSkill()].empty())
+      this->capacity[m->getSkill()].resize(5);
     this->capacity[m->getSkill()][m->getDay() - 1][m->getStartingPeriod()] = this->nbEmployees[m->getSkill()];
   }
 }
