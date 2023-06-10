@@ -1,6 +1,10 @@
-//
-// Created by jules on 08/06/2023.
-//
+/**
+ * @file solution.cpp
+ * @brief Source file for solution.hpp
+ * @date 08/06/2023
+ * 
+ * Source file containing the solution class
+*/
 
 #include "solution.hpp"
 

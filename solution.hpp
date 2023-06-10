@@ -1,3 +1,10 @@
+/**
+ * @file solution.hpp
+ * @brief Header file containing the solution class
+ * @date 08/06/2023
+ * 
+ * Header file containing the solution class
+*/
 //
 // Created by jules on 08/06/2023.
 //

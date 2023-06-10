@@ -1,6 +1,10 @@
-//
-// Created by jules on 02/06/2023.
-//
+/**
+ * @file kMedoids.cpp
+ * @brief Source file for kMedoids.hpp
+ * @date 02/06/2023
+ * 
+ * Source file containing the kMedoids class
+*/
 
 #include "kMedoids.hpp"
 
