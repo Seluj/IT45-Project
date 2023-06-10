@@ -30,14 +30,15 @@ kMedoids::kMedoids(data* data1) {
 /* ----------------------------------- KMedoid ----------------------------------- */
 
 void kMedoids::kMedoidsAlgo(data* data1) {
+  int temp;
   int i = 0; //Keeps track of the number of iterations
   std::vector<std::unordered_map<std::string, std::unordered_map<int, int>>> capacityCopy(data1->nbCenters);
   //We have to copy the old capacities because we will be changing them during our assignments
   for (int j = 0; j < data1->nbCenters; ++j) {
       capacityCopy[j] = data1->centers[j]->getCapacity();
   }
-  //How many times do we want to iterate?
-  while (this->cost < this->oldCost && i < 4){
+  //We don't want to iterate too many times
+  while (this->cost < this->oldCost && i < 5){
     std::cout << "============== KMedoids iteration " << i+1 << "==============" << std::endl;
     std::cout << "Our medoids : ";
     for (int j = 0; j < data1->nbCenters; ++j) {
@@ -64,6 +65,15 @@ void kMedoids::kMedoidsAlgo(data* data1) {
     //We update the medoids, to choose the point in the cluster that minimizes the cost
     this->medoidsUpdate(data1);
     i++;
+  }
+  //We then reassign the centers as the medoid to facilitate the upcoming operations
+  for(int j = 0; j < data1->nbCenters; j++){
+    //If the medoid isn't a center, we replace it by the position of the center
+    if (this->medoids[j] > data1->nbCenters){
+     temp = this->assignments[j][0];
+     this->assignments[j][0] = this->medoids[j];
+     this->medoids[j] = temp;
+    }
   }
 }
 
