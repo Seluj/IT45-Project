@@ -9,7 +9,6 @@
 #include "solution.hpp"
 
 solution::solution(data *data) {
-  this->z = 0;
 
   for (int i = 0; i < data->nbEmployees; i++) {
     for (int j = 0; j < data->nbMissions; j++) {
