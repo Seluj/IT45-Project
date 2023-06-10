@@ -5,9 +5,6 @@
  * 
  * Header file containing the solution class
 */
-//
-// Created by jules on 08/06/2023.
-//
 
 #ifndef IT45_PROJECT_SOLUTION_HPP
 #define IT45_PROJECT_SOLUTION_HPP
@@ -25,7 +22,7 @@ private:
   /*
    * Affectations is a combination of two tables linked by an unordered_map
    */
-  std::unordered_map<std::string, std::map<int, std::map<int, bool>>> affectations;
+  std::unordered_map<std::string, std::map<int, std::vector<std::map<int, bool>>>> affectations;
 
 
   float z; // objective function value
