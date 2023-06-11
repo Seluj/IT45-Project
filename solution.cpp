@@ -26,15 +26,26 @@ solution::solution() {
 
 }
 
-solution solution::initialSolution(data *data1){
-  solution initialSolution;
+void solution::initialSolution(data *data1){
   std::vector<std::string> skills = {"LSF", "LPC"};
   for (int d = 0; d < 5; d++) { //Iterate over each day
     for (int c = 0; c < data1->nbCenters; c++) { //Iterate over each center
       for (int s = 0; s < 2; s++) { //Iterate over each skill
         for (int e = 0; e < data1->centers[c]->getNbEmployees(skills[s]); e++) { //Iterate over each employee
-          for (int m = 0; m < data1->centers[c]->getNbMissions(skills[s]); m++) { //Iterate over each mission
-            
+          while () //While the employee still has time to work on the day we try to affect him a mission
+          {
+            for (int m = 0; m < data1->centers[c]->getNbMissions(skills[s]); m++) { //Iterate over each mission
+              if (data1->missions[m]->getAssigned("bool")) { //Test if the mission hasn't been assigned to an employee yet
+                
+                
+
+              }
+              
+              //Test to see if the employee has enough time to do this mission
+              
+              //Test to see how close the mission is [we will affect the closest mission to the employee]
+            }
+            //If no mission was affected to the employee, we move on to the next employee
           }
           
         }
@@ -44,7 +55,6 @@ solution solution::initialSolution(data *data1){
     }
     
   }
-  return initialSolution;
 }
 
 solution::~solution() = default;

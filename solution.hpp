@@ -44,7 +44,7 @@ public:
    * @param data1 Information about our problem
    * @return the initial solution
    */
-  solution initialSolution(data *data1);
+  void initialSolution(data *data1);
   ~solution();
 
 
