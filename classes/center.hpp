@@ -100,6 +100,10 @@ public:
 
   int getNbMissions(const std::string& skill);
 
+  int getEmployeeId(const std::string& skill, int index);
+
+  int getMissionId(const std::string& skill, int index);
+
   /* --------------------------------- Print Method --------------------------------- */
 
   void printCenter();

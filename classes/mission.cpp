@@ -44,6 +44,18 @@ int mission::getId() {
   return this->id;
 }
 
+int mission::getAssigned(std::string type) {
+  if (type == "int") {
+    return this->assigned;
+  } else {
+    if (this->assigned == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
+
 int mission::getDay() {
   return this->day;
 }
@@ -56,6 +68,10 @@ int mission::getEndingPeriod() {
   return this->endingPeriod;
 }
 
+int mission::getDuration() {
+  return this->endingPeriod - this->startingPeriod;
+}
+
 std::string mission::getSkill() {
   return this->skill;
 }
@@ -64,16 +80,10 @@ std::string mission::getSpeciality() {
   return this->speciality;
 }
 
-int mission::getAssigned(std::string type) {
-  if (type == "int") {
-    return this->assigned;
-  } else {
-    if (this->assigned == 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+/* --------------------------------- Setters --------------------------------- */
+
+void mission::setAssigned(int assigned) {
+  this->assigned = assigned;
 }
 
 /* --------------------------------- Print Method --------------------------------- */

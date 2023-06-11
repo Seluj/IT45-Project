@@ -53,8 +53,13 @@ public:
   int getDay();
   int getStartingPeriod();
   int getEndingPeriod();
+  int getDuration();
   std::string getSkill();
   std::string getSpeciality();
+
+  /* --------------------------------- Setters --------------------------------- */
+
+  void setAssigned(int assigned);
 
   /* --------------------------------- Print Method --------------------------------- */
 
