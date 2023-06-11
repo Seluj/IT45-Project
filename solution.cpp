@@ -110,17 +110,15 @@ void solution::initialSolution(data *data1){
             if (assigned) {
               data1->missions[tempAssigned-1]->setAssigned(true);
               this->affectations[skills[s]][idEmployee][d][tempAssigned] = true;
-              if (this->hours[idEmployee][d][4] == 0) { //Check to see if a previous mission has been assigned
+              if (this->hours[idEmployee][d][4] == 0) { //Check to  see if a previous mission has been assigned
                 this->hours[idEmployee][d][0] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
-                this->hours[idEmployee][d][1] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
                 this->hours[idEmployee][d][2] = data1->missions[tempAssigned-1]->getStartingPeriod() - std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
                 this->hours[idEmployee][d][5] = tempAssigned;
               } else {
-                this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, this->hours[idEmployee][d][4]-1)*13.88/60);
-                this->hours[idEmployee][d][1] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, this->hours[idEmployee][d][4]-1)*13.88/60);
+                this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, this->hours[idEmployee][d][4]-1+data1->nbCenters)*13.88/60);
               }
               this->hours[idEmployee][d][0] += data1->missions[tempAssigned-1]->getDuration();
-              this->hours[idEmployee][d][1] += data1->missions[tempAssigned-1]->getEndingPeriod() - this->hours[idEmployee][d][2];
+              this->hours[idEmployee][d][1] = data1->missions[tempAssigned-1]->getEndingPeriod() - this->hours[idEmployee][d][2];
               this->hours[idEmployee][d][3] = data1->missions[tempAssigned-1]->getEndingPeriod();
               this->hours[idEmployee][d][4] = tempAssigned;
             }
