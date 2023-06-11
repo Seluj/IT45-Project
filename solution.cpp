@@ -74,8 +74,8 @@ void solution::initialSolution(data *data1){
               }
               if (!data1->missions[idMission-1]->getAssigned("bool")) { //Test if the mission hasn't been assigned to an employee yet
                 //We make sure the mission starts after the previous one and is sooner than the other missions tested
-                if (this->hours[idEmployee][d][3] < data1->missions[idMission-1]->getStartingPeriod() && data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][3][d] <= soonestMission) {
-                  if (hasTime(idEmployee, d, idMission, data1, c)) { //Test if the employee has enough time to do the mission
+                if (this->hours[idEmployee][d][3] < data1->missions[idMission-1]->getStartingPeriod() && data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3] <= soonestMission) {
+                    if (hasTime(idEmployee, d, idMission, data1, c)) { //Test if the employee has enough time to do the mission
                     if (data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3] == soonestMission) { //If the mission starts as soon as another one we've tested, we compare their distance
                       if (data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance) <= minDistance) { //Compare distances
                         if (data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance) == minDistance) { //If the distances are equal we compare wether the skills match or not
@@ -128,7 +128,7 @@ void solution::initialSolution(data *data1){
           //We can now update the final values regarding the hours of the employee
           this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
           this->hours[idEmployee][d][1] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
-          this->hours[idEmployee][d][3] = std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
+          this->hours[idEmployee][d][3] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
           
         }
         
@@ -320,8 +320,8 @@ bool solution::hasTime(int idEmployee, int day, int idMission, data *data, int c
   int newAmpTime;
   int nbCenters = data->nbCenters;
 
-  if (idLastMission != 0 && this->hours[idEmployee][day][3] + std::ceil(data->distancesMatrix->getDistance(idLastMission-1+nbCenters, idMission-1+nbCenters) * 13.88/60) > data->missions[idLastMission-1]->getStartingPeriod()) { //We check to see if the employee arrives on time to do the mission
-    return false;
+  if (idLastMission != 0 && this->hours[idEmployee][day][3] + std::ceil(data->distancesMatrix->getDistance(idLastMission-1+nbCenters, idMission-1+nbCenters) * 13.88/60) < data->missions[idLastMission-1]->getStartingPeriod()) { //We check to see if the employee arrives on time to do the mission
+      return false;
   }
   
 
@@ -371,8 +371,10 @@ void solution::printSolution(data *data) {
   for (int i = 0; i < data->nbEmployees; i++) {
     std::cout << "Employee " << data->employees[i]->getId() << " : " << std::endl;
     for (int j = 0; j < 5; j++) {
-      std::cout << "Day " << j + 1 << " : " << hours[data->employees[i]->getId()][j][0] << " "
-                << hours[data->employees[i]->getId()][j][1] << std::endl;
+      std::cout << "Day " << j + 1 << " - nbHours : " << hours[data->employees[i]->getId()][j][0] << " // timeRange : "
+                << hours[data->employees[i]->getId()][j][1] << " // start of work :" << hours[data->employees[i]->getId()][j][2]
+                << " // end of work : " << hours[data->employees[i]->getId()][j][3] << "// id last mission : " << hours[data->employees[i]->getId()][j][4]
+                << " // id first mission : "  << hours[data->employees[i]->getId()][j][5] << std::endl ;
     }
     std::cout << std::endl;
   }
