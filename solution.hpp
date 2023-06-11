@@ -36,7 +36,7 @@ private:
   /*
    * 1st key : id of the employee
    * 2nd key : day [0 - 4] 0 = Monday, 1 = Tuesday, 2 = Wednesday, 3 = Thursday, 4 = Friday
-   * 3rd key : type : 0 = Number of hours and 1 = time range
+   * 3rd key : type : 0 = Number of hours, 1 = time range, 2 = start of work, 3 = end of work, 4 = id last mission, 5 = first mission
    *
    * Example : horaires[1][2][0] = 3 means that the employee 1 has 3 hours of work on the day 2
    * Example : horaires[1][3][1] = 12 means that the employee 1 was at work 12 hours on the day 3
@@ -68,6 +68,21 @@ public:
   void printSolution(data *data);
 
   int countAffectations(data *data, int i, int k);
+
+  /**
+   * @brief Counts the number of hours worked by an employee for the week
+   * @param idEmployee Id of the employee
+  */
+  int hoursWeek(int idEmployee);
+
+  /**
+   * @brief Checks if the employee has time to do the mission 
+   * @param idEmployee Id of the employee
+   * @param day Day of the mission
+   * @param idMission Id of the mission
+   * @param data Information about our problem
+  */
+  bool hasTime(int idEmployee, int day, int idMission, data *data, int center);
 };
 
 
