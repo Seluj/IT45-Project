@@ -12,6 +12,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <map>
+#include <cmath>
 #include <vector>
 #include <string>
 #include "data.hpp"
@@ -117,8 +118,9 @@ public:
   /**
    * @brief Counts the number of hours worked by an employee for the week
    * @param idEmployee Id of the employee
+   * @param days Number of days of the week you want to count the hours of
   */
-  int hoursWeek(int idEmployee);
+  int minutesWeek(int idEmployee, int days);
 
   /**
    * @brief Checks if the employee has time to do the mission 
