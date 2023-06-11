@@ -60,6 +60,10 @@ int center::getNbEmployees(const std::string& skill) {
   return this->nbEmployees[skill];
 }
 
+int center::getNbMissions(const std::string& skill) {
+  return this->nbMissions[skill];
+}
+
 /* --------------------------------- Print Method --------------------------------- */
 
 void center::printCenter() {

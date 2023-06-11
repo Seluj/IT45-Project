@@ -73,6 +73,8 @@ public:
 
   int getNbEmployees(const std::string& skill);
 
+  int getNbMissions(const std::string& skill);
+
   /* --------------------------------- Print Method --------------------------------- */
 
   void printCenter();
