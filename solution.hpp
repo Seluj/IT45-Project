@@ -33,7 +33,16 @@ private:
   std::unordered_map<std::string, std::map<int, std::vector<std::map<int, bool>>>> affectations;
 
 
-  float z; // objective function value
+  /*
+   * 1st key : id of the employee
+   * 2nd key : day [0 - 4] 0 = Monday, 1 = Tuesday, 2 = Wednesday, 3 = Thursday, 4 = Friday
+   * 3rd key : type : 0 = Number of hours and 1 = time range
+   *
+   * Example : horaires[1][2][0] = 3 means that the employee 1 has 3 hours of work on the day 2
+   * Example : horaires[1][3][1] = 12 means that the employee 1 was at work 12 hours on the day 3
+   */
+  std::map<int , std::vector<std::vector<int>>> hours;
+
 public:
   solution();
   solution(data *data);

@@ -13,10 +13,25 @@ solution::solution(data *data) {
   for (int i = 0; i < data->nbEmployees; i++) {
     for (int j = 0; j < data->nbMissions; j++) {
       if (data->employees[i]->getSkill() == data->missions[j]->getSkill()) {
-        if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()].empty())
+        if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()].empty()) {
           this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()].resize(5);
+        }
         this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getDay()-1][data->missions[j]->getId()] = false;
       }
+    }
+  }
+
+
+  for (int i = 0; i < data->nbEmployees; i++) {
+    if (this->hours[data->employees[i]->getId()].empty()) {
+      this->hours[data->employees[i]->getId()].resize(5);
+    }
+    for (int j = 0; j < 5; j++) {
+      if (this->hours[data->employees[i]->getId()][j].empty()) {
+        this->hours[data->employees[i]->getId()][j].resize(2);
+      }
+      this->hours[data->employees[i]->getId()][j][0] = 0;
+      this->hours[data->employees[i]->getId()][j][1] = 0;
     }
   }
 }
