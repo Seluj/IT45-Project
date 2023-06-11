@@ -37,7 +37,7 @@ public:
    * @param data1 Information about our problem
    * @return the initial solution
    */
-  solution initialSolution(kMedoids *kMedoids1, data *data1);
+  solution initialSolution(data *data1);
   ~solution();
 
 
