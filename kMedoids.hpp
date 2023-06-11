@@ -9,11 +9,9 @@
 #ifndef IT45_PROJECT_KMEDOIDS_HPP
 #define IT45_PROJECT_KMEDOIDS_HPP
 
+#include "inclusion.hpp"
 #include "data.hpp"
 #include "classes/center.hpp"
-#include <vector>
-#include <limits>
-#include <algorithm>
 
 /**
  * @class kMedoids

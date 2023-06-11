@@ -1,6 +1,10 @@
-//
-// Created by jules on 02/06/2023.
-//
+/**
+ * @file distances.cpp
+ * @brief Source file for class distances
+ * @date 02/06/2023
+ *
+ * All the methods of the class distances are here
+ */
 
 #include "distances.hpp"
 

@@ -10,11 +10,7 @@
 #ifndef IT45_PROJECT_CENTER_HPP
 #define IT45_PROJECT_CENTER_HPP
 
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <set>
-#include <utility>
+#include "../inclusion.hpp"
 #include "employee.hpp"
 #include "mission.hpp"
 

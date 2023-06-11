@@ -8,8 +8,6 @@
 
 #include "mission.hpp"
 
-#include <utility>
-
 /* --------------------------------- Constructor --------------------------------- */
 
 mission::mission() {

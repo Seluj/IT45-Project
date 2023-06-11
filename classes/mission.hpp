@@ -9,7 +9,7 @@
 #ifndef IT45_PROJECT_MISSION_HPP
 #define IT45_PROJECT_MISSION_HPP
 
-#include <iostream>
+#include "../inclusion.hpp"
 
 /**
  * @class mission

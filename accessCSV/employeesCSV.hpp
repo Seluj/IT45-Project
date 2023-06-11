@@ -10,8 +10,6 @@
 #ifndef IT45_PROJECT_EMPLOYEESCSV_HPP
 #define IT45_PROJECT_EMPLOYEESCSV_HPP
 
-#include <iostream>
-#include <vector>
 #include "../csv.hpp"
 #include "../classes/employee.hpp"
 

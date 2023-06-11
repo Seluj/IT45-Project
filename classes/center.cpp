@@ -8,8 +8,6 @@
 
 #include "center.hpp"
 
-#include <utility>
-
 /* --------------------------------- Constructor --------------------------------- */
 
 center::center() {
@@ -84,13 +82,11 @@ void center::printCenter() {
     for (int j: startingPeriodForPrinting) {
       std::cout << j << "\t";
     }
-    std::cout << std::endl;
     for (int k = 0; k < 5; k++) {
-      std::cout << "Day " << k << "\t";
+      std::cout << std::endl << "Day " << k << "\t";
       for (int j: startingPeriodForPrinting) {
         std::cout << this->capacity[i.first][k][j] << "\t";
       }
-      std::cout << std::endl;
     }
 
     std::cout << std::endl;
