@@ -72,7 +72,7 @@ void center::printCenter() {
   std::cout << "Center : " << this->id << " " << this->name << std::endl << std::endl;
 
   for (auto & i : this->capacity) {
-    std::cout << "Capacity " << i.first << " : " << std::endl;
+    std::cout << "Capacity " << i.first << " : " << std::endl << "\t";
     for (int j : startingPeriodForPrinting) {
       std::cout << j << "\t";
     }

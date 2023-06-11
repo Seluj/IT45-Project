@@ -9,7 +9,6 @@
 #include "solution.hpp"
 
 solution::solution(data *data) {
-  this->z = 0;
 
   for (int i = 0; i < data->nbEmployees; i++) {
     for (int j = 0; j < data->nbMissions; j++) {
@@ -22,7 +21,6 @@ solution::solution(data *data) {
   }
 }
 
-//this->z += data->distancesMatrix->getDistance(data->employees[i]->getIdCenter(), data->missions[j]->getIdCenter());
 
 solution::solution() {
 
@@ -92,18 +90,25 @@ solution *solution::compareSolutions(solution *newSolution, data *data) {
   return this;
 }
 
+int solution::countAffectations(data * data, int i, int k) {
+  int nbAffectations = 0;
+  for (int j = 0; j < data->nbMissions; j++) {
+    if (data->employees[i]->getSkill() == data->missions[j]->getSkill()) {
+      if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][k][data->missions[j]->getId()])
+        nbAffectations++;
+    }
+  }
+  return nbAffectations;
+}
+
 int solution::compareNBAffectations(solution *newSolution, data *data) {
   int nbAffectationsThis = 0;
   int nbAffectationsNew = 0;
 
   for (int i = 0; i < data->nbEmployees; i++) {
-    for (int j = 0; j < data->nbMissions; j++) {
-      if (data->employees[i]->getSkill() == data->missions[j]->getSkill()) {
-        if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getId()])
-          nbAffectationsThis++;
-        if (newSolution->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getId()])
-          nbAffectationsNew++;
-      }
+    for (int k = 0; k < 5; k++) {
+      nbAffectationsThis += this->countAffectations(data, i, k);
+      nbAffectationsNew += newSolution->countAffectations(data, i, k);
     }
   }
 
@@ -116,7 +121,60 @@ int solution::compareNBAffectations(solution *newSolution, data *data) {
 }
 
 int solution::compareDistance(solution *newSolution, data *data) {
+  int nbAffectations;
+  int lastTime = 0, time = 0;
+  int lastIdMission = 0, idMission = 0;
+  float lengthThis = 0, lengthNew = 0;
 
+  for (int i = 0; i < data->nbEmployees; i++) {
+    for (int j = 0; j < 5; j++) {
+      nbAffectations = this->countAffectations(data, i, j);
+      lastTime = time;
+      time = INT_MAX;
+      lastIdMission = data->employees[i]->getIdCenter();
+      for (int k = 0; k < nbAffectations; k++) {
+        for (int l = 0; l < data->nbMissions; l++) {
+          if (data->employees[i]->getSkill() == data->missions[l]->getSkill()) {
+            if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][k][data->missions[l]->getId()]) {
+              if (data->missions[l]->getStartingPeriod() < time && data->missions[l]->getStartingPeriod() > lastTime) {
+                time = data->missions[l]->getStartingPeriod();
+                idMission = data->missions[l]->getId();
+              }
+            }
+          }
+        }
+        lengthThis += data->distancesMatrix->getDistance(lastIdMission, idMission);
+        lastIdMission = idMission;
+      }
+    }
+    for (int j = 0; j < 5; j++) {
+      nbAffectations = newSolution->countAffectations(data, i, j);
+      lastTime = time;
+      time = INT_MAX;
+      lastIdMission = data->employees[i]->getIdCenter();
+      for (int k = 0; k < nbAffectations; k++) {
+        for (int l = 0; l < data->nbMissions; l++) {
+          if (data->employees[i]->getSkill() == data->missions[l]->getSkill()) {
+            if (newSolution->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][k][data->missions[l]->getId()]) {
+              if (data->missions[l]->getStartingPeriod() < time && data->missions[l]->getStartingPeriod() > lastTime) {
+                time = data->missions[l]->getStartingPeriod();
+                idMission = data->missions[l]->getId();
+              }
+            }
+          }
+        }
+        lengthNew += data->distancesMatrix->getDistance(lastIdMission, idMission);
+        lastIdMission = idMission;
+      }
+    }
+  }
+
+  if (lengthThis < lengthNew)
+    return 0;
+  else if (lengthThis == lengthNew)
+    return 1;
+  else
+    return 2;
 }
 
 int solution::compareNBSpecialists(solution *newSolution, data *data) {

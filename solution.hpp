@@ -1,7 +1,7 @@
 /**
  * @file solution.hpp
  * @brief Header file containing the solution class
- * @date 08/06/2023
+ * @date 10/06/2023
  * 
  * Header file containing the solution class
 */
@@ -20,8 +20,15 @@
 
 class solution {
 private:
+
   /*
-   * Affectations is a combination of two tables linked by an unordered_map
+   * 1st key : skill [LSF, LPC]
+   * 2nd key : id of the employee
+   * 3rd key : day [0 - 4] 0 = Monday, 1 = Tuesday, 2 = Wednesday, 3 = Thursday, 4 = Friday
+   * 4th key : id of the mission
+   *
+   * Example : affectations["LSF"][1][2][5] = true means that the employee 1 is affected to the mission 5 on the day 2
+   * Example : affectations["LPC"][2][3][1] = false means that the employee 2 is not affected to the mission 1 on the day 3
    */
   std::unordered_map<std::string, std::map<int, std::vector<std::map<int, bool>>>> affectations;
 
@@ -51,6 +58,7 @@ public:
 
   void printSolution(data *data);
 
+  int countAffectations(data *data, int i, int k);
 };
 
 
