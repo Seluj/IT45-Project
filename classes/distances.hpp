@@ -9,8 +9,7 @@
 #ifndef IT45_PROJECT_DISTANCES_H
 #define IT45_PROJECT_DISTANCES_H
 
-#include <iostream>
-#include <vector>
+#include "../inclusion.hpp"
 
 /**
  * @class distances

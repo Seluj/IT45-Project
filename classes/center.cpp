@@ -8,8 +8,6 @@
 
 #include "center.hpp"
 
-#include <utility>
-
 /* --------------------------------- Constructor --------------------------------- */
 
 center::center() {

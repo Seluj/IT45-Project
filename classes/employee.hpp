@@ -10,8 +10,7 @@
 #ifndef IT45_PROJECT_EMPLOYEE_HPP
 #define IT45_PROJECT_EMPLOYEE_HPP
 
-#include <iostream>
-#include <vector>
+#include "../inclusion.hpp"
 
 /**
  * @class employee

@@ -10,8 +10,6 @@
 #ifndef IT45_PROJECT_MISSIONSCSV_HPP
 #define IT45_PROJECT_MISSIONSCSV_HPP
 
-#include <iostream>
-#include <vector>
 #include "../csv.hpp"
 #include "../classes/mission.hpp"
 

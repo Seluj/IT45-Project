@@ -10,8 +10,7 @@
 #ifndef IT45_PROJECT_CENTERSCSV_HPP
 #define IT45_PROJECT_CENTERSCSV_HPP
 
-#include <iostream>
-#include <vector>
+
 #include "../csv.hpp"
 #include "../classes/center.hpp"
 

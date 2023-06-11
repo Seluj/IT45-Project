@@ -11,8 +11,6 @@
 #ifndef IT45_PROJECT_DISTANCECSV_HPP
 #define IT45_PROJECT_DISTANCECSV_HPP
 
-#include <iostream>
-#include <vector>
 #include "../classes/distances.hpp"
 #include "../csv.hpp"
 

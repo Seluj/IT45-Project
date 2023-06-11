@@ -10,8 +10,7 @@
 #ifndef IT45_PROJECT_DATA_HPP
 #define IT45_PROJECT_DATA_HPP
 
-#include <iostream>
-#include <vector>
+#include "inclusion.hpp"
 #include "classes/center.hpp"
 #include "classes/mission.hpp"
 #include "classes/employee.hpp"
