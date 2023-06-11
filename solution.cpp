@@ -83,11 +83,13 @@ void solution::initialSolution(data *data1){
                             soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
                             minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
                             tempAssigned = idMission;
+                            assigned = true;
                           }
                         } else {
                           soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
                           minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
                           tempAssigned = idMission;
+                          assigned = true;
                         }
                         
                       }
@@ -96,6 +98,7 @@ void solution::initialSolution(data *data1){
                       soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
                       minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
                       tempAssigned = idMission;
+                      assigned = true;
                     }
                     
                   }

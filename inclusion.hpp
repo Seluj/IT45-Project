@@ -17,5 +17,6 @@
 #include <limits>
 #include <algorithm>
 #include <map>
+#include <cmath>
 
 #endif //IT45_PROJECT_INCLUSION_HPP

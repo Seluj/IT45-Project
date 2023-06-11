@@ -9,12 +9,7 @@
 #ifndef IT45_PROJECT_SOLUTION_HPP
 #define IT45_PROJECT_SOLUTION_HPP
 
-#include <iostream>
-#include <unordered_map>
-#include <map>
-#include <cmath>
-#include <vector>
-#include <string>
+#include "inclusion.hpp"
 #include "data.hpp"
 #include "kMedoids.hpp"
 
