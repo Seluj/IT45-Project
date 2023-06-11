@@ -37,7 +37,8 @@ dataAnalysis::dataAnalysis(dataCollection *dataInput, data *dataOutput) {
 
 void dataAnalysis::dataAnalysisPrint(data *data1) {
 
-  std::cout << std::endl << "------------------------- Data after analysis -------------------------" << std::endl << std::endl;
+  std::cout << std::endl << "------------------------- Data after analysis -------------------------" << std::endl
+            << std::endl;
 
   data1->printData();
 

@@ -89,5 +89,6 @@ void mission::setAssigned(int assigned) {
 /* --------------------------------- Print Method --------------------------------- */
 
 void mission::printMission() {
-  std::cout << this->getId() << " " << this->getDay() << " " << this->getStartingPeriod() << " " << this->getEndingPeriod() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;
+  std::cout << this->getId() << " " << this->getDay() << " " << this->getStartingPeriod() << " "
+            << this->getEndingPeriod() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;
 }

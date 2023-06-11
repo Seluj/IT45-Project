@@ -29,7 +29,7 @@ public:
 
   /* --------------------------------- Constructor --------------------------------- */
 
-  centersCSV(const std::string& path);
+  centersCSV(const std::string &path);
 
   /* --------------------------------- Destructor --------------------------------- */
 
@@ -38,6 +38,7 @@ public:
   /* --------------------------------- Accessors --------------------------------- */
 
   std::vector<center *> getCenters();
+
   int getNbCenters();
 
   /* --------------------------------- Print Method --------------------------------- */

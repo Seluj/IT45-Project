@@ -8,8 +8,6 @@
 
 #include "employee.hpp"
 
-#include <utility>
-
 /* --------------------------------- Constructor --------------------------------- */
 
 employee::employee() {
@@ -57,7 +55,6 @@ std::vector<int> employee::getMissions() {
 }
 
 
-
 void employee::addMission(int idMission) {
   this->missions.push_back(idMission);
 }
@@ -73,5 +70,6 @@ void employee::removeMission(int idMission) {
 /* --------------------------------- Print Method --------------------------------- */
 
 void employee::printEmployee() {
-  std::cout << this->getId() << " " << this->getIdCenter() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;
+  std::cout << this->getId() << " " << this->getIdCenter() << " " << this->getSkill() << " " << this->getSpeciality()
+            << std::endl;
 }

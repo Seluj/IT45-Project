@@ -23,13 +23,13 @@
 class distanceCSV {
 
 private:
-  distances* distancesMatrix; // Pointer to the distances class
+  distances *distancesMatrix; // Pointer to the distances class
 
 public:
 
   /* --------------------------------- Constructor --------------------------------- */
 
-  distanceCSV(const std::string& path);
+  distanceCSV(const std::string &path);
 
   /* --------------------------------- Destructor --------------------------------- */
 
@@ -41,7 +41,7 @@ public:
 
   /* --------------------------------- Getters --------------------------------- */
 
-  distances* getDistancesMatrix();
+  distances *getDistancesMatrix();
 };
 
 

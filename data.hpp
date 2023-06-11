@@ -24,26 +24,26 @@
 class data {
 
 public:
-  /*
-   * Data about the centers
+  /**
+   * Data about the centers<br>
    * A center stores his id, his coordinates, his capacity and his employees
    */
   std::vector<center *> centers;    // Vector of pointers to center objects
   int nbCenters;                    // Number of centers
 
-  /*
+  /**
    * Data about the missions
    */
   std::vector<mission *> missions;  // Vector of pointers to mission objects
   int nbMissions;                   // Number of missions
 
-  /*
+  /**
    * Data about the employees
    */
   std::vector<employee *> employees; // Vector of pointers to employee objects
   int nbEmployees;                  // Number of employees
 
-  /*
+  /**
    * Data about the matrix of distances
    */
   distances* distancesMatrix;       // Pointer to the distances class

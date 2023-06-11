@@ -29,7 +29,7 @@ public:
 
   /* --------------------------------- Constructor --------------------------------- */
 
-  missionsCSV(const std::string& path);
+  missionsCSV(const std::string &path);
 
   /* --------------------------------- Destructor --------------------------------- */
 
@@ -38,6 +38,7 @@ public:
   /* --------------------------------- Accessors --------------------------------- */
 
   std::vector<mission *> getMissions();
+
   int getNbMissions();
 
   /* --------------------------------- Print Method --------------------------------- */

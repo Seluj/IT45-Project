@@ -20,10 +20,11 @@ distanceCSV::distanceCSV(const std::string &path) {
   csv::CSVReader reader(path + "/Distances.csv", format);
 
   // Store the matrix in a 2D vector
-  for (csv::CSVRow& row: reader) { // Input iterator for the rows
+  for (csv::CSVRow &row: reader) { // Input iterator for the rows
     matrix.emplace_back(); // Add a new row
-    for (csv::CSVField& field: row) { // Input iterator for the fields
-      matrix[i].push_back(field.get<float>()); // Add a new field, push back the value of the field and convert it to float
+    for (csv::CSVField &field: row) { // Input iterator for the fields
+      matrix[i].push_back(
+        field.get<float>()); // Add a new field, push back the value of the field and convert it to float
     }
     i++;
   }

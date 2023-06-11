@@ -25,8 +25,11 @@ private:
 
 public:
   distances(std::vector<std::vector<float>> matrix, int nbRows, int nbColumns);
+
   float getDistance(int row, int column);
+
   std::vector<std::vector<float>> getMatrix();
+
   void printMatrix();
 
   /**
