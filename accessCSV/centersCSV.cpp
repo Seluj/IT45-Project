@@ -22,9 +22,9 @@ centersCSV::centersCSV(const std::string &path) {
   csv::CSVReader reader(path + "/Centers.csv", format);
 
   // Store the matrix in a 2D vector
-  for (csv::CSVRow& row: reader) { // Input iterator for the rows
+  for (csv::CSVRow &row: reader) { // Input iterator for the rows
     j = 0;
-    for (csv::CSVField& field: row) { // Input iterator for the fields
+    for (csv::CSVField &field: row) { // Input iterator for the fields
       if (j == 0) {
         id = field.get<int>(); // Convert the field to int and store it in id
       } else {

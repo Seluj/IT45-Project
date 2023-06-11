@@ -21,16 +21,16 @@
 class dataCollection {
 
 private:
-  distanceCSV* distance;    // Pointer to the distanceCSV object
-  centersCSV* centers;      // Pointer to the centersCSV object
-  missionsCSV* missions;    // Pointer to the missionsCSV object
-  employeesCSV* employees;  // Pointer to the employeesCSV object
+  distanceCSV *distance;    // Pointer to the distanceCSV object
+  centersCSV *centers;      // Pointer to the centersCSV object
+  missionsCSV *missions;    // Pointer to the missionsCSV object
+  employeesCSV *employees;  // Pointer to the employeesCSV object
 
 public:
 
   /* ------------------------------ Constructors ----------------------------- */
 
-  dataCollection(const std::string& path);
+  dataCollection(const std::string &path);
 
   /* ------------------------------- Destructor ------------------------------ */
 
@@ -38,10 +38,13 @@ public:
 
   /* -------------------------------- Getters -------------------------------- */
 
-  distanceCSV* getDistance();
-  centersCSV* getCenters();
-  missionsCSV* getMissions();
-  employeesCSV* getEmployees();
+  distanceCSV *getDistance();
+
+  centersCSV *getCenters();
+
+  missionsCSV *getMissions();
+
+  employeesCSV *getEmployees();
 
   /* -------------------------------- Print Method -------------------------------- */
 

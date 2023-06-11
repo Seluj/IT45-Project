@@ -79,5 +79,6 @@ int mission::getAssigned(std::string type) {
 /* --------------------------------- Print Method --------------------------------- */
 
 void mission::printMission() {
-  std::cout << this->getId() << " " << this->getDay() << " " << this->getStartingPeriod() << " " << this->getEndingPeriod() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;
+  std::cout << this->getId() << " " << this->getDay() << " " << this->getStartingPeriod() << " "
+            << this->getEndingPeriod() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;
 }

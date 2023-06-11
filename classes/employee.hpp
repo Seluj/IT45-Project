@@ -38,6 +38,7 @@ public:
   /* --------------------------------- Constructors --------------------------------- */
 
   employee();
+
   employee(int id, int idCenter, std::string skill, std::string speciality);
 
   /* --------------------------------- Destructor --------------------------------- */
@@ -47,9 +48,13 @@ public:
   /* --------------------------------- Getters --------------------------------- */
 
   int getId();
+
   int getIdCenter();
+
   std::string getSkill();
+
   std::string getSpeciality();
+
   std::vector<int> getMissions();
 
   /**

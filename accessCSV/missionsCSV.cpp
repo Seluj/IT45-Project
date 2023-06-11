@@ -26,9 +26,9 @@ missionsCSV::missionsCSV(const std::string &path) {
   csv::CSVReader reader(path + "/Missions.csv", format);
 
   // Store the matrix in a 2D vector
-  for (csv::CSVRow& row: reader) { // Input iterator for the rows
+  for (csv::CSVRow &row: reader) { // Input iterator for the rows
     j = 0;
-    for (csv::CSVField& field: row) { // Input iterator for the fields
+    for (csv::CSVField &field: row) { // Input iterator for the fields
       if (j == 0) {
         id = field.get<int>(); // Convert the field to int and store it in id
       } else if (j == 1) {
@@ -44,7 +44,8 @@ missionsCSV::missionsCSV(const std::string &path) {
       }
       j++;
     }
-    this->missions.push_back(new mission(id, day, startingPeriod, endingPeriod, skill, speciality)); // Add a new mission to the vector
+    this->missions.push_back(
+      new mission(id, day, startingPeriod, endingPeriod, skill, speciality)); // Add a new mission to the vector
     i++;
   }
   this->nbMissions = i; // Set the number of missions

@@ -28,8 +28,10 @@ void data::printData() {
     this->missions[i]->printMission();
   }
 
-  std::cout << std::endl << "------------------------- Distance Matrix -------------------------" << std::endl << std::endl;
+  std::cout << std::endl << "------------------------- Distance Matrix -------------------------" << std::endl
+            << std::endl;
   this->distancesMatrix->printMatrix();
-  std::cout << std::endl << "--------------------------------------------------------------------" << std::endl << std::endl << std::endl;
+  std::cout << std::endl << "--------------------------------------------------------------------" << std::endl
+            << std::endl << std::endl;
 
 }

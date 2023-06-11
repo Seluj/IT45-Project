@@ -28,18 +28,18 @@ center::center(int id, std::string name) {
 
 /* --------------------------------- Setters --------------------------------- */
 
-void center::updateCapacity(std::string skill, int day, int time){
+void center::updateCapacity(std::string skill, int day, int time) {
   this->capacity[skill][day][time] = this->capacity[skill][day][time] - 1;
 }
 
-void center::updateCapacity(std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> newCapacity){
-    this->capacity = newCapacity;
+void center::updateCapacity(std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> newCapacity) {
+  this->capacity = newCapacity;
 }
 
-void center::updateMissions(std::unordered_map<std::string, std::vector<mission *>> newMissions){
-    this->missions = std::move(newMissions);
-    this->nbMissions["LSF"] = this->missions["LSF"].size();
-    this->nbMissions["LPC"] = this->missions["LPC"].size();
+void center::updateMissions(std::unordered_map<std::string, std::vector<mission *>> newMissions) {
+  this->missions = std::move(newMissions);
+  this->nbMissions["LSF"] = this->missions["LSF"].size();
+  this->nbMissions["LPC"] = this->missions["LPC"].size();
 }
 
 /* --------------------------------- Destructor --------------------------------- */
@@ -48,15 +48,15 @@ center::~center() = default;
 
 /* --------------------------------- Getters --------------------------------- */
 
-int center::getCapacity(const std::string& skill, int day, const int time) {
+int center::getCapacity(const std::string &skill, int day, const int time) {
   return this->capacity[skill][day][time];
 }
 
 std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> center::getCapacity() {
-    return this->capacity;
+  return this->capacity;
 }
 
-int center::getNbEmployees(const std::string& skill) {
+int center::getNbEmployees(const std::string &skill) {
   return this->nbEmployees[skill];
 }
 
@@ -67,15 +67,15 @@ void center::printCenter() {
 
   std::cout << "Center : " << this->id << " " << this->name << std::endl << std::endl;
 
-  for (auto & i : this->capacity) {
+  for (auto &i: this->capacity) {
     std::cout << "Capacity " << i.first << " : " << std::endl << "\t";
-    for (int j : startingPeriodForPrinting) {
+    for (int j: startingPeriodForPrinting) {
       std::cout << j << "\t";
     }
     std::cout << std::endl;
     for (int k = 0; k < 5; k++) {
       std::cout << "Day " << k << "\t";
-      for (int j : startingPeriodForPrinting) {
+      for (int j: startingPeriodForPrinting) {
         std::cout << this->capacity[i.first][k][j] << "\t";
       }
       std::cout << std::endl;
@@ -86,12 +86,12 @@ void center::printCenter() {
     info = true;
   }
 
-  for (auto & i : this->nbEmployees) {
+  for (auto &i: this->nbEmployees) {
     std::cout << "Employees " << i.first << " : " << i.second << std::endl;
 
     info = true;
   }
-  for (auto & i : this->nbMissions) {
+  for (auto &i: this->nbMissions) {
     std::cout << "Missions " << i.first << " : " << i.second << std::endl;
 
     info = true;
@@ -121,12 +121,12 @@ void center::addMission(mission *mission) {
 
 void center::computeCapacity(std::vector<mission *> mission) {
   if (this->startingPeriodForPrinting.begin() == this->startingPeriodForPrinting.end()) {
-    for (auto & m : mission) {
+    for (auto &m: mission) {
       this->startingPeriodForPrinting.push_back(m->getStartingPeriod());
     }
     this->orderStartingPeriodForPrinting();
   }
-  for (auto & m : mission) {
+  for (auto &m: mission) {
     if (this->capacity[m->getSkill()].empty())
       this->capacity[m->getSkill()].resize(5);
     this->capacity[m->getSkill()][m->getDay() - 1][m->getStartingPeriod()] = this->nbEmployees[m->getSkill()];

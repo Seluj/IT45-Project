@@ -40,6 +40,7 @@ public:
   /* --------------------------------- Constructors --------------------------------- */
 
   mission();
+
   mission(int id, int day, int startingPeriod, int endingPeriod, std::string skill, std::string speciality);
 
   /* --------------------------------- Destructor --------------------------------- */
@@ -49,11 +50,17 @@ public:
   /* --------------------------------- Getters --------------------------------- */
 
   int getId();
+
   int getAssigned(std::string type = "bool");
+
   int getDay();
+
   int getStartingPeriod();
+
   int getEndingPeriod();
+
   std::string getSkill();
+
   std::string getSpeciality();
 
   /* --------------------------------- Print Method --------------------------------- */

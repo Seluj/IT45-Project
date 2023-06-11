@@ -29,7 +29,7 @@ public:
 
   /* --------------------------------- Constructor --------------------------------- */
 
-  employeesCSV(const std::string& path);
+  employeesCSV(const std::string &path);
 
   /* --------------------------------- Destructor --------------------------------- */
 
@@ -38,6 +38,7 @@ public:
   /* --------------------------------- Accessors --------------------------------- */
 
   std::vector<employee *> getEmployees();
+
   int getNbEmployees();
 
   /* --------------------------------- Print Method --------------------------------- */
