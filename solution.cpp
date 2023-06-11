@@ -34,19 +34,14 @@ solution::solution(data *data) {
     }
     for (int j = 0; j < 5; j++) { // For each day
       if (this->hours[data->employees[i]->getId()][j].empty()) { // If the vector is empty (not initialized) we initialize it
-        // We initialize the vector with 2 types of hours : 0 = Number of hours and 1 = time range
-        this->hours[data->employees[i]->getId()][j].resize(2);
+        // We initialize the vector with 6 types of info : 0 = Number of hours and 1 = time range
+        this->hours[data->employees[i]->getId()][j].resize(6);
       }
       // We initialize both type of hours to 0
       this->hours[data->employees[i]->getId()][j][0] = 0;
       this->hours[data->employees[i]->getId()][j][1] = 0;
     }
   }
-}
-
-
-solution::solution() {
-
 }
 
 void solution::initialSolution(data *data1){
@@ -82,16 +77,16 @@ void solution::initialSolution(data *data1){
                 if (this->hours[idEmployee][d][3] < data1->missions[idMission-1]->getStartingPeriod() && data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][3][d] <= soonestMission) {
                   if (hasTime(idEmployee, d, idMission, data1, c)) { //Test if the employee has enough time to do the mission
                     if (data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3] == soonestMission) { //If the mission starts as soon as another one we've tested, we compare their distance
-                      if (data1->distancesMatrix->getDistance(idMission-1+data1->nbMissions, tempCompDistance) <= minDistance) { //Compare distances
-                        if (data1->distancesMatrix->getDistance(idMission-1+data1->nbMissions, tempCompDistance) == minDistance) { //If the distances are equal we compare wether the skills match or not
+                      if (data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance) <= minDistance) { //Compare distances
+                        if (data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance) == minDistance) { //If the distances are equal we compare wether the skills match or not
                           if (data1->employees[idEmployee-1]->getSpeciality() == data1->missions[idMission-1]->getSpeciality()) { //We test to see if the employee has the specialty required for the mission
                             soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
-                            minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbMissions, tempCompDistance);
+                            minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
                             tempAssigned = idMission;
                           }
                         } else {
                           soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
-                          minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbMissions, tempCompDistance);
+                          minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
                           tempAssigned = idMission;
                         }
                         
@@ -99,7 +94,7 @@ void solution::initialSolution(data *data1){
                       
                     } else {
                       soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
-                      minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbMissions, tempCompDistance);
+                      minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
                       tempAssigned = idMission;
                     }
                     
@@ -113,13 +108,13 @@ void solution::initialSolution(data *data1){
               data1->missions[tempAssigned-1]->setAssigned(true);
               this->affectations[skills[s]][idEmployee][d][tempAssigned] = true;
               if (this->hours[idEmployee][d][4] == 0) { //Check to see if a previous mission has been assigned
-                this->hours[idEmployee][d][0] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1, c)*13.88/60);
-                this->hours[idEmployee][d][1] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1, c)*13.88/60);
-                this->hours[idEmployee][d][2] = data1->missions[tempAssigned-1]->getStartingPeriod() - std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1, c)*13.88/60);
+                this->hours[idEmployee][d][0] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
+                this->hours[idEmployee][d][1] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
+                this->hours[idEmployee][d][2] = data1->missions[tempAssigned-1]->getStartingPeriod() - std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
                 this->hours[idEmployee][d][5] = tempAssigned;
               } else {
-                this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1, this->hours[idEmployee][d][4]-1)*13.88/60);
-                this->hours[idEmployee][d][1] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1, this->hours[idEmployee][d][4]-1)*13.88/60);
+                this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, this->hours[idEmployee][d][4]-1)*13.88/60);
+                this->hours[idEmployee][d][1] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, this->hours[idEmployee][d][4]-1)*13.88/60);
               }
               this->hours[idEmployee][d][0] += data1->missions[tempAssigned-1]->getDuration();
               this->hours[idEmployee][d][1] += data1->missions[tempAssigned-1]->getEndingPeriod() - this->hours[idEmployee][d][2];
@@ -128,9 +123,9 @@ void solution::initialSolution(data *data1){
             }
           }
           //We can now update the final values regarding the hours of the employee
-          this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1, c)*13.88/60);
-          this->hours[idEmployee][d][1] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1, c)*13.88/60);
-          this->hours[idEmployee][d][3] = std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1, c)*13.88/60);
+          this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
+          this->hours[idEmployee][d][1] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
+          this->hours[idEmployee][d][3] = std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
           
         }
         
