@@ -76,13 +76,15 @@ void kMedoids::kMedoidsAlgo(data* data1) {
     }
   }
 
-  //Now that we have our final solution, we can definitely assign the missions to the centers
+  //Now that we have our final solution, we can definitely assign the missions to the centers, and update their "assigned" attribute
   std::unordered_map<std::string, std::vector<mission *>> newMissions;
+  
   for (int j = 0; j < data1->nbCenters; j++) { //Iterate over the medoids
     newMissions["LSF"].clear();
     newMissions["LPC"].clear();
     for (int i = 0; i < this->assignments[j].size(); i++) { //Iterate over the assignments
       newMissions[data1->missions[this->assignments[j][i]-data1->nbCenters]->getSkill()].push_back(data1->missions[this->assignments[j][i]-data1->nbCenters]);
+      data1->missions[this->assignments[j][i]-data1->nbCenters]->setAssigned(1);
     }
     data1->centers[this->medoids[j]]->updateMissions(newMissions);
   } 
@@ -173,7 +175,7 @@ void kMedoids::medoidsAssign(data* data1) {
         this->assignments[tempAssign].insert(this->assignments[tempAssign].end(),row);
         //Change the capacity of the center
         data1->centers[tempCenterpos]->updateCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getDay()-1,data1->missions[row - data1->nbCenters]->getStartingPeriod());
-        //std::cout << "New capacity : " << data1->centers[tempCenterpos]->getCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getStartingPeriod());
+        //std::cout << "New capacity : " << data1->centers[tempCenterpos]->getCapacity(data1->missions[row - data1->nbCenters]->getSkill(), data1->missions[row - data1->nbCenters]->getStartingPeriod()); 
     }
     assigned = false;
     row++; //We increment the row

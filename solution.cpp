@@ -72,7 +72,7 @@ void solution::initialSolution(data *data1){
               } else {
                 tempCompDistance = this->hours[idEmployee][d][4] + data1->nbCenters - 1;
               }
-              if (!data1->missions[idMission-1]->getAssigned("bool")) { //Test if the mission hasn't been assigned to an employee yet
+              if (data1->missions[idMission-1]->getAssigned("int") < 2) { //Test if the mission hasn't been assigned to an employee yet
                 //We make sure the mission starts after the previous one and is sooner than the other missions tested
                 if (this->hours[idEmployee][d][3] < data1->missions[idMission-1]->getStartingPeriod() && data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3] <= soonestMission) {
                     if (hasTime(idEmployee, d, idMission, data1, c)) { //Test if the employee has enough time to do the mission
@@ -108,7 +108,7 @@ void solution::initialSolution(data *data1){
 
             }
             if (assigned) {
-              data1->missions[tempAssigned-1]->setAssigned(true);
+              data1->missions[tempAssigned-1]->setAssigned(2);
               this->affectations[skills[s]][idEmployee][d][tempAssigned] = true;
               if (this->hours[idEmployee][d][4] == 0) { //Check to  see if a previous mission has been assigned
                 this->hours[idEmployee][d][0] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
