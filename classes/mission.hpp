@@ -41,6 +41,8 @@ public:
 
   mission();
 
+  mission(mission *missionToCopy);
+
   mission(int id, int day, int startingPeriod, int endingPeriod, std::string skill, std::string speciality);
 
   /* --------------------------------- Destructor --------------------------------- */

@@ -8,6 +8,31 @@
 
 #include "data.hpp"
 
+data::data(const data& data1) {
+  // Copie le nombre de centres, missions et employés
+  nbCenters = data1.nbCenters;
+  nbMissions = data1.nbMissions;
+  nbEmployees = data1.nbEmployees;
+
+  // Copie les centres
+  for (const auto& centerPtr : data1.centers) {
+    centers.push_back(new center(*centerPtr));
+  }
+
+  // Copie les missions
+  for (const auto& missionPtr : data1.missions) {
+    missions.push_back(new mission(*missionPtr));
+  }
+
+  // Copie les employés
+  for (const auto& employeePtr : data1.employees) {
+    employees.push_back(new employee(*employeePtr));
+  }
+
+  // Copie la matrice de distances
+  distancesMatrix = new distances(*data1.distancesMatrix);
+}
+
 void data::printData() {
 
   std::cout << "------------------------- Center -------------------------" << std::endl << std::endl;

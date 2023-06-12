@@ -45,7 +45,9 @@ public:
   /**
    * Data about the matrix of distances
    */
-  distances* distancesMatrix;       // Pointer to the distances class
+  distances* distancesMatrix{};       // Pointer to the distances class
+
+  data(const data &data1);
 
   void printData();                 // Function to print the data
 };

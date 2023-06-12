@@ -20,6 +20,16 @@ mission::mission() {
   this->speciality = "";
 }
 
+mission::mission(mission *missionToCopy) {
+  this->id = missionToCopy->getId();
+  this->assigned = missionToCopy->getAssigned();
+  this->day = missionToCopy->getDay();
+  this->startingPeriod = missionToCopy->getStartingPeriod();
+  this->endingPeriod = missionToCopy->getEndingPeriod();
+  this->skill = missionToCopy->getSkill();
+  this->speciality = missionToCopy->getSpeciality();
+}
+
 mission::mission(int id, int day, int startingPeriod, int endingPeriod, std::string skill, std::string speciality) {
   this->id = id;
   this->assigned = 0;
