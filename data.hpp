@@ -47,6 +47,8 @@ public:
    */
   distances* distancesMatrix{};       // Pointer to the distances class
 
+  data();                           // Default constructor
+
   data(const data &data1);
 
   void printData();                 // Function to print the data

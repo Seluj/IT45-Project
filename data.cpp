@@ -8,6 +8,9 @@
 
 #include "data.hpp"
 
+data::data() = default;
+
+
 data::data(const data& data1) {
   // Copie le nombre de centres, missions et employés
   nbCenters = data1.nbCenters;
