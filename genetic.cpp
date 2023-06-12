@@ -14,14 +14,80 @@ genetic::genetic() = default;
 
 /* --------------------------------- Methods --------------------------------- */
 
-std::vector<solution *> genetic::createInitialPopulation(data *data1, int populationSize) {
+data *genetic::mutateData(data *data1) {
 
+  srand(unsigned(time(nullptr)));
+
+  std::string skillTemp;
+  int dayTemp, startingTemp;
+  data *tempData = new data(*data1);
+  std::vector<mission *> missionUnmarked;
+  int randomUnmarked, randomMarked;
+  mission *tempMission;
+
+  for (int i = 0; i < tempData->nbMissions; i++) {
+    if (tempData->missions[i]->getAssigned() == false) {
+      missionUnmarked.push_back(tempData->missions[i]);
+    }
+  }
+
+  int nbMissionsUnmarked = missionUnmarked.size();
+  int nbMissionsMarkedCenter1 = tempData->centers[0]->getMissions().size();
+  int nbMissionsMarkedCenter2 = tempData->centers[1]->getMissions().size();
+
+  for (int i = 0; i < 20; ++i) {
+    randomUnmarked = rand() % nbMissionsUnmarked;
+
+
+    skillTemp = missionUnmarked[randomUnmarked]->getSkill();
+    dayTemp = missionUnmarked[randomUnmarked]->getDay();
+    startingTemp = missionUnmarked[randomUnmarked]->getStartingPeriod();
+
+    if (tempData->distancesMatrix->getDistance(0, missionUnmarked[randomUnmarked]->getId()) <
+        tempData->distancesMatrix->getDistance(1, missionUnmarked[randomUnmarked]->getId())) {
+
+      do {
+        randomMarked = rand() % nbMissionsMarkedCenter1;
+      } while (tempData->centers[0]->getMissions()[randomMarked]->getSkill() != skillTemp
+               || tempData->centers[0]->getMissions()[randomMarked]->getDay() != dayTemp
+               || tempData->centers[0]->getMissions()[randomMarked]->getStartingPeriod() != startingTemp);
+
+      tempMission = tempData->centers[0]->getMissions()[randomMarked];
+
+      tempData->missions[tempMission->getId() - 1]->setAssigned(1);
+      tempData->missions[missionUnmarked[randomUnmarked]->getId() - 1]->setAssigned(0);
+
+      missionUnmarked[randomUnmarked]->setAssigned(1);
+      tempData->centers[0]->swapMissions(randomMarked, missionUnmarked[randomUnmarked]);
+      missionUnmarked[randomUnmarked] = tempMission;
+      missionUnmarked[randomUnmarked]->setAssigned(0);
+    } else {
+
+      do {
+        randomMarked = rand() % nbMissionsMarkedCenter2;
+      } while (tempData->centers[1]->getMissions()[randomMarked]->getSkill() != skillTemp
+               || tempData->centers[1]->getMissions()[randomMarked]->getDay() != dayTemp
+               || tempData->centers[1]->getMissions()[randomMarked]->getStartingPeriod() != startingTemp);
+
+
+      tempMission = tempData->centers[1]->getMissions()[randomMarked];
+
+      tempData->missions[tempMission->getId() - 1]->setAssigned(1);
+      tempData->missions[missionUnmarked[randomUnmarked]->getId() - 1]->setAssigned(0);
+
+      missionUnmarked[randomUnmarked]->setAssigned(1);
+      tempData->centers[1]->swapMissions(randomMarked, missionUnmarked[randomUnmarked]);
+      missionUnmarked[randomUnmarked] = tempMission;
+      missionUnmarked[randomUnmarked]->setAssigned(0);
+    }
+  }
+
+  return tempData;
 }
 
 std::vector<solution *> genetic::selection(std::vector<solution *> population, data *data1) {
   int decalage = 0;
   int random;
-  int nbTest;
   int populationSize = population.size();
   int popSizeDivided = populationSize / 2;
   if (populationSize % 2 != 0) {
@@ -71,12 +137,4 @@ std::vector<solution *> genetic::selection(std::vector<solution *> population, d
   selectedPopulation[1] = bestSolutionSecondPart;
 
   return selectedPopulation;
-}
-
-std::vector<solution *> genetic::crossover(std::vector<solution *> population, data *data1) {
-  return std::vector<solution *>();
-}
-
-std::vector<solution *> genetic::mutation(std::vector<solution *> population, data *data1) {
-  return std::vector<solution *>();
 }
