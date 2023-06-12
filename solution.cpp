@@ -44,7 +44,7 @@ solution::solution(data *data) {
   }
 }
 
-void solution::initialSolution(data *data1){
+void solution::initialSolution(data *data1) {
   std::vector<std::string> skills = {"LSF", "LPC"};
   bool assigned = true;
   float minDistance = std::numeric_limits<float>::max();
@@ -369,10 +369,15 @@ void solution::printSolution(data *data) {
   for (int i = 0; i < data->nbEmployees; i++) {
     std::cout << "Employee " << data->employees[i]->getId() << " : " << std::endl;
     for (int j = 0; j < 5; j++) {
-      std::cout << "Day " << j + 1 << " - nbHours : " << hours[data->employees[i]->getId()][j][0] << " // timeRange : "
-                << hours[data->employees[i]->getId()][j][1] << " // start of work :" << hours[data->employees[i]->getId()][j][2]
-                << " // end of work : " << hours[data->employees[i]->getId()][j][3] << "// id last mission : " << hours[data->employees[i]->getId()][j][4]
-                << " // id first mission : "  << hours[data->employees[i]->getId()][j][5] << std::endl ;
+      std::cout << "Day "
+                << j + 1
+                << " - nbHours: " << hours[data->employees[i]->getId()][j][0]
+                << " // timeRange: " << hours[data->employees[i]->getId()][j][1]
+                << " // start of work: " << hours[data->employees[i]->getId()][j][2]
+                << " // end of work: " << hours[data->employees[i]->getId()][j][3]
+                << " // id last mission: " << hours[data->employees[i]->getId()][j][4]
+                << " // id first mission: " << hours[data->employees[i]->getId()][j][5]
+                << std::endl;
     }
     std::cout << std::endl;
   }
