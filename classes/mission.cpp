@@ -52,7 +52,7 @@ int mission::getId() {
   return this->id;
 }
 
-int mission::getAssigned(std::string type) {
+int mission::getAssigned(const std::string &type) {
   if (type == "int") {
     return this->assigned;
   } else {
@@ -97,6 +97,12 @@ void mission::setAssigned(int assigned) {
 /* --------------------------------- Print Method --------------------------------- */
 
 void mission::printMission() {
-  std::cout << this->getId() << " " << this->getDay() << " " << this->getStartingPeriod() << " "
-            << this->getEndingPeriod() << " " << this->getSkill() << " " << this->getSpeciality() << std::endl;
+  std::cout << this->getId() << " "
+            << this->getDay() << " "
+            << this->getStartingPeriod() << " "
+            << this->getEndingPeriod() << " "
+            << this->getSkill() << " "
+            << this->getSpeciality() << " "
+            << this->getAssigned()
+            << std::endl;
 }

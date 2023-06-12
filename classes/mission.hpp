@@ -53,7 +53,7 @@ public:
 
   int getId();
 
-  int getAssigned(std::string type = "bool");
+  int getAssigned(const std::string& type = "bool");
 
   int getDay();
 

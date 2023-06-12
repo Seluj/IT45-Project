@@ -95,11 +95,11 @@ public:
 
   int getNbEmployees(const std::string &skill);
 
-  int getNbMissions(const std::string& skill);
+  int getNbMissions(const std::string &skill);
 
-  int getEmployeeId(const std::string& skill, int index);
+  int getEmployeeId(const std::string &skill, int index);
 
-  int getMissionId(const std::string& skill, int index);
+  int getMissionId(const std::string &skill, int index);
 
   std::vector<mission *> getMissions();
 
