@@ -22,8 +22,6 @@ employee::employee(int id, int idCenter, std::string skill, std::string speciali
   this->id = id;
   this->idCenter = idCenter;
   this->missions = {};
-
-  // Move the string instead of copying it (more efficient)
   this->skill = skill;
   this->speciality = speciality;
 }
