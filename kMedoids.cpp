@@ -39,7 +39,7 @@ void kMedoids::kMedoidsAlgo(data* data1, int printDetails) {
       capacityCopy[j] = data1->centers[j]->getCapacity();
   }
   //We don't want to iterate too many times
-  while (this->cost < this->oldCost && i < 5 && medoidsModified){
+  while (this->cost < this->oldCost && i < 10 && medoidsModified){
     if (printDetails == 1) {
       std::cout << "============== KMedoids iteration " << i+1 << "==============" << std::endl;
       std::cout << "Our medoids : ";
