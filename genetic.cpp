@@ -15,27 +15,52 @@ genetic::genetic() = default;
 /* --------------------------------- Methods --------------------------------- */
 
 data *genetic::mutateData(data *data1) {
+  for (const auto &mission: data1->missions) {
+    if (mission->getAssigned("int") == 2) {
+      mission->setAssigned(1);
+    }
+  }
+  data1 = switchWithUnmarkedMission(data1); // First mutation
+  //data1 = switchBetweenCenters(data1);      // Second mutation
+  return data1;                             // Return the mutated data
+}
+
+data *genetic::switchWithUnmarkedMission(data *data1) {
 
   srand(unsigned(time(nullptr)));
 
   std::string skillTemp;
   int dayTemp, startingTemp;
-  data *tempData = new data(*data1);
   std::vector<mission *> missionUnmarked;
+  int nbMissionsUnmarked = 0;
   int randomUnmarked, randomMarked;
   mission *tempMission;
 
-  for (int i = 0; i < tempData->nbMissions; i++) {
-    if (tempData->missions[i]->getAssigned() == false) {
-      missionUnmarked.push_back(tempData->missions[i]);
+  std::map<std::string, std::map<int, int>> nbMissionsMarkedCenter;
+  std::map<std::string, int> nbMissionsMarkedCenter2;
+
+
+  // Get all the unmarked missions and change the assigned value of the marked missions
+  for (const auto &mission: data1->missions) {
+    if (mission->getAssigned("int") == 0) {
+      missionUnmarked.push_back(mission);
+      nbMissionsUnmarked++;
     }
   }
 
-  int nbMissionsUnmarked = missionUnmarked.size();
-  int nbMissionsMarkedCenter1 = tempData->centers[0]->getMissions().size();
-  int nbMissionsMarkedCenter2 = tempData->centers[1]->getMissions().size();
+  // If there is no unmarked mission, return the data
+  if (nbMissionsUnmarked == 0) {
+    std::cout << "No unmarked mission" << std::endl;
+    return data1;
+  }
 
-  for (int i = 0; i < 20; ++i) {
+  for (int i = 0; i < data1->nbCenters; i++) {
+    nbMissionsMarkedCenter["LSF"][i] = data1->centers[i]->getNbMissions("LSF");
+    nbMissionsMarkedCenter["LPC"][i] = data1->centers[i]->getNbMissions("LPC");
+  }
+
+
+  for (int i = 0; i < data1->nbMissions / 10; ++i) {
     randomUnmarked = rand() % nbMissionsUnmarked;
 
 
@@ -43,98 +68,56 @@ data *genetic::mutateData(data *data1) {
     dayTemp = missionUnmarked[randomUnmarked]->getDay();
     startingTemp = missionUnmarked[randomUnmarked]->getStartingPeriod();
 
-    if (tempData->distancesMatrix->getDistance(0, missionUnmarked[randomUnmarked]->getId()) <
-        tempData->distancesMatrix->getDistance(1, missionUnmarked[randomUnmarked]->getId())) {
+    int centerShortestDistance = 0;
+    float shortestDistance = data1->distancesMatrix->getDistance(0, missionUnmarked[randomUnmarked]->getId() - 1);
+    // Compute the shortest distance between the unmarked mission and the centers
+    for (int j = 0; j < data1->nbCenters - 1; j++) {
+      for (int k = i + 1; k < data1->nbCenters; k++) {
+        if (shortestDistance > data1->distancesMatrix->getDistance(k, missionUnmarked[randomUnmarked]->getId() - 1)) {
+          centerShortestDistance = k;
+          shortestDistance = data1->distancesMatrix->getDistance(k, missionUnmarked[randomUnmarked]->getId() - 1);
+        }
+      }
+    }
 
+    // Check if the center has missions of the same skill
+    if (nbMissionsMarkedCenter[skillTemp][centerShortestDistance] == 0) {
+      continue;
+    }
+
+    if (skillTemp == "LSF") {
       do {
-        randomMarked = rand() % nbMissionsMarkedCenter1;
-      } while (tempData->centers[0]->getMissions()[randomMarked]->getSkill() != skillTemp
-               || tempData->centers[0]->getMissions()[randomMarked]->getDay() != dayTemp
-               || tempData->centers[0]->getMissions()[randomMarked]->getStartingPeriod() != startingTemp);
+        randomMarked = rand() % nbMissionsMarkedCenter["LSF"][centerShortestDistance];
+      } while (data1->centers[centerShortestDistance]->getMission(randomMarked, "LSF")->getDay() != dayTemp
+               || data1->centers[centerShortestDistance]->getMission(randomMarked, "LSF")->getStartingPeriod() !=
+                  startingTemp);
 
-      tempMission = tempData->centers[0]->getMissions()[randomMarked];
+      tempMission = data1->centers[centerShortestDistance]->getMission(randomMarked, "LSF");
 
-      tempData->missions[tempMission->getId() - 1]->setAssigned(1);
-      tempData->missions[missionUnmarked[randomUnmarked]->getId() - 1]->setAssigned(0);
+      data1->missions[tempMission->getId() - 1]->setAssigned(1);
+      data1->missions[missionUnmarked[randomUnmarked]->getId() - 1]->setAssigned(0);
 
       missionUnmarked[randomUnmarked]->setAssigned(1);
-      tempData->centers[0]->swapMissions(randomMarked, missionUnmarked[randomUnmarked]);
+      data1->centers[centerShortestDistance]->swapMissions(randomMarked, missionUnmarked[randomUnmarked]);
       missionUnmarked[randomUnmarked] = tempMission;
       missionUnmarked[randomUnmarked]->setAssigned(0);
     } else {
-
       do {
-        randomMarked = rand() % nbMissionsMarkedCenter2;
-      } while (tempData->centers[1]->getMissions()[randomMarked]->getSkill() != skillTemp
-               || tempData->centers[1]->getMissions()[randomMarked]->getDay() != dayTemp
-               || tempData->centers[1]->getMissions()[randomMarked]->getStartingPeriod() != startingTemp);
+        randomMarked = rand() % nbMissionsMarkedCenter["LPC"][centerShortestDistance];
+      } while (data1->centers[centerShortestDistance]->getMission(randomMarked, "LPC")->getDay() != dayTemp
+               || data1->centers[centerShortestDistance]->getMission(randomMarked, "LPC")->getStartingPeriod() !=
+                  startingTemp);
 
+      tempMission = data1->centers[centerShortestDistance]->getMission(randomMarked, "LPC");
 
-      tempMission = tempData->centers[1]->getMissions()[randomMarked];
-
-      tempData->missions[tempMission->getId() - 1]->setAssigned(1);
-      tempData->missions[missionUnmarked[randomUnmarked]->getId() - 1]->setAssigned(0);
+      data1->missions[tempMission->getId() - 1]->setAssigned(1);
+      data1->missions[missionUnmarked[randomUnmarked]->getId() - 1]->setAssigned(0);
 
       missionUnmarked[randomUnmarked]->setAssigned(1);
-      tempData->centers[1]->swapMissions(randomMarked, missionUnmarked[randomUnmarked]);
+      data1->centers[centerShortestDistance]->swapMissions(randomMarked, missionUnmarked[randomUnmarked]);
       missionUnmarked[randomUnmarked] = tempMission;
       missionUnmarked[randomUnmarked]->setAssigned(0);
     }
   }
-
-  return tempData;
-}
-
-std::vector<solution *> genetic::selection(std::vector<solution *> population, data *data1) {
-  int decalage = 0;
-  int random;
-  int populationSize = population.size();
-  int popSizeDivided = populationSize / 2;
-  if (populationSize % 2 != 0) {
-    decalage = 1;
-  }
-  std::vector<int> selected1(popSizeDivided);
-  std::vector<int> selected2((popSizeDivided) + decalage);
-  std::vector<solution *> firstPart(popSizeDivided);
-  std::vector<solution *> secondPart((popSizeDivided) + decalage);
-  solution *bestSolutionFirstPart;
-  solution *bestSolutionSecondPart;
-
-  std::vector<solution *> selectedPopulation(2);
-
-  for (int i = 0; i < popSizeDivided; i++) {
-    do {
-      random = rand() % populationSize;
-    } while (std::find(selected1.begin(), selected1.end(), random) != selected1.end());
-    selected1[i] = random;
-  }
-  for (int i = 0; i < popSizeDivided + decalage; ++i) {
-    if (std::find(selected1.begin(), selected1.end(), i) == selected1.end()) {
-      selected2[i] = i;
-    }
-  }
-  for (int i = 0; i < popSizeDivided; ++i) {
-    firstPart[i] = population[selected1[i]];
-  }
-  for (int i = 0; i < popSizeDivided + decalage; ++i) {
-    secondPart[i] = population[selected2[i]];
-  }
-
-  bestSolutionFirstPart = firstPart[0];
-  for (int i = 0; i < popSizeDivided - 1; i++) {
-    for (int j = i + 1; j < popSizeDivided; j++) {
-      bestSolutionFirstPart = bestSolutionFirstPart->compareSolutions(firstPart[j], data1);
-    }
-  }
-  bestSolutionSecondPart = secondPart[0];
-  for (int i = 0; i < popSizeDivided + decalage - 1; i++) {
-    for (int j = i + 1; j < popSizeDivided + decalage; j++) {
-      bestSolutionSecondPart = bestSolutionSecondPart->compareSolutions(secondPart[j], data1);
-    }
-  }
-
-  selectedPopulation[0] = bestSolutionFirstPart;
-  selectedPopulation[1] = bestSolutionSecondPart;
-
-  return selectedPopulation;
+  return data1;
 }

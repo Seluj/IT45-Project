@@ -25,20 +25,20 @@ public:
   /* --------------------------------- Methods --------------------------------- */
 
   /**
-   * @brief Function to create the initial population
-   * @param data1 Data object containing the data of the problem
-   * @param populationSize Size of the population
-   * @return A vector of pointers to solution objects
+   * @brief Mutate the data
+   * @param data1 data to mutate
+   * @return data1 mutated
    */
   data *mutateData(data *data1);
 
+private:
+
   /**
-  * @brief Function to select the parents of the next generation
-  * @param population Vector of pointers to solution objects
-  * @param data1 Data object containing the data of the problem
-  * @return A vector of pointers to solution objects
-  */
-  std::vector<solution *> selection(std::vector<solution *> population, data *data1);
+   * @brief Switch the missions with the unmarked missions
+   * @param data1 data to mutate
+   * @return data1 mutated
+   */
+  data *switchWithUnmarkedMission(data *data1);
 };
 
 #endif //IT45_PROJECT_GENETIC_HPP
