@@ -49,8 +49,6 @@ public:
 
   data();                           // Default constructor
 
-  data(const data &data1);
-
   void printData();                 // Function to print the data
 };
 
