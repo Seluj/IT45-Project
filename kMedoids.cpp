@@ -29,22 +29,26 @@ kMedoids::kMedoids(data* data1) {
 
 /* ----------------------------------- KMedoid ----------------------------------- */
 
-void kMedoids::kMedoidsAlgo(data* data1) {
+void kMedoids::kMedoidsAlgo(data* data1, int printDetails) {
   int temp;
   int i = 0; //Keeps track of the number of iterations
+  bool medoidsModified = true; //Keeps track of whether the medoids have been modified or not
   std::vector<std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>>> capacityCopy(data1->nbCenters);
   //We have to copy the old capacities because we will be changing them during our assignments
   for (int j = 0; j < data1->nbCenters; ++j) {
       capacityCopy[j] = data1->centers[j]->getCapacity();
   }
   //We don't want to iterate too many times
-  while (this->cost < this->oldCost && i < 5){
-    std::cout << "============== KMedoids iteration " << i+1 << "==============" << std::endl;
-    std::cout << "Our medoids : ";
-    for (int j = 0; j < data1->nbCenters; ++j) {
-      std::cout << this->medoids[j] << " // ";
+  while (this->cost < this->oldCost && i < 5 && medoidsModified){
+    if (printDetails == 1) {
+      std::cout << "============== KMedoids iteration " << i+1 << "==============" << std::endl;
+      std::cout << "Our medoids : ";
+      for (int j = 0; j < data1->nbCenters; ++j) {
+        std::cout << this->medoids[j] << " // ";
+      }
+      std::cout << std::endl;
     }
-    std::cout << std::endl;
+    
     //We reset the assignments and the capacities of each center
     for (int j = 0; j < data1->nbCenters; ++j) {
       this->assignments[j].clear();
@@ -60,19 +64,21 @@ void kMedoids::kMedoidsAlgo(data* data1) {
     for (int j = 0; j < data1->nbCenters; j++) {//We cumulate the cost of each of our medoids
       this->cost += this->calculateCost(this->medoids[j], this->assignments[j], data1);
     }
-    std::cout << std::endl << "Cost of this solution : " << this->cost << std::endl;
-    printMedoids(data1);
+    if (printDetails == 1) {
+      std::cout << std::endl << "Cost of this solution : " << this->cost << std::endl;
+      printMedoids(data1);
+    }
     //We update the medoids, to choose the point in the cluster that minimizes the cost
-    this->medoidsUpdate(data1);
+    medoidsModified = this->medoidsUpdate(data1);
     i++;
   }
   //We then reassign the centers as the medoid to facilitate the upcoming operations
   for(int j = 0; j < data1->nbCenters; j++){
     //If the medoid isn't a center, we replace it by the position of the center
     if (this->medoids[j] > data1->nbCenters){
-     temp = this->assignments[j][0];
-     this->assignments[j][0] = this->medoids[j];
-     this->medoids[j] = temp;
+      temp = this->assignments[j][0];
+      this->assignments[j][0] = this->medoids[j];
+      this->medoids[j] = temp;
     }
   }
 
@@ -91,7 +97,6 @@ void kMedoids::kMedoidsAlgo(data* data1) {
 }
 
 void kMedoids::medoidsAssign(data* data1) {
-  std::cout << "IN MEDOIDS ASSIGN" << std::endl;
   float distance;
   int row = 0; //Keeps track of the distance row
   int tempAssign = 0; //Position of the medoid the assignment has been assigned to [it's position in the distance matrix]
@@ -182,7 +187,7 @@ void kMedoids::medoidsAssign(data* data1) {
   }
 }
 
-void kMedoids::medoidsUpdate(data* data1){
+bool kMedoids::medoidsUpdate(data* data1){
   /**For each or our medoid we calculate all possible costs
    * Meaning for each assignment we calculate the cost we would have if it was the medoid
    * We then compare the cost of the current medoid with the cost of the new medoid, and choose the smallest one as our new medoid
@@ -194,6 +199,7 @@ void kMedoids::medoidsUpdate(data* data1){
   std::vector<int> bestAssignments; //Assignments of the best medoid
   std::vector<int> tempAssignments; //Assignments of the medoid we're testing
   bool assigned = false;
+  bool medoidUpdated = false;
 
   for (int i = 0; i < data1->nbCenters; i++) {//Iterate over the medoids
     oldCost = calculateCost(this->medoids[i], this->assignments[i], data1); //We set the cost of the current medoid
@@ -216,9 +222,11 @@ void kMedoids::medoidsUpdate(data* data1){
     if (assigned){
       this->medoids[i] = bestMedoid;
       this->assignments[i] = bestAssignments;
+      medoidUpdated = true;
     }
     assigned = false;
   }
+  return medoidUpdated;
 }
     
 float kMedoids::calculateCost(int medoid, std::vector<int> assignments, data* data1){

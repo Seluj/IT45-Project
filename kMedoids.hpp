@@ -40,7 +40,7 @@ public:
    * @brief Function that applies the k-medoids algorithm
    * @param data1 Data object to use
    */
-  void kMedoidsAlgo(data* data1);
+  void kMedoidsAlgo(data* data1, int printDetails);
 
   /**
    * @brief Function that assigns each assignment to the closest medoid
@@ -51,8 +51,9 @@ public:
   /**
    * @brief Function that updates the medoids, by comparing costs in the cluster
    * @param data1 Data object to use
+   * @return True if the medoids have changed, false otherwise
    */
-  void medoidsUpdate(data* data1);
+  bool medoidsUpdate(data* data1);
   
   /**
    * @brief Function that calculates the cost of the solution
