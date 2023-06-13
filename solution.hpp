@@ -19,7 +19,10 @@
  * @brief Class used to store the solution of the problem
  */
 class solution {
+
 private:
+
+  std::string name;
 
   /**
    * 1st key: skill [LSF, LPC]<br>
@@ -33,10 +36,10 @@ private:
   std::unordered_map<std::string, std::map<int, std::vector<std::map<int, bool>>>> affectations;
 
 
-  /*
-   * 1st key : id of the employee
-   * 2nd key : day [0 - 4] 0 = Monday, 1 = Tuesday, 2 = Wednesday, 3 = Thursday, 4 = Friday
-   * 3rd key : type : 0 = Number of hours, 1 = time range, 2 = start of work, 3 = end of work, 4 = id last mission, 5 = first mission
+  /**
+   * 1st key : id of the employee<br>
+   * 2nd key : day [0 - 4] 0 = Monday, 1 = Tuesday, 2 = Wednesday, 3 = Thursday, 4 = Friday<br>
+   * 3rd key : type : 0 = Number of hours, 1 = time range, 2 = start of work, 3 = end of work, 4 = id last mission, 5 = first mission<br><br>
    *
    * Example 1: horaires[1][2][0] = 3 means that the employee 1 has 3 hours of work on the day 2<br>
    * Example 2: horaires[1][3][1] = 12 means that the employee 1 was at work 12 hours on the day 3<br>
@@ -45,7 +48,7 @@ private:
 
 public:
 
-  solution(data *data);
+  solution(data *data, std::string name);
 
   /**
    * Initialises a solution by using the smallest cost method
@@ -64,6 +67,8 @@ public:
    * @return The best solution
    */
   solution *compareSolutions(solution *newSolution, data *data);
+
+  solution *compareSolutions(std::vector<solution *> solutions, data *data);
 
   /**
    * Compare the number of affectations of two solutions
@@ -126,6 +131,27 @@ public:
    * @param data Information about our problem
   */
   bool hasTime(int idEmployee, int day, int idMission, data *data, int center);
+
+  /**
+   * @bried Gets the number of affectations of the solution
+   * @param data Information about our problem
+   * @return The number of affectations of the solution
+   */
+  int getNBAffectations(data *data);
+
+  /**
+   * @brief Gets the distance of the solution
+   * @param data Information about our problem
+   * @return The distance of the solution
+   */
+  float getDistance(data *data);
+
+  /**
+   * @brief Gets the number of speciality covered of the solution
+   * @param data
+   * @return The number of speciality covered of the solution
+   */
+  int getNBSpeciality(data *data);
 };
 
 

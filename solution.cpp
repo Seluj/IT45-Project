@@ -8,7 +8,7 @@
 
 #include "solution.hpp"
 
-solution::solution(data *data) {
+solution::solution(data *data, std::string name) {
 
   // Initialize the affectations matrix
   for (int i = 0; i < data->nbEmployees; i++) { // For each employee
@@ -42,6 +42,8 @@ solution::solution(data *data) {
       this->hours[data->employees[i]->getId()][j][1] = 0;
     }
   }
+
+  this->name = name;
 }
 
 void solution::initialSolution(data *data1) {
@@ -60,7 +62,8 @@ void solution::initialSolution(data *data1) {
         for (int e = 0; e < data1->centers[c]->getNbEmployees(skills[s]); e++) { //Iterate over each employee
           idEmployee = data1->centers[c]->getEmployeeId(skills[s], e);
           assigned = true;
-          while (this->hours[idEmployee][d][0] < 420 && this->hours[idEmployee][d][1] < 780 && assigned) { //While the employee still has time to work on the day we try to affect him a mission
+          while (this->hours[idEmployee][d][0] < 420 && this->hours[idEmployee][d][1] < 780 &&
+                 assigned) { //While the employee still has time to work on the day we try to affect him a mission
             assigned = false;
             soonestMission = std::numeric_limits<int>::max();
             minDistance = std::numeric_limits<float>::max();
@@ -72,35 +75,49 @@ void solution::initialSolution(data *data1) {
               } else {
                 tempCompDistance = this->hours[idEmployee][d][4] + data1->nbCenters - 1;
               }
-              if (data1->missions[idMission-1]->getAssigned("int") < 2) { //Test if the mission hasn't been assigned to an employee yet
+              if (data1->missions[idMission - 1]->getAssigned("int") <
+                  2) { //Test if the mission hasn't been assigned to an employee yet
                 //We make sure the mission starts after the previous one and is sooner than the other missions tested
-                if (this->hours[idEmployee][d][3] < data1->missions[idMission-1]->getStartingPeriod() && data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3] <= soonestMission) {
-                    if (hasTime(idEmployee, d, idMission, data1, c)) { //Test if the employee has enough time to do the mission
-                    if (data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3] == soonestMission) { //If the mission starts as soon as another one we've tested, we compare their distance
-                      if (data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance) <= minDistance) { //Compare distances
-                        if (data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance) == minDistance) { //If the distances are equal we compare wether the skills match or not
-                          if (data1->employees[idEmployee-1]->getSpeciality() == data1->missions[idMission-1]->getSpeciality()) { //We test to see if the employee has the specialty required for the mission
-                            soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
-                            minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
+                if (this->hours[idEmployee][d][3] < data1->missions[idMission - 1]->getStartingPeriod() &&
+                    data1->missions[idMission - 1]->getStartingPeriod() - this->hours[idEmployee][d][3] <=
+                    soonestMission) {
+                  if (hasTime(idEmployee, d, idMission, data1,
+                              c)) { //Test if the employee has enough time to do the mission
+                    if (data1->missions[idMission - 1]->getStartingPeriod() - this->hours[idEmployee][d][3] ==
+                        soonestMission) { //If the mission starts as soon as another one we've tested, we compare their distance
+                      if (data1->distancesMatrix->getDistance(idMission - 1 + data1->nbCenters, tempCompDistance) <=
+                          minDistance) { //Compare distances
+                        if (data1->distancesMatrix->getDistance(idMission - 1 + data1->nbCenters, tempCompDistance) ==
+                            minDistance) { //If the distances are equal we compare wether the skills match or not
+                          if (data1->employees[idEmployee - 1]->getSpeciality() == data1->missions[idMission -
+                                                                                                   1]->getSpeciality()) { //We test to see if the employee has the specialty required for the mission
+                            soonestMission =
+                              data1->missions[idMission - 1]->getStartingPeriod() - this->hours[idEmployee][d][3];
+                            minDistance = data1->distancesMatrix->getDistance(idMission - 1 + data1->nbCenters,
+                                                                              tempCompDistance);
                             tempAssigned = idMission;
                             assigned = true;
                           }
                         } else {
-                          soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
-                          minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
+                          soonestMission =
+                            data1->missions[idMission - 1]->getStartingPeriod() - this->hours[idEmployee][d][3];
+                          minDistance = data1->distancesMatrix->getDistance(idMission - 1 + data1->nbCenters,
+                                                                            tempCompDistance);
                           tempAssigned = idMission;
                           assigned = true;
                         }
-                        
+
                       }
-                      
+
                     } else {
-                      soonestMission = data1->missions[idMission-1]->getStartingPeriod() - this->hours[idEmployee][d][3];
-                      minDistance = data1->distancesMatrix->getDistance(idMission-1+data1->nbCenters, tempCompDistance);
+                      soonestMission =
+                        data1->missions[idMission - 1]->getStartingPeriod() - this->hours[idEmployee][d][3];
+                      minDistance = data1->distancesMatrix->getDistance(idMission - 1 + data1->nbCenters,
+                                                                        tempCompDistance);
                       tempAssigned = idMission;
                       assigned = true;
                     }
-                    
+
                   }
 
                 }
@@ -108,32 +125,41 @@ void solution::initialSolution(data *data1) {
 
             }
             if (assigned) {
-              data1->missions[tempAssigned-1]->setAssigned(2);
+              data1->missions[tempAssigned - 1]->setAssigned(2);
               this->affectations[skills[s]][idEmployee][d][tempAssigned] = true;
               if (this->hours[idEmployee][d][4] == 0) { //Check to  see if a previous mission has been assigned
-                this->hours[idEmployee][d][0] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
-                this->hours[idEmployee][d][2] = data1->missions[tempAssigned-1]->getStartingPeriod() - std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, c)*13.88/60);
+                this->hours[idEmployee][d][0] = std::ceil(
+                  data1->distancesMatrix->getDistance(tempAssigned - 1 + data1->nbCenters, c) * 13.88 / 60);
+                this->hours[idEmployee][d][2] = data1->missions[tempAssigned - 1]->getStartingPeriod() - std::ceil(
+                  data1->distancesMatrix->getDistance(tempAssigned - 1 + data1->nbCenters, c) * 13.88 / 60);
                 this->hours[idEmployee][d][5] = tempAssigned;
               } else {
-                this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(tempAssigned-1+data1->nbCenters, this->hours[idEmployee][d][4]-1+data1->nbCenters)*13.88/60);
+                this->hours[idEmployee][d][0] += std::ceil(
+                  data1->distancesMatrix->getDistance(tempAssigned - 1 + data1->nbCenters,
+                                                      this->hours[idEmployee][d][4] - 1 + data1->nbCenters) * 13.88 /
+                  60);
               }
-              this->hours[idEmployee][d][0] += data1->missions[tempAssigned-1]->getDuration();
-              this->hours[idEmployee][d][1] = data1->missions[tempAssigned-1]->getEndingPeriod() - this->hours[idEmployee][d][2];
-              this->hours[idEmployee][d][3] = data1->missions[tempAssigned-1]->getEndingPeriod();
+              this->hours[idEmployee][d][0] += data1->missions[tempAssigned - 1]->getDuration();
+              this->hours[idEmployee][d][1] =
+                data1->missions[tempAssigned - 1]->getEndingPeriod() - this->hours[idEmployee][d][2];
+              this->hours[idEmployee][d][3] = data1->missions[tempAssigned - 1]->getEndingPeriod();
               this->hours[idEmployee][d][4] = tempAssigned;
             }
           }
           //We can now update the final values regarding the hours of the employee
-          this->hours[idEmployee][d][0] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
-          this->hours[idEmployee][d][1] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
-          this->hours[idEmployee][d][3] += std::ceil(data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4]-1+data1->nbCenters, c)*13.88/60);
-          
+          this->hours[idEmployee][d][0] += std::ceil(
+            data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4] - 1 + data1->nbCenters, c) * 13.88 / 60);
+          this->hours[idEmployee][d][1] += std::ceil(
+            data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4] - 1 + data1->nbCenters, c) * 13.88 / 60);
+          this->hours[idEmployee][d][3] += std::ceil(
+            data1->distancesMatrix->getDistance(this->hours[idEmployee][d][4] - 1 + data1->nbCenters, c) * 13.88 / 60);
+
         }
-        
+
       }
-      
+
     }
-    
+
   }
 }
 
@@ -149,7 +175,8 @@ solution *solution::compareSolutions(solution *newSolution, data *data) {
     if (this->compareDistance(newSolution, data) == 0) { // If the new solution has less distance to travel
       // We return the new solution
       return newSolution;
-    } else if (this->compareDistance(newSolution, data) == 1) { // If the new solution has the same distance to travel
+    } else if (this->compareDistance(newSolution, data) ==
+               1) { // If the new solution has the same distance to travel
       if (this->compareNBSpeciality(newSolution, data) == 0) {  // If the new solution has more specialities covered
         // We return the new solution
         return newSolution;
@@ -162,16 +189,8 @@ solution *solution::compareSolutions(solution *newSolution, data *data) {
 
 int solution::compareNBAffectations(solution *newSolution, data *data) {
   // We count the number of affectations for both solutions
-  int nbAffectationsThis = 0;
-  int nbAffectationsNew = 0;
-
-  for (int i = 0; i < data->nbEmployees; i++) { // For each employee
-    for (int k = 0; k < 5; k++) { // For each day
-      // We count the number of affectations for the current solution and the new solution
-      nbAffectationsThis += this->countAffectations(data, i, k);
-      nbAffectationsNew += newSolution->countAffectations(data, i, k);
-    }
-  }
+  int nbAffectationsThis = this->getNBAffectations(data);
+  int nbAffectationsNew = newSolution->getNBAffectations(data);
 
   // We compare the number of affectations
   if (nbAffectationsThis <
@@ -186,110 +205,24 @@ int solution::compareNBAffectations(solution *newSolution, data *data) {
 
 int solution::compareDistance(solution *newSolution, data *data) {
   // We count the distance to travel for both solutions
-  int nbAffectations;                     // Number of affectations for the current employee and the current day
-  int lastTime = 0, time = 0;             // Last time and current time
-  int lastIdMission = 0, idMission = 0;   // Last mission and current mission
-  float lengthThis = 0, lengthNew = 0;    // Length of the path for the current solution and the new solution
-
-  for (int i = 0; i < data->nbEmployees; i++) { // For each employee
-
-    // We count the length of the path for the current solution
-    for (int j = 0; j < 5; j++) { // For each day
-      // We count the number of affectations for the current employee and the current day
-      nbAffectations = this->countAffectations(data, i, j);
-      lastTime = 0;
-      time = INT_MAX;
-      lastIdMission = data->employees[i]->getIdCenter(); // Before the first mission the employee is at the center
-
-      for (int k = 0; k <
-                      nbAffectations; k++) { // For each affectation we need to find the length of the path between the missions and the last mission
-        for (int l = 0; l < data->nbMissions; l++) { // For each mission
-          if (data->employees[i]->getSkill() ==
-              data->missions[l]->getSkill()) { // If the employee has the skill for the mission
-            if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][k][data->missions[l]->getId()]) { // If the employee is affected to the mission
-              if (data->missions[l]->getStartingPeriod() < time && data->missions[l]->getStartingPeriod() >
-                                                                   lastTime) { // If the starting period of the mission is between the last mission and the current mission
-                // We update the time and the id of the mission
-                time = data->missions[l]->getStartingPeriod();
-                idMission = data->missions[l]->getId();
-              }
-            }
-          }
-        }
-
-        // We add the distance between the last mission and the current mission to the length of the path
-        lengthThis += data->distancesMatrix->getDistance(lastIdMission, idMission);
-        // We update the last mission, the last time and the current time
-        lastIdMission = idMission;
-        lastTime = time;
-        time = INT_MAX;
-      }
-    }
-
-    // We count the length of the path for the new solution
-    // It is the same code as before but we use the new solution instead of the current solution
-    for (int j = 0; j < 5; j++) {
-      nbAffectations = newSolution->countAffectations(data, i, j);
-      lastTime = 0;
-      time = INT_MAX;
-      lastIdMission = data->employees[i]->getIdCenter();
-
-      for (int k = 0; k < nbAffectations; k++) {
-        for (int l = 0; l < data->nbMissions; l++) {
-          if (data->employees[i]->getSkill() == data->missions[l]->getSkill()) {
-            if (newSolution->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][k][data->missions[l]->getId()]) {
-              if (data->missions[l]->getStartingPeriod() < time && data->missions[l]->getStartingPeriod() > lastTime) {
-                time = data->missions[l]->getStartingPeriod();
-                idMission = data->missions[l]->getId();
-              }
-            }
-          }
-        }
-
-        lengthNew += data->distancesMatrix->getDistance(lastIdMission, idMission);
-        lastIdMission = idMission;
-        lastTime = time;
-        time = INT_MAX;
-      }
-    }
-  }
+  float lengthThis = this->getDistance(data);
+  float lengthNew = newSolution->getDistance(data);
 
   // We compare the length of the path for the current solution and the new solution
-  if (lengthThis > lengthNew) // If the current solution has a longer path than the new solution we return 0
+  if (lengthThis > lengthNew) { // If the current solution has a longer path than the new solution we return 0
     return 0;
-  else if (lengthThis ==
-           lengthNew) // If the current solution has the same length of path than the new solution we return 1
-    return 1;
-  else // If the current solution has a shorter path than the new solution we return 2
+  } else if (lengthThis ==
+             lengthNew) { // If the current solution has the same length of path than the new solution we return 1
+    return 1; //If the current solution has a shorter path than the new solution we return 2
+  } else {
     return 2;
+  }
 }
 
 int solution::compareNBSpeciality(solution *newSolution, data *data) {
   // We count the number of speciality covered for both solutions
-  int nbSpecialistsThis = 0;
-  int nbSpecialistsNew = 0;
-
-  for (int i = 0; i < data->nbEmployees; i++) { // For each employee
-    for (int j = 0; j < data->nbMissions; j++) { // For each mission
-      if (data->employees[i]->getSkill() ==
-          data->missions[j]->getSkill()) { // If the employee has the skill for the mission
-        if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getDay()][data->missions[j]->getId()]) { // If the employee is affected to the mission
-          if (data->employees[i]->getSpeciality() ==
-              data->missions[j]->getSpeciality()) { // If the employee has the speciality for the mission
-            // We increment the number of speciality covered for the current solution
-            nbSpecialistsThis++;
-          }
-        }
-        if (newSolution->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][data->missions[j]->getDay()][data->missions[j]->getId()]) { // If the employee is affected to the mission
-          if (data->employees[i]->getSpeciality() ==
-              data->missions[j]->getSpeciality()) { // If the employee has the speciality for the mission
-            // We increment the number of speciality covered for the new solution
-            nbSpecialistsNew++;
-          }
-        }
-      }
-    }
-  }
+  int nbSpecialistsThis = this->getNBSpeciality(data);
+  int nbSpecialistsNew = newSolution->getNBSpeciality(data);
 
   // We compare the number of speciality covered for both solutions
   if (nbSpecialistsThis <
@@ -302,7 +235,7 @@ int solution::compareNBSpeciality(solution *newSolution, data *data) {
     return 2;
 }
 
-int solution::minutesWeek(int idEmployee, int days){
+int solution::minutesWeek(int idEmployee, int days) {
   int nbMinutes = 0;
   if (days > 0) {
     for (int i = 0; i < days; i++) {
@@ -312,26 +245,41 @@ int solution::minutesWeek(int idEmployee, int days){
   return nbMinutes;
 }
 
-bool solution::hasTime(int idEmployee, int day, int idMission, data *data, int center){
+bool solution::hasTime(int idEmployee, int day, int idMission, data *data, int center) {
   int idLastMission = this->hours[idEmployee][day][4];
-  int newWorkTime = this->hours[idEmployee][day][0] + data->missions[idMission-1]->getDuration(); //Le temps de travail ajouté par la mission
+  int newWorkTime = this->hours[idEmployee][day][0] +
+                    data->missions[idMission - 1]->getDuration(); //Le temps de travail ajouté par la mission
   int newAmpTime;
   int nbCenters = data->nbCenters;
 
-  if (idLastMission != 0 && this->hours[idEmployee][day][3] + std::ceil(data->distancesMatrix->getDistance(idLastMission-1+nbCenters, idMission-1+nbCenters) * 13.88/60) < data->missions[idLastMission-1]->getStartingPeriod()) { //We check to see if the employee arrives on time to do the mission
-      return false;
+  if (idLastMission != 0 && this->hours[idEmployee][day][3] + std::ceil(
+    data->distancesMatrix->getDistance(idLastMission - 1 + nbCenters, idMission - 1 + nbCenters) * 13.88 / 60) <
+                            data->missions[idLastMission -
+                                           1]->getStartingPeriod()) { //We check to see if the employee arrives on time to do the mission
+    return false;
   }
-  
+
 
   if (idLastMission != 0) { //We check to see if the employee has already been assigned a mission
-    newWorkTime = newWorkTime + std::ceil(data->distancesMatrix->getDistance(idLastMission-1+nbCenters, idMission-1+nbCenters)*13.88/60+ data->distancesMatrix->getDistance(center, idMission-1+nbCenters)*13.88/60); //We add the time to go to the mission + the time to come back to the center
-    newAmpTime = this->hours[idEmployee][day][1] + data->missions[idMission-1]->getEndingPeriod() - this->hours[idEmployee][day][3] + std::ceil(data->distancesMatrix->getDistance(center, idMission-1+nbCenters)*13.88/60); //Le temps d'amplitude horaire ajouté par la mission
+    newWorkTime = newWorkTime + std::ceil(
+      data->distancesMatrix->getDistance(idLastMission - 1 + nbCenters, idMission - 1 + nbCenters) * 13.88 / 60 +
+      data->distancesMatrix->getDistance(center, idMission - 1 + nbCenters) * 13.88 /
+      60); //We add the time to go to the mission + the time to come back to the center
+    newAmpTime = this->hours[idEmployee][day][1] + data->missions[idMission - 1]->getEndingPeriod() -
+                 this->hours[idEmployee][day][3] + std::ceil(
+      data->distancesMatrix->getDistance(center, idMission - 1 + nbCenters) * 13.88 /
+      60); //Le temps d'amplitude horaire ajouté par la mission
   } else {
-    newWorkTime = newWorkTime + std::ceil(data->distancesMatrix->getDistance(center, idMission-1+nbCenters) * 13.88 * 2 /60); //We add the time to go to the mission + the time to come back to the center
-    newAmpTime = data->missions[idMission-1]->getEndingPeriod() - data->missions[idMission-1]->getStartingPeriod() + data->distancesMatrix->getDistance(center, idMission-1+nbCenters) * 2; //Le temps d'amplitude horaire ajouté par la mission
+    newWorkTime = newWorkTime + std::ceil(
+      data->distancesMatrix->getDistance(center, idMission - 1 + nbCenters) * 13.88 * 2 /
+      60); //We add the time to go to the mission + the time to come back to the center
+    newAmpTime = data->missions[idMission - 1]->getEndingPeriod() - data->missions[idMission - 1]->getStartingPeriod() +
+                 data->distancesMatrix->getDistance(center, idMission - 1 + nbCenters) *
+                 2; //Le temps d'amplitude horaire ajouté par la mission
   }
 
-  if (newAmpTime < 780 && newWorkTime < 420 && minutesWeek(idEmployee, day) + newWorkTime < 2100) { //We check if the employee has enough time to do the mission
+  if (newAmpTime < 780 && newWorkTime < 420 &&
+      minutesWeek(idEmployee, day) + newWorkTime < 2100) { //We check if the employee has enough time to do the mission
     return true;
   } else {
     return false;
@@ -339,9 +287,8 @@ bool solution::hasTime(int idEmployee, int day, int idMission, data *data, int c
 
 }
 
-
 void solution::printSolution(data *data) {
-  std::cout << std::endl << "------------------------- Solution : ------------------------- " << std::endl;
+  std::cout << std::endl << "------------------------- " << this->name << " : ------------------------- " << std::endl;
   std::vector<std::string> skills = {"LSF", "LPC"};
 
   for (const auto &skill: skills) { // For each skill
@@ -396,4 +343,92 @@ int solution::countAffectations(data *data, int i, int k) {
   }
   // We return the number of affectations
   return nbAffectations;
+}
+
+solution *solution::compareSolutions(std::vector<solution *> solutions, data *data) {
+  solution *tempSolution = solutions[0];
+  for (int i = 1; i < solutions.size() - 1; i++) {
+    for (int j = i; j < solutions.size(); j++) {
+      tempSolution = tempSolution->compareSolutions(solutions[j], data);
+    }
+  }
+  return tempSolution;
+}
+
+int solution::getNBAffectations(data *data) {
+  int nbAffectations = 0;
+  for (int i = 0; i < data->nbEmployees; i++) { // For each employee
+    for (int k = 0; k < 5; k++) { // For each day
+      // We count the number of affectations for the current solution and the new solution
+      nbAffectations += this->countAffectations(data, i, k);
+    }
+  }
+  return nbAffectations;
+}
+
+float solution::getDistance(data *data) {
+  float length = 0;
+  int nbAffectations = 0;
+  int lastTime = 0;
+  int time = 0;
+  int lastIdMission = 0;
+  int idMission = 0;
+  for (int i = 0; i < data->nbEmployees; ++i) {
+    // We count the length of the path for the current solution
+    for (int j = 0; j < 5; j++) { // For each day
+      // We count the number of affectations for the current employee and the current day
+      nbAffectations = this->countAffectations(data, i, j);
+      lastTime = 0;
+      time = INT_MAX;
+      lastIdMission = data->employees[i]->getIdCenter(); // Before the first mission the employee is at the center
+
+      for (int m = 0; m < nbAffectations; m++) {
+        for (int k = 0; k <
+                        nbAffectations; k++) { // For each affectation we need to find the length of the path between the missions and the last mission
+          for (int l = 0; l < data->nbMissions; l++) { // For each mission
+            if (data->employees[i]->getSkill() ==
+                data->missions[l]->getSkill()) { // If the employee has the skill for the mission
+              if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][k][data->missions[l]->getId()]) { // If the employee is affected to the mission
+                if (data->missions[l]->getStartingPeriod() < time && data->missions[l]->getStartingPeriod() >
+                                                                     lastTime) { // If the starting period of the mission is between the last mission and the current mission
+                  // We update the time and the id of the mission
+                  time = data->missions[l]->getStartingPeriod();
+                  idMission = data->missions[l]->getId();
+                }
+              }
+            }
+          }
+        }
+
+        // We add the distance between the last mission and the current mission to the length of the path
+        length += data->distancesMatrix->getDistance(lastIdMission, idMission);
+        // We update the last mission, the last time and the current time
+        lastIdMission = idMission;
+        lastTime = time;
+        time = INT_MAX;
+      }
+    }
+  }
+  return length;
+}
+
+int solution::getNBSpeciality(data *data) {
+  int nbSpecialists = 0;
+  for (int i = 0; i < data->nbEmployees; i++) { // For each employee
+    for (int k = 0; k < 5; k++) { // For each day
+      for (int j = 0; j < data->nbMissions; j++) {  // For each mission
+        if (data->employees[i]->getSkill() ==
+            data->missions[j]->getSkill()) {  // If the employee has the skill for the mission
+          if (this->affectations[data->employees[i]->getSkill()][data->employees[i]->getId()][k][data->missions[j]->getId()]) { // If the employee is affected to the mission
+            if (data->employees[i]->getSpeciality() ==
+                data->missions[j]->getSpeciality()) { // If the employee has the speciality for the mission
+              // We increment the number of speciality covered for the current solution
+              nbSpecialists++;
+            }
+          }
+        }
+      }
+    }
+  }
+  return nbSpecialists;
 }
