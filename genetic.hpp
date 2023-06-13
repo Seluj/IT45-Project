@@ -30,15 +30,6 @@ public:
    * @return data1 mutated
    */
   data *mutateData(data *data1);
-
-private:
-
-  /**
-   * @brief Switch the missions with the unmarked missions
-   * @param data1 data to mutate
-   * @return data1 mutated
-   */
-  data *switchWithUnmarkedMission(data *data1);
 };
 
 #endif //IT45_PROJECT_GENETIC_HPP
