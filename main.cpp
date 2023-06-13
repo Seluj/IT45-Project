@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]) {
 
-  std::string path = "../instances/66Missions-2centres/";;
+  std::string path = "../instances/200Missions-2centres/";;
   int printDetails;
 
   if (argc == 1) {
@@ -44,50 +44,57 @@ int main(int argc, char *argv[]) {
 
   auto *genetic1 = new genetic();
 
-  auto *solution1 = new solution(data1);
-  auto *solution2 = new solution(data1);
-  auto *solution3 = new solution(data1);
-  auto *solution4 = new solution(data1);
-  auto *solution5 = new solution(data1);
+  auto *solution1 = new solution(data1, "Solution 1");
+  auto *solution2 = new solution(data1, "Solution 2");
+  auto *solution3 = new solution(data1, "Solution 3");
+  auto *solution4 = new solution(data1, "Solution 4");
+  auto *solution5 = new solution(data1, "Solution 5");
+
 
   solution1->initialSolution(data1);
 
-  std::cout << "Solution 1" << std::endl;
-  solution1->printSolution(data1);
 
   /* --------------------------------------- Mutation 1 --------------------------------------- */
 
   data1 = genetic1->mutateData(data1);
   std::cout << "Mutate data done 1" << std::endl;
   solution2->initialSolution(data1);
-  std::cout << "Solution 2" << std::endl;
-  solution2->printSolution(data1);
+  //solution2->printSolution(data1);
 
-  /*
-  *//* --------------------------------------- Mutation 2 --------------------------------------- *//*
+
+  /* --------------------------------------- Mutation 2 --------------------------------------- */
 
   data1 = genetic1->mutateData(data1);
   std::cout << "Mutate data done 2" << std::endl;
   solution3->initialSolution(data1);
-  std::cout << "Solution 3" << std::endl;
-  solution3->printSolution(data1);
+  //solution3->printSolution(data1);
 
-  *//* --------------------------------------- Mutation 3 --------------------------------------- *//*
+
+  /* --------------------------------------- Mutation 3 --------------------------------------- */
 
   data1 = genetic1->mutateData(data1);
   std::cout << "Mutate data done 3" << std::endl;
   solution4->initialSolution(data1);
-  std::cout << "Solution 4" << std::endl;
-  solution4->printSolution(data1);
+  //solution4->printSolution(data1);
 
-  *//* --------------------------------------- Mutation 4 --------------------------------------- *//*
+
+  /* --------------------------------------- Mutation 4 --------------------------------------- */
 
   data1 = genetic1->mutateData(data1);
-  std::cout << "Mutate data done 3" << std::endl;
+  std::cout << "Mutate data done 4" << std::endl;
   solution5->initialSolution(data1);
-  std::cout << "Solution 5" << std::endl;
-  solution5->printSolution(data1);
-*/
+  //solution5->printSolution(data1);
+
+  std::cout << "Best solution" << std::endl;
+
+
+
+  solution1 = solution1->compareSolutions({solution1, solution2, solution3, solution4, solution5}, data1);
+  //solution1 = solution1->compareSolutions(solution2, data1);
+  solution1->printSolution(data1);
+  std::cout << "nbAffectation :" << solution1->getNBAffectations(data1) << std::endl;
+  std::cout << "Distance : " << solution1->getDistance(data1) << std::endl;
+  std::cout << "nbSpeciality : " << solution1->getNBSpeciality(data1) << std::endl;
   printf("Press enter to continue");
   getchar();
   return 0;
