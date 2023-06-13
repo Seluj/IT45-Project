@@ -36,8 +36,6 @@ mission::mission(int id, int day, int startingPeriod, int endingPeriod, std::str
   this->day = day;
   this->startingPeriod = startingPeriod;
   this->endingPeriod = endingPeriod;
-
-  // Move the string instead of copying it (more efficient)
   this->skill = skill;
   this->speciality = speciality;
 }
@@ -103,6 +101,6 @@ void mission::printMission() {
             << this->getEndingPeriod() << " "
             << this->getSkill() << " "
             << this->getSpeciality() << " "
-            << this->getAssigned()
+            << this->getAssigned("int")
             << std::endl;
 }
