@@ -44,7 +44,11 @@ void kMedoids::kMedoidsAlgo(data* data1, int printDetails) {
       std::cout << "============== KMedoids iteration " << i+1 << "==============" << std::endl;
       std::cout << "Our medoids : ";
       for (int j = 0; j < data1->nbCenters; ++j) {
-        std::cout << this->medoids[j] << " // ";
+        if (this->medoids[j] < data1->nbCenters) {
+          std::cout << " centre n\370" << this->medoids[j] + 1 << " // ";
+        } else {
+          std::cout << " mission n\370" << this->medoids[j] - data1->nbCenters + 1 << " // ";
+        }
       }
       std::cout << std::endl;
     }
@@ -114,7 +118,7 @@ void kMedoids::medoidsAssign(data* data1) {
           row ++;
         }
         //We check that the medoid isn't a center to avoid assigning a center to a center
-        if (this->medoids[j] > data1->nbCenters) {
+        if (this->medoids[j] >= data1->nbCenters) {
            //We make sure the center has the capacity for this mission
           if (data1->centers[row]->getCapacity(data1->missions[this->medoids[j] - data1->nbCenters]->getSkill(), data1->missions[this->medoids[j] - data1->nbCenters]->getDay()-1,data1->missions[this->medoids[j] - data1->nbCenters]->getStartingPeriod()) > 0) {
               if (data1->distancesMatrix->getDistance(row, this->medoids[j]) < distance) { //We compare the distance between the assignment and the medoid with the smallest distant previously found
@@ -241,9 +245,9 @@ float kMedoids::calculateCost(int medoid, std::vector<int> assignments, data* da
 void kMedoids::printMedoids(data* data1){
   bool center;
   std::cout << std::endl << "=========== ASSIGNMENTS ===========" << std::endl;
-  for (int i = 0; i < this->medoids.size(); i++) { //We iterate over the medoids
+  for (int i = 0; i < data1->nbCenters; i++) { //We iterate over the medoids
     std::cout << "Assignments for Center n\370";
-    if (this->medoids[i] > data1->nbCenters) {
+    if (this->medoids[i] >= data1->nbCenters) {
         std::cout << this->assignments[i][0]+1;
         std::cout << " using mission n\370" << this->medoids[i]-data1->nbCenters+1 << std::endl;
         center = false;
