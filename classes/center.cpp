@@ -152,14 +152,8 @@ void center::orderStartingPeriodForPrinting() {
   this->startingPeriodForPrinting.assign(s.begin(), s.end());
 }
 
-std::vector<mission *> center::getMissions() {
-  std::vector<mission *> missionsReturn;
-  for (auto &i: this->missions) {
-    for (auto &j: i.second) {
-      missionsReturn.push_back(j);
-    }
-  }
-  return missionsReturn;
+mission *center::getMission(int index, std::string skill) {
+  return this->missions[skill][index];
 }
 
 void center::swapMissions(int index, mission *mission) {

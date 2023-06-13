@@ -101,9 +101,9 @@ public:
 
   int getMissionId(const std::string &skill, int index);
 
-  std::vector<mission *> getMissions();
-
   void swapMissions(int index, mission *mission);
+
+  mission *getMission(int index, std::string skill);
 
   /* --------------------------------- Print Method --------------------------------- */
 
