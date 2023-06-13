@@ -9,6 +9,7 @@
 int main(int argc, char *argv[]) {
 
   std::string path = "../instances/66Missions-2centres/";;
+  int printDetails;
 
   if (argc == 1) {
     std::cout << "No arguments given." << std::endl;
@@ -24,15 +25,22 @@ int main(int argc, char *argv[]) {
   printf("Press enter to continue");
   getchar();
 
-
+  printf("Would you like the details for the kMedoid operations? [enter 1 for yes and 0 for no]\n");
+  std::cin >> printDetails;
+  while (printDetails != 0 && printDetails != 1) {
+    printf("Please enter either 1 or 0 [enter 1 for yes and 0 for no]\n");
+    std::cin >>printDetails;
+  }
+  
   auto *dataColl = new dataCollection(path);
 
   auto *data1 = new data();
   auto *dataAnalysis1 = new dataAnalysis(dataColl, data1);
+  
   dataAnalysis1->dataAnalysisPrint(data1);
 
   auto *kMedoids1 = new kMedoids(data1);
-  kMedoids1->kMedoidsAlgo(data1);
+  kMedoids1->kMedoidsAlgo(data1, printDetails);
 
   auto *genetic1 = new genetic();
 
