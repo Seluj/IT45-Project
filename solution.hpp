@@ -54,6 +54,7 @@ public:
    * @return the initial solution
    */
   void initialSolution(data *data1);
+
   ~solution();
 
   /**

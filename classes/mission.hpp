@@ -53,14 +53,14 @@ public:
 
   int getId();
 
-  int getAssigned(const std::string& type = "bool");
+  int getAssigned(const std::string &type = "bool");
 
   int getDay();
 
   int getStartingPeriod();
 
   int getEndingPeriod();
-  
+
   int getDuration();
 
   std::string getSkill();

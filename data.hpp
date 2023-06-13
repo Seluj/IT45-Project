@@ -45,7 +45,7 @@ public:
   /**
    * Data about the matrix of distances
    */
-  distances* distancesMatrix{};       // Pointer to the distances class
+  distances *distancesMatrix{};       // Pointer to the distances class
 
   data();                           // Default constructor
 

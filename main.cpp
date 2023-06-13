@@ -4,19 +4,21 @@
 #include "dataAnalysis.hpp"
 #include "kMedoids.hpp"
 #include "solution.hpp"
+#include "genetic.hpp"
 
 int main(int argc, char *argv[]) {
 
   std::string path = "../instances/66Missions-2centres/";;
 
   if (argc == 1) {
-    printf("Take default path : ./instance/66Missions-2centres/\n");
-  } else if (argc == 2){
-    printf("Take path : %s\n", argv[1]);
+    std::cout << "No arguments given." << std::endl;
+    std::cout << "Take default path: " << path << std::endl;
+  } else if (argc == 2) {
+    std::cout << "Take path: " << argv[1] << std::endl;
     path = argv[1];
   } else {
-    printf("To many arguments\n");
-    printf("Take default path : ./instance/66Missions-2centres/\n");
+    std::cout << "To many arguments" << std::endl;
+    std::cout << "Take default path: " << path << std::endl;
   }
 
   printf("Press enter to continue");

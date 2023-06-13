@@ -29,7 +29,7 @@ public:
    * @param d Collection of data to analyze
    * @param data1 Data object to store the analyzed data
    */
-  dataAnalysis(dataCollection* dataInput, data* dataOutput);
+  dataAnalysis(dataCollection *dataInput, data *dataOutput);
 
   /* --------------------------------- Destructor --------------------------------- */
 

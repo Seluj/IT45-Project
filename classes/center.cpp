@@ -58,15 +58,15 @@ int center::getNbEmployees(const std::string &skill) {
   return this->nbEmployees[skill];
 }
 
-int center::getNbMissions(const std::string& skill) {
+int center::getNbMissions(const std::string &skill) {
   return this->nbMissions[skill];
 }
 
-int center::getEmployeeId(const std::string& skill, int index){
+int center::getEmployeeId(const std::string &skill, int index) {
   return this->employees[skill][index]->getId();
 }
 
-int center::getMissionId(const std::string& skill, int index){
+int center::getMissionId(const std::string &skill, int index) {
   return this->missions[skill][index]->getId();
 }
 
