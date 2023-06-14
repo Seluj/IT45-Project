@@ -42,7 +42,7 @@ private:
    * Example 1: capacity["LPC"][1][480] = 3 means that the center has a capacity of 3 for the skill LPC on the day 1 at 480 minutes (8:00)<br>
    * Example 2: capacity["LSF"][4][960] = 2 means that the center has a capacity of 2 for the skill LSF on the day 4 at 960 minutes (16:00)
    */
-  std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> capacity;    /// capacity of the center by skill and time
+  std::map<std::string, std::vector<std::map<int, int>>> capacity;    /// capacity of the center by skill and time
   std::vector<int> startingPeriodForPrinting;                                             /// time starting mission for printing
 
   /**
@@ -53,8 +53,8 @@ private:
    * Example 1: employees["LPC"][0] = employee1 means that the first employee of the list of employees with the skill LPC is employee1<br>
    * Example 2: employees["LSF"] = {employee1, employee2, employee3} means that the list of employees with the skill LSF is [employee1, employee2, employee3]
    */
-  std::unordered_map<std::string, std::vector<employee *>> employees; /// list of employees by skill
-  std::unordered_map<std::string, int> nbEmployees;                   /// number of employees by skill
+  std::map<std::string, std::vector<employee *>> employees; /// list of employees by skill
+  std::map<std::string, int> nbEmployees;                   /// number of employees by skill
 
   /**
    * 1st key: skill [LPC, LSF]<br>
@@ -64,8 +64,8 @@ private:
    * Example 1: missions["LPC"][0] = mission1 means that the first mission of the list of missions with the skill LPC is mission1<br>
    * Example 2: missions["LSF"] = {mission1, mission2, mission3} means that the list of missions with the skill LSF is [mission1, mission2, mission3]
    */
-  std::unordered_map<std::string, std::vector<mission *>> missions;   /// list of missions by skill
-  std::unordered_map<std::string, int> nbMissions;                    /// number of missions by skill
+  std::map<std::string, std::vector<mission *>> missions;   /// list of missions by skill
+  std::map<std::string, int> nbMissions;                    /// number of missions by skill
 
 public:
 
@@ -83,15 +83,15 @@ public:
 
   void updateCapacity(std::string skill, int day, int time);
 
-  void updateCapacity(std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> newCapacity);
+  void updateCapacity(std::map<std::string, std::vector<std::map<int, int>>> newCapacity);
 
-  void updateMissions(std::unordered_map<std::string, std::vector<mission *>> newMissions);
+  void updateMissions(std::map<std::string, std::vector<mission *>> newMissions);
 
   /* --------------------------------- Getters --------------------------------- */
 
   int getCapacity(const std::string &skill, int day, int time);
 
-  std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> getCapacity();
+  std::map<std::string, std::vector<std::map<int, int>>> getCapacity();
 
   int getNbEmployees(const std::string &skill);
 

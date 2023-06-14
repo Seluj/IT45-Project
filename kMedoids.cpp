@@ -33,7 +33,7 @@ void kMedoids::kMedoidsAlgo(data *data1, int printDetails) {
   int temp;
   int i = 0; //Keeps track of the number of iterations
   bool medoidsModified = true; //Keeps track of whether the medoids have been modified or not
-  std::vector<std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>>> capacityCopy(data1->nbCenters);
+  std::vector<std::map<std::string, std::vector<std::map<int, int>>>> capacityCopy(data1->nbCenters);
   //We have to copy the old capacities because we will be changing them during our assignments
   for (int j = 0; j < data1->nbCenters; j++) {
       capacityCopy[j] = data1->centers[j]->getCapacity();
@@ -87,7 +87,7 @@ void kMedoids::kMedoidsAlgo(data *data1, int printDetails) {
   }
 
   //Now that we have our final solution, we can definitely assign the missions to the centers, and update their "assigned" attribute
-  std::unordered_map<std::string, std::vector<mission *>> newMissions;
+  std::map<std::string, std::vector<mission *>> newMissions;
   
   for (int j = 0; j < data1->nbCenters; j++) { //Iterate over the medoids
     newMissions["LSF"].clear();

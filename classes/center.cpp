@@ -30,11 +30,11 @@ void center::updateCapacity(std::string skill, int day, int time) {
   this->capacity[skill][day][time] = this->capacity[skill][day][time] - 1;
 }
 
-void center::updateCapacity(std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> newCapacity) {
+void center::updateCapacity(std::map<std::string, std::vector<std::map<int, int>>> newCapacity) {
   this->capacity = newCapacity;
 }
 
-void center::updateMissions(std::unordered_map<std::string, std::vector<mission *>> newMissions) {
+void center::updateMissions(std::map<std::string, std::vector<mission *>> newMissions) {
   this->missions = std::move(newMissions);
   this->nbMissions["LSF"] = this->missions["LSF"].size();
   this->nbMissions["LPC"] = this->missions["LPC"].size();
@@ -50,7 +50,7 @@ int center::getCapacity(const std::string &skill, int day, const int time) {
   return this->capacity[skill][day][time];
 }
 
-std::unordered_map<std::string, std::vector<std::unordered_map<int, int>>> center::getCapacity() {
+std::map<std::string, std::vector<std::map<int, int>>> center::getCapacity() {
   return this->capacity;
 }
 

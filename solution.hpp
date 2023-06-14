@@ -33,7 +33,7 @@ private:
    * Example 1: affectations["LSF"][1][2][5] = true means that the employee 1 is affected to the mission 5 on the day 2<br>
    * Example 2: affectations["LPC"][2][3][1] = false means that the employee 2 is not affected to the mission 1 on the day 3
    */
-  std::unordered_map<std::string, std::map<int, std::vector<std::map<int, bool>>>> affectations;
+  std::map<std::string, std::map<int, std::vector<std::map<int, bool>>>> affectations;
 
 
   /**

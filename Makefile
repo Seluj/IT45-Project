@@ -3,9 +3,9 @@
 # https://github.com/kala13x/smake #
 ####################################
 
-CXXFLAGS = 
-CXXFLAGS += -I. -I./classes -I./accessCSV
-LIBS = 
+CFLAGS = -Wall
+CFLAGS += -I. -I./classes -I./accessCSV
+LIBS = -lpthread
 NAME = main
 ODIR = .
 OBJ = o
@@ -19,20 +19,22 @@ OBJS = center.$(OBJ) \
 	distances.$(OBJ) \
 	employee.$(OBJ) \
 	employeesCSV.$(OBJ) \
+	genetic.$(OBJ) \
 	kMedoids.$(OBJ) \
 	main.$(OBJ) \
 	mission.$(OBJ) \
-	missionsCSV.$(OBJ)
+	missionsCSV.$(OBJ) \
+	solution.$(OBJ)
 
 OBJECTS = $(patsubst %,$(ODIR)/%,$(OBJS))
 VPATH = ./classes:./accessCSV
 
-.cpp.$(OBJ):
+.c.$(OBJ):
 	@test -d $(ODIR) || mkdir -p $(ODIR)
-	$(CXX) $(CXXFLAGS) -c -o $(ODIR)/$@ $< $(LIBS)
+	$(CC) $(CFLAGS) -c -o $(ODIR)/$@ $< $(LIBS)
 
 $(NAME):$(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(ODIR)/$(NAME) $(OBJECTS) $(LIBS)
+	$(CXX) $(CFLAGS) -o $(ODIR)/$(NAME) $(OBJECTS) $(LIBS)
 
 .PHONY: clean
 clean:
