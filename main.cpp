@@ -65,8 +65,10 @@ int main(int argc, char *argv[]) {
   solution *bestSolution;
   std::vector<solution *> solutions;
 
+  solutions.resize(nbSolutions);
+
   for (int i = 0; i < nbSolutions; i++) {
-    solutions.push_back(new solution(data1, "Solution " + std::to_string(i)));
+    solutions[i] = new solution(data1, "Solution " + std::to_string(i));
     solutions[i]->initialSolution(data1);
     data1 = genetic1->mutateData(data1);
   }
