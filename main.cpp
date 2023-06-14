@@ -80,10 +80,10 @@ int main(int argc, char *argv[]) {
   bestSolution = bestSolution->compareSolutions(solutions, data1);
 
   bestSolution->printSolution(data1);
-  std::cout << "Number of affectations :" << bestSolution->getNBAffectations(data1) << std::endl;
-  std::cout << "Cost : " << bestSolution->getDistance(data1) * 0.2 << std::endl;
-  std::cout << "Number of specialities : " << bestSolution->getNBSpeciality(data1) << std::endl << std::endl;
-  std::cout << "Press enter to continue";
+  std::cout << "Number of affectations :" << bestSolution->getNBAffectations(data1) << std::endl
+            << "Cost : " << bestSolution->getDistance(data1) * 0.2 << std::endl
+            << "Number of specialities : " << bestSolution->getNBSpeciality(data1) << std::endl << std::endl
+            << "Press enter to continue";
   getchar();
   return 0;
 }
