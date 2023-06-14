@@ -37,31 +37,3 @@ void distances::printMatrix() {
     std::cout << std::endl;
   }
 }
-
-/* --------------------------------- Modify the matrix --------------------------------- */
-
-void distances::modifyElement(int i, int j, float value) {
-  this->matrix[i][j] = value;
-}
-
-void distances::modifyRow(int i, float value) {
-  for (int j = 0; j < this->nbColumns; j++) {
-    this->matrix[i][j] = value;
-  }
-}
-
-void distances::modifyRow(int i, std::vector<float> row) {
-  this->matrix[i] = row;
-}
-
-void distances::mofifyColumn(int j, float value) {
-  for (int i = 0; i < this->nbRows; i++) {
-    this->matrix[i][j] = value;
-  }
-}
-
-void distances::mofifyColumn(int j, std::vector<float> column) {
-  for (int i = 0; i < this->nbRows; i++) {
-    this->matrix[i][j] = column[i];
-  }
-}
