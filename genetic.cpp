@@ -52,7 +52,7 @@ data *genetic::mutateData(data *data1) {
   }
 
 
-  for (i = 0; i < data1->nbMissions / 10; ++i) {
+  for (i = 0; i < data1->nbMissions / 5; ++i) {
     randomUnmarked = rand() % nbMissionsUnmarked;
 
 
@@ -80,14 +80,8 @@ data *genetic::mutateData(data *data1) {
     }
 
     if (nbMissionsMarkedCenter[skillTemp][centerShortestDistance] != 0) {
-      time = 0;
-      for (j = 0; j < nbMissionsMarkedCenter[skillTemp][centerShortestDistance]; j++) {
-        if (time < data1->centers[centerShortestDistance]->getMission(j, skillTemp)->getStartingPeriod() &&
-            data1->centers[centerShortestDistance]->getMission(j, skillTemp)->getDay() >= dayTemp) {
-          time = data1->centers[centerShortestDistance]->getMission(j, skillTemp)->getStartingPeriod();
-          randomMarked = j;
-        }
-      }
+
+      randomMarked = rand() % nbMissionsMarkedCenter[skillTemp][centerShortestDistance];
 
       tempMission = data1->centers[centerShortestDistance]->getMission(randomMarked, skillTemp);
 
