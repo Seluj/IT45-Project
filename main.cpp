@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]) {
 
-  std::string path = "../instances/200Missions-2centres/";;
+  std::string path = "../instances/66Missions-2centres/";;
   int printDetails;
 
   if (argc == 1) {
@@ -85,6 +85,7 @@ int main(int argc, char *argv[]) {
   solution5->initialSolution(data1);
   //solution5->printSolution(data1);
 
+  std::cout << "============================================================" << std::endl;
   std::cout << "Best solution" << std::endl;
 
 
@@ -92,9 +93,9 @@ int main(int argc, char *argv[]) {
   solution1 = solution1->compareSolutions({solution1, solution2, solution3, solution4, solution5}, data1);
   //solution1 = solution1->compareSolutions(solution2, data1);
   solution1->printSolution(data1);
-  std::cout << "nbAffectation :" << solution1->getNBAffectations(data1) << std::endl;
-  std::cout << "Distance : " << solution1->getDistance(data1) << std::endl;
-  std::cout << "nbSpeciality : " << solution1->getNBSpeciality(data1) << std::endl;
+  std::cout << "Number of affectations :" << solution1->getNBAffectations(data1) << std::endl;
+  std::cout << "Cost : " << solution1->getDistance(data1)*0.2 << std::endl;
+  std::cout << "Number of specialities : " << solution1->getNBSpeciality(data1) << std::endl;
   printf("Press enter to continue");
   getchar();
   return 0;
