@@ -14,11 +14,13 @@ if [ ! -f "$MAIN" ]; then
   done
 
   if [ "$answer" == "yes" ]; then
-    ./build.sh
+    ./build.sh "clean"
   else
     echo "ok"
     exit
   fi
+else
+  ./build.sh
 fi
 
 if [[ -z "$ARG" ]]; then
@@ -35,4 +37,4 @@ fi
 
 echo "Run the project"
 echo "Input file: $ARG"
-#./main "$ARG"
+./main "$ARG"

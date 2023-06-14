@@ -1,9 +1,11 @@
 #!/bin/bash
 
-echo "Clean the project"
+ARG=$1
 
-./clean.sh
+if [ "$ARG" == "clean" ]; then
+  echo "Clean the project"
+  make clean
+fi
 
 echo "Building the project"
-
 make
