@@ -129,7 +129,7 @@ public:
    */
   void computeCapacity(std::vector<mission *> mission);
 
-  /***
+  /**
    * Order the starting period for printing
    */
   void orderStartingPeriodForPrinting();

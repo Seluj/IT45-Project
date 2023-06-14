@@ -54,7 +54,7 @@ public:
    * Initialises a solution by using the smallest cost method
    * @param kMedoids1 Contains the missions affected to each center
    * @param data1 Information about our problem
-   * @return the initial solution
+   * @return The initial solution
    */
   void initialSolution(data *data1);
 
@@ -68,6 +68,12 @@ public:
    */
   solution *compareSolutions(solution *newSolution, data *data);
 
+  /**
+   * Compare multiple solutions and return the best one
+   * @param solutions The vector of solutions to compare
+   * @param data Information about our problem
+   * @return The best solution
+   */
   solution *compareSolutions(std::vector<solution *> solutions, data *data);
 
   /**
@@ -110,11 +116,11 @@ public:
   /**
    * Utility function to count the number of affectations of an employee for a day
    * @param data Information about our problem
-   * @param i The id of the employee
-   * @param k The day
-   * @return The number of affectations of the employee i for the day k
+   * @param indexEmp The id of the employee
+   * @param indexDay The day
+   * @return The number of affectations of the employee indexEmp for the day indexDay
    */
-  int countAffectations(data *data, int i, int k);
+  int countAffectations(data *data, int indexEmp, int indexDay);
 
   /**
    * @brief Counts the number of hours worked by an employee for the week

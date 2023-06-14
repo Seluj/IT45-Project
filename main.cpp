@@ -49,6 +49,8 @@ int main(int argc, char *argv[]) {
   auto *solution3 = new solution(data1, "Solution 3");
   auto *solution4 = new solution(data1, "Solution 4");
   auto *solution5 = new solution(data1, "Solution 5");
+  auto *solution6 = new solution(data1, "Solution 6");
+  auto *solution7 = new solution(data1, "Solution 7");
 
 
   solution1->initialSolution(data1);
@@ -59,7 +61,6 @@ int main(int argc, char *argv[]) {
   data1 = genetic1->mutateData(data1);
   std::cout << "Mutate data done 1" << std::endl;
   solution2->initialSolution(data1);
-  //solution2->printSolution(data1);
 
 
   /* --------------------------------------- Mutation 2 --------------------------------------- */
@@ -67,7 +68,6 @@ int main(int argc, char *argv[]) {
   data1 = genetic1->mutateData(data1);
   std::cout << "Mutate data done 2" << std::endl;
   solution3->initialSolution(data1);
-  //solution3->printSolution(data1);
 
 
   /* --------------------------------------- Mutation 3 --------------------------------------- */
@@ -75,7 +75,6 @@ int main(int argc, char *argv[]) {
   data1 = genetic1->mutateData(data1);
   std::cout << "Mutate data done 3" << std::endl;
   solution4->initialSolution(data1);
-  //solution4->printSolution(data1);
 
 
   /* --------------------------------------- Mutation 4 --------------------------------------- */
@@ -83,15 +82,26 @@ int main(int argc, char *argv[]) {
   data1 = genetic1->mutateData(data1);
   std::cout << "Mutate data done 4" << std::endl;
   solution5->initialSolution(data1);
-  //solution5->printSolution(data1);
+
+  /* --------------------------------------- Mutation 5 --------------------------------------- */
+
+  data1 = genetic1->mutateData(data1);
+  std::cout << "Mutate data done 4" << std::endl;
+  solution6->initialSolution(data1);
+
+  /* --------------------------------------- Mutation 6 --------------------------------------- */
+
+  data1 = genetic1->mutateData(data1);
+  std::cout << "Mutate data done 4" << std::endl;
+  solution7->initialSolution(data1);
 
   std::cout << "============================================================" << std::endl;
   std::cout << "Best solution" << std::endl;
 
 
 
-  solution1 = solution1->compareSolutions({solution1, solution2, solution3, solution4, solution5}, data1);
-  //solution1 = solution1->compareSolutions(solution2, data1);
+  solution1 = solution1->compareSolutions({solution1, solution2, solution3, solution4, solution5, solution6, solution7}, data1);
+
   solution1->printSolution(data1);
   std::cout << "Number of affectations :" << solution1->getNBAffectations(data1) << std::endl;
   std::cout << "Cost : " << solution1->getDistance(data1)*0.2 << std::endl;

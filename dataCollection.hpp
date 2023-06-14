@@ -21,6 +21,7 @@
 class dataCollection {
 
 private:
+
   distanceCSV *distance;    // Pointer to the distanceCSV object
   centersCSV *centers;      // Pointer to the centersCSV object
   missionsCSV *missions;    // Pointer to the missionsCSV object

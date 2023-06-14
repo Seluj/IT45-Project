@@ -18,6 +18,7 @@
  * @brief Class used to apply the k-medoids algorithm
  */
 class kMedoids {
+
 private:
   float cost;               // Cost of the solution
   float oldCost;            // Cost of the previous solution
@@ -32,29 +33,30 @@ public:
   /* --------------------------------- Constructor --------------------------------- */
 
   kMedoids();
-  kMedoids(data* data1);
+
+  kMedoids(data *data1);
 
   /* ----------------------------------- KMedoid ----------------------------------- */
-  
+
   /**
    * @brief Function that applies the k-medoids algorithm
    * @param data1 Data object to use
    */
-  void kMedoidsAlgo(data* data1, int printDetails);
+  void kMedoidsAlgo(data *data1, int printDetails);
 
   /**
    * @brief Function that assigns each assignment to the closest medoid
    * @param data1 Data object to use
    */
-  void medoidsAssign(data* data1);
+  void medoidsAssign(data *data1);
 
   /**
    * @brief Function that updates the medoids, by comparing costs in the cluster
    * @param data1 Data object to use
    * @return True if the medoids have changed, false otherwise
    */
-  bool medoidsUpdate(data* data1);
-  
+  bool medoidsUpdate(data *data1);
+
   /**
    * @brief Function that calculates the cost of the solution
    * @param medoid the medoid to use
@@ -62,14 +64,12 @@ public:
    * @param data1 Data object to use
    * @return The cost of the solution
    */
-  float calculateCost(int medoid, std::vector<int> assignments, data* data1); //Have to add parameters
-
+  float calculateCost(int medoid, std::vector<int> assignments, data *data1); //Have to add parameters
 
   /**
    * @brief Function that prints the medoids and their assignments
    */
-  void printMedoids(data* data1);
-
+  void printMedoids(data *data1);
 };
 
 
