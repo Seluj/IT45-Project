@@ -1,6 +1,8 @@
 #!/bin/bash
 
 MAIN=main
+ARG=$1
+
 if [ ! -f "$MAIN" ]; then
   echo "$MAIN does not exists"
   echo "Would you like to compile the project? (yes or no)"
@@ -19,3 +21,18 @@ if [ ! -f "$MAIN" ]; then
   fi
 fi
 
+if [[ -z "$ARG" ]]; then
+  echo "You do not pass any argument"
+  echo "Take default path for input file"
+  echo "./instances/200Missions-2centres/"
+  ARG="./instances/200Missions-2centres/"
+fi
+
+if [ ! -d "$ARG" ]; then
+  echo "$ARG does not exists"
+  exit
+fi
+
+echo "Run the project"
+echo "Input file: $ARG"
+#./main "$ARG"
