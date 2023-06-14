@@ -9,7 +9,7 @@
 #include "solution.hpp"
 
 solution::solution(data *data, std::string name) {
-  int emp, mis, day;  // Iterators
+  int emp, mis, day, type;  // Iterators
 
   // Initialize the affectation matrix
   for (emp = 0; emp < data->nbEmployees; emp++) {       // For each employee
@@ -40,16 +40,16 @@ solution::solution(data *data, std::string name) {
       this->hours[data->employees[emp]->getId()].resize(5);
     }
 
-    for (mis = 0; mis < 5; mis++) {                     // For each day
+    for (day = 0; day < 5; day++) {                     // For each day
 
-      if (this->hours[data->employees[emp]->getId()][mis].empty()) { // If the vector is empty (not initialized), we initialize it,
+      if (this->hours[data->employees[emp]->getId()][day].empty()) { // If the vector is empty (not initialized), we initialize it,
         // We initialize the vector with 7 types of info: 0 = Number of hours and 1 = time range
-        this->hours[data->employees[emp]->getId()][mis].resize(7);
+        this->hours[data->employees[emp]->getId()][day].resize(7);
       }
 
       // We initialize 7 types of hours to 0
-      for (day = 0; day < 7; day++) {
-        this->hours[data->employees[emp]->getId()][mis][emp] = 0;
+      for (type = 0; type < 7; type++) {
+        this->hours[data->employees[emp]->getId()][day][type] = 0;
       }
     }
   }
