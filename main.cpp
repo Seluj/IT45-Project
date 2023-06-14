@@ -8,8 +8,8 @@
 
 int main(int argc, char *argv[]) {
 
-  std::string path = "../instances/66Missions-2centres/";;
-  int printDetails;
+  std::string path = "../instances/200Missions-2centres/";
+  int printDetails, nbSolutions;
 
   if (argc == 1) {
     std::cout << "No arguments given." << std::endl;
