@@ -22,11 +22,6 @@ float distances::getDistance(int row, int column) {
   return matrix[row][column];
 }
 
-
-std::vector<std::vector<float>> distances::getMatrix() {
-  return this->matrix;
-}
-
 /* --------------------------------- Print the matrix --------------------------------- */
 
 void distances::printMatrix() {

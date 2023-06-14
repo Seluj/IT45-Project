@@ -51,7 +51,7 @@ private:
    * value: an employee<br><br>
    *
    * Example 1: employees["LPC"][0] = employee1 means that the first employee of the list of employees with the skill LPC is employee1<br>
-   * Example 2: employees["LSF"] = [employee1, employee2, employee3] means that the list of employees with the skill LSF is [employee1, employee2, employee3]
+   * Example 2: employees["LSF"] = {employee1, employee2, employee3} means that the list of employees with the skill LSF is [employee1, employee2, employee3]
    */
   std::unordered_map<std::string, std::vector<employee *>> employees; /// list of employees by skill
   std::unordered_map<std::string, int> nbEmployees;                   /// number of employees by skill
@@ -62,7 +62,7 @@ private:
    * value: a mission<br><br>
    *
    * Example 1: missions["LPC"][0] = mission1 means that the first mission of the list of missions with the skill LPC is mission1<br>
-   * Example 2: missions["LSF"] = [mission1, mission2, mission3] means that the list of missions with the skill LSF is [mission1, mission2, mission3]
+   * Example 2: missions["LSF"] = {mission1, mission2, mission3} means that the list of missions with the skill LSF is [mission1, mission2, mission3]
    */
   std::unordered_map<std::string, std::vector<mission *>> missions;   /// list of missions by skill
   std::unordered_map<std::string, int> nbMissions;                    /// number of missions by skill

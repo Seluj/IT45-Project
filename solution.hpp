@@ -62,6 +62,7 @@ public:
 
   /**
    * Compare two solution and return the best one
+   * Compare 'this' solution with the new solution
    * @param newSolution The new solution to compare
    * @param data Information about our problem
    * @return The best solution
@@ -70,6 +71,7 @@ public:
 
   /**
    * Compare multiple solutions and return the best one
+   * Does not take 'this' solution into account
    * @param solutions The vector of solutions to compare
    * @param data Information about our problem
    * @return The best solution

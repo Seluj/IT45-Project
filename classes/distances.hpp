@@ -29,8 +29,6 @@ public:
 
   float getDistance(int row, int column);
 
-  std::vector<std::vector<float>> getMatrix();
-
   void printMatrix();
 };
 
