@@ -39,7 +39,7 @@ private:
   /**
    * 1st key : id of the employee<br>
    * 2nd key : day [0 - 4] 0 = Monday, 1 = Tuesday, 2 = Wednesday, 3 = Thursday, 4 = Friday<br>
-   * 3rd key : type : 0 = Number of hours, 1 = time range, 2 = start of work, 3 = end of work, 4 = id last mission, 5 = first mission<br><br>
+   * 3rd key : type : 0 = Number of hours, 1 = time range, 2 = start of work, 3 = end of work, 4 = id last mission, 5 = first mission, 6 = cost<br><br>
    *
    * Example 1: horaires[1][2][0] = 3 means that the employee 1 has 3 hours of work on the day 2<br>
    * Example 2: horaires[1][3][1] = 12 means that the employee 1 was at work 12 hours on the day 3<br>
