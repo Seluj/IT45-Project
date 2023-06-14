@@ -133,18 +133,20 @@ void solution::initialSolution(data *data1) {
                 this->hours[idEmployee][d][2] = data1->missions[tempAssigned - 1]->getStartingPeriod() - std::ceil(
                   data1->distancesMatrix->getDistance(tempAssigned - 1 + data1->nbCenters, c) * 13.88 / 60);
                 this->hours[idEmployee][d][5] = tempAssigned;
+                this->hours[idEmployee][d][6] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned - 1 + data1->nbCenters, c));
               } else {
                 this->hours[idEmployee][d][0] += std::ceil(
                   data1->distancesMatrix->getDistance(tempAssigned - 1 + data1->nbCenters,
                                                       this->hours[idEmployee][d][4] - 1 + data1->nbCenters) * 13.88 /
                   60);
+                this->hours[idEmployee][d][6] = std::ceil(data1->distancesMatrix->getDistance(tempAssigned - 1 + data1->nbCenters,
+                                                                                              this->hours[idEmployee][d][4] - 1 + data1->nbCenters));
               }
               this->hours[idEmployee][d][0] += data1->missions[tempAssigned - 1]->getDuration();
               this->hours[idEmployee][d][1] =
                 data1->missions[tempAssigned - 1]->getEndingPeriod() - this->hours[idEmployee][d][2];
               this->hours[idEmployee][d][3] = data1->missions[tempAssigned - 1]->getEndingPeriod();
               this->hours[idEmployee][d][4] = tempAssigned;
-              this->hours[idEmployee][d][6] = std::ceil(minDistance);
             }
           }
           //We can now update the final values regarding the hours of the employee
