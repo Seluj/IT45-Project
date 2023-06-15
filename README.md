@@ -15,11 +15,11 @@ The goal of this project is to find an optimal solution for a given problem.
 
 You can use only this command to run/compile the project:
 ```bash"
-./run.sh    # to run the project
+./run.sh
 ```
 If you want to compile the project, you can use this command:
 ```bash"
-./build.sh    # to compile the project
+./build.sh
 ```
 And if you want to clean the project, you can use this commands:
 ```bash"
