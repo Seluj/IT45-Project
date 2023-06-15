@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 MAIN=main
 ARG=$1
-
 
 echo -e "\n\n"
 echo "===================================================="
@@ -17,6 +16,13 @@ echo -e "\n\n"
 echo "Press enter to continue"
 read -r
 echo -e "\n\n"
+
+if [ "$ARG" == "help" ]; then
+  echo "Usage: ./run.sh [path]"
+  echo "path: path to input files"
+  echo "If you do not pass any argument, the default path is ./instances/200Missions-2centres/"
+  exit
+fi
 
 if [ ! -f "$MAIN" ]; then
   echo "$MAIN does not exists"
@@ -44,13 +50,6 @@ if [[ -z "$ARG" ]]; then
   echo "Take default path for input file"
   echo "./instances/200Missions-2centres/"
   ARG="./instances/200Missions-2centres/"
-fi
-
-if [ "$ARG" == "help" ]; then
-  echo "Usage: ./run.sh [path]"
-  echo "path: path to input files"
-  echo "If you do not pass any argument, the default path is ./instances/200Missions-2centres/"
-  exit
 fi
 
 if [ ! -d "$ARG" ]; then
